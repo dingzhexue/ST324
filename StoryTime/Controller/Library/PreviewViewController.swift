@@ -1,13 +1,13 @@
 //
-//  ChangeThemeViewController.swift
+//  PreviewViewController.swift
 //  StoryTime
 //
-//  Created by Administrator on 12/16/17.
+//  Created by Administrator on 12/19/17.
 //
 
 import UIKit
 
-class ChangeThemeViewController: BaseViewController {
+class PreviewViewController: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

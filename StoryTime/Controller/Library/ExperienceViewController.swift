@@ -1,14 +1,14 @@
 //
-//  QuickViewController.swift
+//  ExperienceViewController.swift
 //  StoryTime
 //
-//  Created by Administrator on 12/15/17.
+//  Created by Administrator on 12/20/17.
 //
 
 import UIKit
 import SwiftSiriWaveformView
 
-class QuickViewController: BaseViewController {
+class ExperienceViewController: BaseViewController {
 
     var timer:Timer?
     var change:CGFloat = 0.01
@@ -21,7 +21,7 @@ class QuickViewController: BaseViewController {
         
         timer = Timer.scheduledTimer(timeInterval: 0.009,
                                      target: self,
-                                     selector: #selector(QuickViewController.refreshAudioView(_:)),
+                                     selector: #selector(refreshAudioView(_:)),
                                      userInfo: nil,
                                      repeats: true)
     }
@@ -34,4 +34,5 @@ class QuickViewController: BaseViewController {
         // Simply set the amplitude to whatever you need and the view will update itself.
         self.audioView.amplitude += self.change
     }
+
 }
