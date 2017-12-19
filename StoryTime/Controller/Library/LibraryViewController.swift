@@ -19,7 +19,11 @@ class LibraryViewController: BaseViewController {
     
     private func loadLibrary() {
         Library.loadLibrary { (library) in
-            print(library)
+            if let story = library.levels.first?.stories.first {
+                Library.loadStoryScreenshot(story, { (screenshotImage) in
+                    print(screenshotImage!)
+                })
+            }
         }
     }
 
