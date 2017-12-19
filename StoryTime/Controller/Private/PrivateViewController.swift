@@ -12,7 +12,7 @@ class PrivateViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        SpeechRecognizer.shared.startRecording()
+//        SpeechRecognizer.shared.startRecording()
     }
 
     override func didReceiveMemoryWarning() {

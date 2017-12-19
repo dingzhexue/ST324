@@ -32,6 +32,7 @@
 		C3616BBF1FE42E1A00EECBD7 /* Story.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3616BBE1FE42E1A00EECBD7 /* Story.swift */; };
 		C3616BC31FE4598200EECBD7 /* IconCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3616BC21FE4598200EECBD7 /* IconCell.swift */; };
 		E697AF187E00F7F0D9349C36 /* Pods_StoryTime.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE2528B1FA1036B4ED133F41 /* Pods_StoryTime.framework */; };
+		ECEBE6181FE81E3000A47878 /* GameCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECEBE6171FE81E3000A47878 /* GameCenter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -64,6 +65,7 @@
 		C3616BBC1FE429E500EECBD7 /* ChangeThemeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeThemeViewController.swift; sourceTree = "<group>"; };
 		C3616BBE1FE42E1A00EECBD7 /* Story.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Story.swift; sourceTree = "<group>"; };
 		C3616BC21FE4598200EECBD7 /* IconCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconCell.swift; sourceTree = "<group>"; };
+		ECEBE6171FE81E3000A47878 /* GameCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameCenter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -187,6 +189,7 @@
 			children = (
 				C3616BB01FE2FC2800EECBD7 /* Firebase.swift */,
 				C3616BB81FE4208A00EECBD7 /* SpeechRecognizer.swift */,
+				ECEBE6171FE81E3000A47878 /* GameCenter.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -320,6 +323,7 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-StoryTime/Pods-StoryTime-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftSiriWaveformView/SwiftSiriWaveformView.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
@@ -327,6 +331,7 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftSiriWaveformView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
@@ -365,6 +370,7 @@
 				C3616BBF1FE42E1A00EECBD7 /* Story.swift in Sources */,
 				C3616BA41FE2ED1600EECBD7 /* StoreViewController.swift in Sources */,
 				C3616BB71FE3053300EECBD7 /* Music.swift in Sources */,
+				ECEBE6181FE81E3000A47878 /* GameCenter.swift in Sources */,
 				C3616B9C1FE2EB1900EECBD7 /* QuickViewController.swift in Sources */,
 				C3616BC31FE4598200EECBD7 /* IconCell.swift in Sources */,
 				C3616BA61FE2F6C900EECBD7 /* IconViewController.swift in Sources */,
