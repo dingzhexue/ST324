@@ -29,6 +29,7 @@
 		C3BBFD411FE96D5300CBACA7 /* LibraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3BBFD401FE96D5300CBACA7 /* LibraryViewController.swift */; };
 		C3BBFD431FE96EF800CBACA7 /* PreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3BBFD421FE96EF800CBACA7 /* PreviewViewController.swift */; };
 		C3BBFD451FE96FDE00CBACA7 /* ExperienceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3BBFD441FE96FDE00CBACA7 /* ExperienceViewController.swift */; };
+		C3BBFD481FEAD0DD00CBACA7 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3BBFD471FEAD0DD00CBACA7 /* SettingsViewController.swift */; };
 		E697AF187E00F7F0D9349C36 /* Pods_StoryTime.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE2528B1FA1036B4ED133F41 /* Pods_StoryTime.framework */; };
 		ECEBE6181FE81E3000A47878 /* GameCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECEBE6171FE81E3000A47878 /* GameCenter.swift */; };
 /* End PBXBuildFile section */
@@ -61,6 +62,7 @@
 		C3BBFD401FE96D5300CBACA7 /* LibraryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryViewController.swift; sourceTree = "<group>"; };
 		C3BBFD421FE96EF800CBACA7 /* PreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewViewController.swift; sourceTree = "<group>"; };
 		C3BBFD441FE96FDE00CBACA7 /* ExperienceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExperienceViewController.swift; sourceTree = "<group>"; };
+		C3BBFD471FEAD0DD00CBACA7 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		ECEBE6171FE81E3000A47878 /* GameCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameCenter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -125,6 +127,7 @@
 			children = (
 				C3BBFD3C1FE96BA000CBACA7 /* Home */,
 				C3BBFD3F1FE96CA300CBACA7 /* Library */,
+				C3BBFD461FEAC8CC00CBACA7 /* Settings */,
 				C3616B9A1FE2EAE700EECBD7 /* Group */,
 				C3616B991FE2EAE700EECBD7 /* Store */,
 				C3616B931FE2E7C200EECBD7 /* BaseViewController.swift */,
@@ -212,6 +215,14 @@
 				C3BBFD441FE96FDE00CBACA7 /* ExperienceViewController.swift */,
 			);
 			path = Library;
+			sourceTree = "<group>";
+		};
+		C3BBFD461FEAC8CC00CBACA7 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				C3BBFD471FEAD0DD00CBACA7 /* SettingsViewController.swift */,
+			);
+			path = Settings;
 			sourceTree = "<group>";
 		};
 		CC68E77FCBAA133C28E733DE /* Frameworks */ = {
@@ -362,6 +373,7 @@
 				C3616BA81FE2F6D200EECBD7 /* ThemeViewController.swift in Sources */,
 				C3616BB91FE4208A00EECBD7 /* SpeechRecognizer.swift in Sources */,
 				C3616BBF1FE42E1A00EECBD7 /* Library.swift in Sources */,
+				C3BBFD481FEAD0DD00CBACA7 /* SettingsViewController.swift in Sources */,
 				C3616BA41FE2ED1600EECBD7 /* StoreViewController.swift in Sources */,
 				C3BBFD411FE96D5300CBACA7 /* LibraryViewController.swift in Sources */,
 				C3616BB71FE3053300EECBD7 /* Music.swift in Sources */,
