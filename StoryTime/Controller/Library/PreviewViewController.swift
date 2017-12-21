@@ -9,10 +9,16 @@ import UIKit
 
 class PreviewViewController: BaseViewController {
 
+    @IBOutlet weak var btnBack: UIButton!
+    @IBOutlet weak var imagePreStory: UIImageView!
+    @IBOutlet weak var lblStoryName: UILabel!
+    @IBOutlet weak var lblLevel: UILabel!
+
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        btnBack.layer.cornerRadius = btnBack.frame.width / 2
+        btnBack.layer.borderWidth = 1
+        imagePreStory.layer.cornerRadius = btnBack.frame.width / 2        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
@@ -20,7 +26,10 @@ class PreviewViewController: BaseViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
+    @IBAction func btnBackClicked(_ sender: Any) {
+        _ = self.navigationController?.popViewController(animated: true)
+    }
+    
     /*
     // MARK: - Navigation
 

@@ -31,6 +31,8 @@
 		C3BBFD451FE96FDE00CBACA7 /* ExperienceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3BBFD441FE96FDE00CBACA7 /* ExperienceViewController.swift */; };
 		C3BBFD481FEAD0DD00CBACA7 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3BBFD471FEAD0DD00CBACA7 /* SettingsViewController.swift */; };
 		E697AF187E00F7F0D9349C36 /* Pods_StoryTime.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE2528B1FA1036B4ED133F41 /* Pods_StoryTime.framework */; };
+		EC250CD71FEB500700103274 /* StoryCVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC250CD61FEB500700103274 /* StoryCVCell.swift */; };
+		EC250CD91FEB501400103274 /* StoryTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC250CD81FEB501400103274 /* StoryTVCell.swift */; };
 		ECEBE6181FE81E3000A47878 /* GameCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECEBE6171FE81E3000A47878 /* GameCenter.swift */; };
 /* End PBXBuildFile section */
 
@@ -63,6 +65,8 @@
 		C3BBFD421FE96EF800CBACA7 /* PreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewViewController.swift; sourceTree = "<group>"; };
 		C3BBFD441FE96FDE00CBACA7 /* ExperienceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExperienceViewController.swift; sourceTree = "<group>"; };
 		C3BBFD471FEAD0DD00CBACA7 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		EC250CD61FEB500700103274 /* StoryCVCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryCVCell.swift; sourceTree = "<group>"; };
+		EC250CD81FEB501400103274 /* StoryTVCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryTVCell.swift; sourceTree = "<group>"; };
 		ECEBE6171FE81E3000A47878 /* GameCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameCenter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -157,8 +161,8 @@
 		C3616BAD1FE2FC0F00EECBD7 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				EC250CD11FEB4F1500103274 /* TableViewCell */,
 				C3616BC11FE4596400EECBD7 /* CollectionViewCell */,
-				C3616BC01FE4596400EECBD7 /* TableViewCell */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -184,17 +188,11 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		C3616BC01FE4596400EECBD7 /* TableViewCell */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = TableViewCell;
-			sourceTree = "<group>";
-		};
 		C3616BC11FE4596400EECBD7 /* CollectionViewCell */ = {
 			isa = PBXGroup;
 			children = (
 				C3616BC21FE4598200EECBD7 /* IconCell.swift */,
+				EC250CD61FEB500700103274 /* StoryCVCell.swift */,
 			);
 			path = CollectionViewCell;
 			sourceTree = "<group>";
@@ -231,6 +229,14 @@
 				AE2528B1FA1036B4ED133F41 /* Pods_StoryTime.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		EC250CD11FEB4F1500103274 /* TableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				EC250CD81FEB501400103274 /* StoryTVCell.swift */,
+			);
+			path = TableViewCell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -379,7 +385,9 @@
 				C3616BB71FE3053300EECBD7 /* Music.swift in Sources */,
 				C3BBFD3E1FE96BAD00CBACA7 /* HomeViewController.swift in Sources */,
 				ECEBE6181FE81E3000A47878 /* GameCenter.swift in Sources */,
+				EC250CD71FEB500700103274 /* StoryCVCell.swift in Sources */,
 				C3616BC31FE4598200EECBD7 /* IconCell.swift in Sources */,
+				EC250CD91FEB501400103274 /* StoryTVCell.swift in Sources */,
 				C3616BA61FE2F6C900EECBD7 /* IconViewController.swift in Sources */,
 				C3616BAA1FE2F6D800EECBD7 /* MusicViewController.swift in Sources */,
 				C3BBFD451FE96FDE00CBACA7 /* ExperienceViewController.swift in Sources */,

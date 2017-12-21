@@ -9,11 +9,16 @@ import UIKit
 
 class LibraryViewController: BaseViewController {
 
-    @IBOutlet weak var storyCollectionView: UICollectionView!
+    
+    @IBOutlet weak var btnBuyAllLibrary: UIButton!
+    @IBOutlet weak var storyTableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        //Rounded Button & View
+        btnBuyAllLibrary.layer.cornerRadius = 20
+        btnBuyAllLibrary.layer.borderWidth = 2
+        
         loadLibrary()
     }
     
@@ -33,18 +38,24 @@ class LibraryViewController: BaseViewController {
     }
 }
 
-// MARK: UICollectionView
-extension LibraryViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource, UICollectionViewDelegate {
+extension LibraryViewController: UITableViewDelegate, UITableViewDataSource {
     
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 0
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = UICollectionViewCell()
-        
+    func numberOfSections(in tableView: UITableView) -> Int{
+        return 3
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! StoryTVCell
+        cell.tableSection = indexPath.section
+        cell.parent = self
         return cell
     }
     
-    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String?{
+        return "level\(section + 1)"
+    }
 }
