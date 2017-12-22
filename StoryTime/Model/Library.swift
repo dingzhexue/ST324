@@ -78,7 +78,7 @@ extension Library {
     }
     
     static func loadStoryScreenshot(_ story: Library.Level.Story, _ completionHandler: @escaping (_ image: UIImage?) -> Swift.Void) {
-        Firebase.shared.download("storyScreenshots/\(story.screenshotName).png") { (data) in
+        Firebase.shared.download("storyScreenshot/\(story.screenshotName)") { (data) in
             if let data = data {
                 completionHandler(UIImage(data: data))
             } else {

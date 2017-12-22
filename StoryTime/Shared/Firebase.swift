@@ -52,7 +52,7 @@ extension Firebase {
 
 // MARK: Storage
 extension Firebase {
-    func download(_ childPath: String!, completionHandler: @escaping (_ data: Data?) -> Swift.Void) {
+    func download(_ childPath: String, completionHandler: @escaping (_ data: Data?) -> Swift.Void) {
         storageRef.child(childPath).getData(maxSize: maxDownloadFileSize) { (data, error) in
             if let error = error {
                 print("Firebase download \(childPath) failed \(error.localizedDescription)")
