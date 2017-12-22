@@ -13,12 +13,21 @@ class PreviewViewController: BaseViewController {
     @IBOutlet weak var imagePreStory: UIImageView!
     @IBOutlet weak var lblStoryName: UILabel!
     @IBOutlet weak var lblLevel: UILabel!
-
+    @IBOutlet weak var txtSummary: UITextView!
+    @IBOutlet weak var txtKeyMetrics: UITextView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        btnBack.layer.cornerRadius = btnBack.frame.width / 2
-        btnBack.layer.borderWidth = 1
-        imagePreStory.layer.cornerRadius = btnBack.frame.width / 2        // Do any additional setup after loading the view.
+        imagePreStory.layer.cornerRadius = 10
+        // Do any additional setup after loading the view.
+        //Get All Datas
+        if let  library = storyLibrary {
+            imagePreStory.image = UIImage(named: library.levels[levelIdx].stories[storyIdx].screenshotName)!
+            lblStoryName.text? = library.levels[levelIdx].stories[storyIdx].name
+            lblLevel.text? = "Level \(library.levels[levelIdx].level)"
+            txtSummary.text = library.levels[levelIdx].stories[storyIdx].summary
+            txtKeyMetrics.text = library.levels[levelIdx].stories[storyIdx].keyMetrics
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -27,7 +36,11 @@ class PreviewViewController: BaseViewController {
     }
     
     @IBAction func btnBackClicked(_ sender: Any) {
-        _ = self.navigationController?.popViewController(animated: true)
+        let preView = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LibraryViewController") as! LibraryViewController
+        preView.isHeroEnabled = true
+        preView.heroModalAnimationType = .pull(direction: .right)
+        
+        self.hero_replaceViewController(with: preView)
     }
     
     /*

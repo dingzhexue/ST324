@@ -6,18 +6,20 @@
 //
 
 import UIKit
-
+import Hero
 class HomeViewController: BaseViewController {
 
     
     @IBOutlet weak var btnLibrary: UIButton!
+    @IBOutlet weak var btnSettings: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
         //Circle Button.
         btnLibrary.layer.cornerRadius = btnLibrary.frame.width / 2
         btnLibrary.clipsToBounds = true
-        //        btnLibrary.layer.borderColor = UIColor(red:255.0/255.0, green:0.0, blue:0.0, alpha: 1.0).cgColor
-        //        btnLibrary.layer.borderWidth = 1        // Do any additional setup after loading the view.
+        btnSettings.layer.cornerRadius = btnSettings.frame.width / 2
+        btnSettings.clipsToBounds = true
+        btnSettings.heroID = "skyWalker"
     }
 
     override func didReceiveMemoryWarning() {
@@ -27,7 +29,18 @@ class HomeViewController: BaseViewController {
     
    
     @IBAction func btnLibraryClicked(_ sender: Any) {
-        self.performSegue(withIdentifier: "ToShowLibrarySegue", sender: self)
+        let preView = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LibraryViewController") as! LibraryViewController
+        preView.isHeroEnabled = true
+        preView.heroModalAnimationType = .push(direction: .left)
+        
+        self.hero_replaceViewController(with: preView)
+    }
+    @IBAction func btnSettingClicked(_ sender: Any) {
+        let preView = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SettingsViewController") as! SettingsViewController
+        preView.isHeroEnabled = true
+        preView.heroModalAnimationType = .fade
+        
+        self.hero_replaceViewController(with: preView)
     }
     
     /*

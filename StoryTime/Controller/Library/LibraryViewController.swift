@@ -11,7 +11,7 @@ class LibraryViewController: BaseViewController {
 
     
     @IBOutlet weak var btnBuyAllLibrary: UIButton!
-    @IBOutlet weak var storyTableView: UITableView!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,6 +24,8 @@ class LibraryViewController: BaseViewController {
     
     private func loadLibrary() {
         Library.loadLibrary { (library) in
+            storyLibrary = library
+            
             if let story = library.levels.first?.stories.first {
                 Library.loadStoryScreenshot(story, { (screenshotImage) in
                     print(screenshotImage!)
@@ -36,26 +38,72 @@ class LibraryViewController: BaseViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    @IBAction func btnBackClicked(_ sender: Any) {
+        let preView = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
+        preView.isHeroEnabled = true
+        preView.heroModalAnimationType = .pull(direction: .right)
+        
+        self.hero_replaceViewController(with: preView)
+    }
 }
 
-extension LibraryViewController: UITableViewDelegate, UITableViewDataSource {
+extension LibraryViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        if let stories = storyLibrary?.levels[section].stories {
+            return stories.count
+        }
+        return 0
     }
     
-    func numberOfSections(in tableView: UITableView) -> Int{
-        return 3
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! StoryTVCell
-        cell.tableSection = indexPath.section
-        cell.parent = self
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "StoryCell", for: indexPath) as! StoryCVCell
+        if let stories = storyLibrary?.levels[indexPath.section].stories {
+            cell.lblStory.text? = "\(stories[indexPath.row].refId)"
+        }
+        cell.viewCell.layer.cornerRadius = 10
+        cell.viewCell.layer.borderWidth = 2
         return cell
     }
     
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String?{
-        return "level\(section + 1)"
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        if let levels = storyLibrary?.levels {
+            return levels.count
+        }
+        return 0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        
+        let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "SectionHeader", for: indexPath) as! StoryCRView
+        if let levels = storyLibrary?.levels {
+            header.lblHeader.text? = "Level \(levels[indexPath.section].level)"
+        }
+        
+        
+        return header
+        
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        levelIdx = indexPath.section
+        storyIdx = indexPath.row
+        
+        let preView = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PreviewViewController") as! PreviewViewController
+        preView.isHeroEnabled = true
+        preView.heroModalAnimationType = .push(direction: .left)
+        
+        self.hero_replaceViewController(with: preView)
     }
 }
+
+
+
+
+
+
+
+
+
+
+
