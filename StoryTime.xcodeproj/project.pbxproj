@@ -32,9 +32,8 @@
 		C3BBFD481FEAD0DD00CBACA7 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3BBFD471FEAD0DD00CBACA7 /* SettingsViewController.swift */; };
 		E697AF187E00F7F0D9349C36 /* Pods_StoryTime.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE2528B1FA1036B4ED133F41 /* Pods_StoryTime.framework */; };
 		EC4F5D721FEBF05D00898C2B /* StoryCVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4F5D711FEBF05D00898C2B /* StoryCVCell.swift */; };
-		EC4F5D741FEBF3A700898C2B /* StoryCRView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4F5D731FEBF3A700898C2B /* StoryCRView.swift */; };
+		EC7832281FECE37400E092AF /* StoryTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7832271FECE37400E092AF /* StoryTVCell.swift */; };
 		ECEBE6181FE81E3000A47878 /* GameCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECEBE6171FE81E3000A47878 /* GameCenter.swift */; };
-		ECECE87F1FEC135400DFE094 /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECECE87E1FEC135400DFE094 /* Global.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -67,9 +66,8 @@
 		C3BBFD441FE96FDE00CBACA7 /* ExperienceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExperienceViewController.swift; sourceTree = "<group>"; };
 		C3BBFD471FEAD0DD00CBACA7 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		EC4F5D711FEBF05D00898C2B /* StoryCVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryCVCell.swift; sourceTree = "<group>"; };
-		EC4F5D731FEBF3A700898C2B /* StoryCRView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryCRView.swift; sourceTree = "<group>"; };
+		EC7832271FECE37400E092AF /* StoryTVCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryTVCell.swift; sourceTree = "<group>"; };
 		ECEBE6171FE81E3000A47878 /* GameCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameCenter.swift; sourceTree = "<group>"; };
-		ECECE87E1FEC135400DFE094 /* Global.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Global.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,7 +135,6 @@
 				C3616B9A1FE2EAE700EECBD7 /* Group */,
 				C3616B991FE2EAE700EECBD7 /* Store */,
 				C3616B931FE2E7C200EECBD7 /* BaseViewController.swift */,
-				ECECE87E1FEC135400DFE094 /* Global.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -196,7 +193,6 @@
 			children = (
 				C3616BC21FE4598200EECBD7 /* IconCell.swift */,
 				EC4F5D711FEBF05D00898C2B /* StoryCVCell.swift */,
-				EC4F5D731FEBF3A700898C2B /* StoryCRView.swift */,
 			);
 			path = CollectionViewCell;
 			sourceTree = "<group>";
@@ -238,6 +234,7 @@
 		EC250CD11FEB4F1500103274 /* TableViewCell */ = {
 			isa = PBXGroup;
 			children = (
+				EC7832271FECE37400E092AF /* StoryTVCell.swift */,
 			);
 			path = TableViewCell;
 			sourceTree = "<group>";
@@ -382,12 +379,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				C3616BA81FE2F6D200EECBD7 /* ThemeViewController.swift in Sources */,
-				EC4F5D741FEBF3A700898C2B /* StoryCRView.swift in Sources */,
 				C3616BB91FE4208A00EECBD7 /* SpeechRecognizer.swift in Sources */,
 				C3616BBF1FE42E1A00EECBD7 /* Library.swift in Sources */,
 				C3BBFD481FEAD0DD00CBACA7 /* SettingsViewController.swift in Sources */,
 				C3616BA41FE2ED1600EECBD7 /* StoreViewController.swift in Sources */,
-				ECECE87F1FEC135400DFE094 /* Global.swift in Sources */,
 				C3BBFD411FE96D5300CBACA7 /* LibraryViewController.swift in Sources */,
 				C3616BB71FE3053300EECBD7 /* Music.swift in Sources */,
 				C3BBFD3E1FE96BAD00CBACA7 /* HomeViewController.swift in Sources */,
@@ -404,6 +399,7 @@
 				C3616B941FE2E7C200EECBD7 /* BaseViewController.swift in Sources */,
 				C3616BA21FE2ECD900EECBD7 /* GroupViewController.swift in Sources */,
 				C3616BB51FE3052C00EECBD7 /* Theme.swift in Sources */,
+				EC7832281FECE37400E092AF /* StoryTVCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -9,7 +9,7 @@ import UIKit
 
 class StoryCVCell: UICollectionViewCell {
     
-    @IBOutlet weak var viewCell: UIView!
+    @IBOutlet weak var viewStory: UIView!
     @IBOutlet weak var lblStory: UILabel!
     
 }

@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import Hero
+
 class SettingsViewController: BaseViewController {
 
     @IBOutlet weak var imageUser: UIImageView!
@@ -25,9 +25,19 @@ class SettingsViewController: BaseViewController {
         btnMusic.layer.borderWidth = 2
         imageUser.layer.cornerRadius = imageUser.frame.width / 2
         imageUser.layer.borderWidth = 2
-        // Do any additional setup after loading the view.
+        //Do any additional setup after loading the view.
+        
+        //Get User Photo and DisplayName From GameCenter
+        GameCenter().currentPlayer.loadPhoto(for: .normal, withCompletionHandler: {(image, error) in
+            if image && !error {
+                imageUser.image = image
+            }
+            
+        })
+        lblUserName.text? = GameCenter().currentPlayer.displayName
+        
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -45,7 +55,6 @@ class SettingsViewController: BaseViewController {
     @IBAction func btnBackClicked(_ sender: Any) {
         let preView = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
         preView.isHeroEnabled = true
-        
         preView.heroModalAnimationType = .fade//.zoomSlide(direction: HeroDefaultAnimationType.Direction.down)
         self.hero_replaceViewController(with: preView)
     }

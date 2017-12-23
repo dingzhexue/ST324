@@ -32,6 +32,7 @@ public class GameCenter: NSObject, GKMatchmakerViewControllerDelegate, GKGameCen
     fileprivate weak var delegate: GameCenterDelegate?
     fileprivate var invite: GKInvite!
     fileprivate var invitedPlayer: GKPlayer!
+    public var currentPlayer: GKPlayer!
     fileprivate var playersDict = [String: AnyObject]()
     fileprivate weak var presentingViewController: UIViewController!
     
@@ -77,12 +78,10 @@ public class GameCenter: NSObject, GKMatchmakerViewControllerDelegate, GKGameCen
                 self.delegate?.matchEnded()
                 return
             }
-            
             guard let players = players else {
                 print("Error retrieving players; returned nil")
                 return
             }
-            
             for player in players {
                 print("Found player: \(String(describing: player.alias))")
                 self.playersDict[player.playerID!] = player
@@ -138,6 +137,7 @@ public class GameCenter: NSObject, GKMatchmakerViewControllerDelegate, GKGameCen
         
         presentingViewController.present(mmvc, animated: true, completion: nil)
     }
+    
     
     /**
      Reports progress on an achievement to GameKit if the achievement has not been completed already

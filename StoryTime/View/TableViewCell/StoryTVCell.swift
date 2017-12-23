@@ -6,15 +6,18 @@
 //
 
 import UIKit
-
+import Hero
 class StoryTVCell: UITableViewCell {
 
     @IBOutlet weak var storyCollectionView: UICollectionView!
     var tableSection: Int = 0
-    var parent : UIViewController = UIViewController()
+    var parent: LibraryViewController? //Parent ViewController
+    var stories: [Library.Level.Story] = []
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        storyCollectionView.delegate = self
+        storyCollectionView.dataSource = self
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -29,24 +32,36 @@ class StoryTVCell: UITableViewCell {
 extension StoryTVCell: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource, UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return 10//stories.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "storyCell", for: indexPath) as! StoryCVCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "storyCVCell", for: indexPath) as! StoryCVCell
+        //Rounded Button
         cell.viewStory.layer.cornerRadius = 10
         cell.viewStory.layer.borderWidth = 1
-        print("section is for \(indexPath.row)", tableSection)
-        cell.lblStory.text? = "story\(tableSection) \(indexPath.row + 1)"
+        if stories.count != 0 {
+            cell.lblStory.text? = stories[indexPath.row].refId
+        }
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print(" selected section is for \(indexPath.row + 1)", tableSection)
-        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-        let nextViewController = storyBoard.instantiateViewController(withIdentifier: "PreviewViewController") as! PreviewViewController
-        parent.navigationController?.pushViewController(nextViewController, animated: true)
+        
+        let preView = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PreviewViewController") as! PreviewViewController
+        preView.isHeroEnabled = true
+        preView.heroModalAnimationType = .push(direction: .left)
+        //Pass Library
+        if let  parent = self.parent {
+            preView.storyLibrary = parent.storyLibrary
+            preView.levelIdx = tableSection
+            preView.storyIdx = indexPath.row
+            parent.hero_replaceViewController(with: preView)
+        }
+        
     }
+    
+    
 }
 
 
