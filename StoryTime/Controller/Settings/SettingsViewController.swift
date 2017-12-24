@@ -29,12 +29,14 @@ class SettingsViewController: BaseViewController {
         
         //Get User Photo and DisplayName From GameCenter
         GameCenter().currentPlayer.loadPhoto(for: .normal, withCompletionHandler: {(image, error) in
-            if image && !error {
-                imageUser.image = image
+            if image != nil && error != nil {
+                self.imageUser.image = image
             }
             
         })
-        lblUserName.text? = GameCenter().currentPlayer.displayName
+        if let displayName = GameCenter().currentPlayer.displayName {
+            lblUserName.text? = displayName
+        }
         
     }
     

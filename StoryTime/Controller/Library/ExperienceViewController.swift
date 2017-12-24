@@ -35,13 +35,15 @@ class ExperienceViewController: BaseViewController {
         }
         //Get User Photo
         GameCenter().currentPlayer.loadPhoto(for: .normal, withCompletionHandler: {(image, error) in
-            if image && !error {
-                userImage.image = image
+            if image != nil && error != nil {
+                self.userImage.image = image
             }
             
         })
         //Make Horizontal TextView
-        MakescrollTextView(scrollView: scrollView, displayStr: self.story?.sentences[0])
+        if let firstSentence = self.story?.sentences.first {
+            MakescrollTextView(scrollView: scrollView, displayStr: firstSentence)
+        }
         
     }
     
