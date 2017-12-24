@@ -29,8 +29,8 @@ class LibraryViewController: BaseViewController {
         Library.loadLibrary { (library) in
             
             UIViewController.removeSpinner(spinner: self.spinnerView)
-            self.storyTableView.reloadData()
             self.storyLibrary = library
+            self.storyTableView.reloadData()
         }
     }
 

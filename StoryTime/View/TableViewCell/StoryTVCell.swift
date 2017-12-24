@@ -32,7 +32,7 @@ class StoryTVCell: UITableViewCell {
 extension StoryTVCell: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource, UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10//stories.count
+        return stories.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -40,9 +40,7 @@ extension StoryTVCell: UICollectionViewDelegateFlowLayout, UICollectionViewDataS
         //Rounded Button
         cell.viewStory.layer.cornerRadius = 10
         cell.viewStory.layer.borderWidth = 1
-        if stories.count != 0 {
-            cell.lblStory.text? = stories[indexPath.row].refId
-        }
+        cell.lblStory.text? = stories[indexPath.row].refId
         return cell
     }
     
