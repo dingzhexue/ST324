@@ -18,7 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         FirebaseApp.configure()
-        Firebase.shared.signInWithEmail("user@test.com", "testuser")
+        Firebase.shared.signInAnonymously()
         
         return true
     }

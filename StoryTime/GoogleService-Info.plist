@@ -7,21 +7,21 @@
 	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
 	<string>ca-app-pub-3940256099942544/4411468910</string>
 	<key>CLIENT_ID</key>
-	<string>1090115922907-dbl708rgabpld42c3rg99cpvo08ej295.apps.googleusercontent.com</string>
+	<string>44481167931-6kamnm7p5lr1m3lkr4bcjlm4gpm1og29.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.1090115922907-dbl708rgabpld42c3rg99cpvo08ej295</string>
+	<string>com.googleusercontent.apps.44481167931-6kamnm7p5lr1m3lkr4bcjlm4gpm1og29</string>
 	<key>API_KEY</key>
-	<string>AIzaSyC0rDICdQcI02s11bKDGLl_6shWBIp2zgM</string>
+	<string>AIzaSyDIyRBNZ3pwoi9kL9P8_OmYWOuZV6QyqmA</string>
 	<key>GCM_SENDER_ID</key>
-	<string>1090115922907</string>
+	<string>44481167931</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
 	<string>com.bradcink.StoryTime</string>
 	<key>PROJECT_ID</key>
-	<string>storytime-252c3</string>
+	<string>storytime-app</string>
 	<key>STORAGE_BUCKET</key>
-	<string>storytime-252c3.appspot.com</string>
+	<string>storytime-app.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<true></true>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -33,8 +33,8 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:1090115922907:ios:88936845958744b9</string>
+	<string>1:44481167931:ios:88936845958744b9</string>
 	<key>DATABASE_URL</key>
-	<string>https://storytime-252c3.firebaseio.com</string>
+	<string>https://storytime-app.firebaseio.com</string>
 </dict>
 </plist>
