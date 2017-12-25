@@ -27,7 +27,6 @@ class LibraryViewController: BaseViewController {
     
     private func loadLibrary() {
         Library.loadLibrary { (library) in
-            
             UIViewController.removeSpinner(spinner: self.spinnerView)
             self.storyLibrary = library
             self.storyTableView.reloadData()
@@ -49,9 +48,6 @@ class LibraryViewController: BaseViewController {
 extension LibraryViewController: UITableViewDataSource, UITableViewDelegate {
    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if let stories = self.storyLibrary?.levels[section].stories {
-            return stories.count
-        }
         return 1
     }
     

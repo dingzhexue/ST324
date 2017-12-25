@@ -28,16 +28,17 @@ class SettingsViewController: BaseViewController {
         //Do any additional setup after loading the view.
         
         //Get User Photo and DisplayName From GameCenter
-        GameCenter().currentPlayer.loadPhoto(for: .normal, withCompletionHandler: {(image, error) in
-            if image != nil && error != nil {
-                self.imageUser.image = image
+        if let currentPlayer = GameCenter().currentPlayer {
+            currentPlayer.loadPhoto(for: .normal, withCompletionHandler: {(image, error) in
+                if image != nil && error != nil {
+                    self.imageUser.image = image
+                }
+                
+            })
+            if let displayName = currentPlayer.displayName {
+                lblUserName.text? = displayName
             }
-            
-        })
-        if let displayName = GameCenter().currentPlayer.displayName {
-            lblUserName.text? = displayName
-        }
-        
+        }        
     }
     
     override func didReceiveMemoryWarning() {

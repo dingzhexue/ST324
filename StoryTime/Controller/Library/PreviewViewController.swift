@@ -15,24 +15,24 @@ class PreviewViewController: BaseViewController {
     @IBOutlet weak var lblLevel: UILabel!
     @IBOutlet weak var txtSummary: UITextView!
     @IBOutlet weak var txtKeyMetrics: UITextView!
-    var levelIdx = 0
-    var storyIdx = 0
-    var storyLibrary: Library?
+    
+    var story: Library.Level.Story?
+    var levelStr = 0
     override func viewDidLoad() {
         super.viewDidLoad()
         imagePreStory.layer.cornerRadius = 10
         // Do any additional setup after loading the view.
         //Get All Datas
-        if let  library = storyLibrary {
-            Library.loadStoryScreenshot(library.levels[levelIdx].stories[storyIdx], { (image) in
+        if let story = self.story  {
+            Library.loadStoryScreenshot(story, { (image) in
                 self.imagePreStory.image = image!
             })
-            lblStoryName.text? = library.levels[levelIdx].stories[storyIdx].name
-            lblLevel.text? = "Level \(library.levels[levelIdx].level)"
-            txtSummary.text = library.levels[levelIdx].stories[storyIdx].summary
-            txtKeyMetrics.text = library.levels[levelIdx].stories[storyIdx].keyMetrics
+            lblStoryName.text? = story.name
+            lblLevel.text? = "Level \(levelStr)"
+            txtSummary.text = story.summary
+            txtKeyMetrics.text = story.keyMetrics
         }
-        print(levelIdx, storyIdx)
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -43,7 +43,7 @@ class PreviewViewController: BaseViewController {
         let preView = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ExperienceViewController") as! ExperienceViewController
         preView.isHeroEnabled = true
         preView.heroModalAnimationType = .push(direction: .left)
-        preView.story = self.storyLibrary?.levels[levelIdx].stories[storyIdx]
+        preView.story = self.story
         self.hero_replaceViewController(with: preView)
     }
     

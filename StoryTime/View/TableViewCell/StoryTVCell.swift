@@ -40,7 +40,9 @@ extension StoryTVCell: UICollectionViewDelegateFlowLayout, UICollectionViewDataS
         //Rounded Button
         cell.viewStory.layer.cornerRadius = 10
         cell.viewStory.layer.borderWidth = 1
-        cell.lblStory.text? = stories[indexPath.row].refId
+        if stories.count != 0 {
+            cell.lblStory.text? = stories[indexPath.row].refId
+        }
         return cell
     }
     
@@ -51,9 +53,11 @@ extension StoryTVCell: UICollectionViewDelegateFlowLayout, UICollectionViewDataS
         preView.heroModalAnimationType = .push(direction: .left)
         //Pass Library
         if let  parent = self.parent {
-            preView.storyLibrary = parent.storyLibrary
-            preView.levelIdx = tableSection
-            preView.storyIdx = indexPath.row
+            
+            if let level = parent.storyLibrary?.levels[tableSection]{
+                preView.story = level.stories[indexPath.row]
+                preView.levelStr = level.level
+            }
             parent.hero_replaceViewController(with: preView)
         }
         
