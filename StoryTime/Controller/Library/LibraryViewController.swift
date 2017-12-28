@@ -55,9 +55,10 @@ extension LibraryViewController: UITableViewDataSource, UITableViewDelegate {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "storyTVCell") as! StoryTVCell
         cell.parent = self
-        cell.tableSection = indexPath.section
-        if let stories = self.storyLibrary?.levels[indexPath.section].stories {
-            cell.stories = stories
+        
+        if let level = self.storyLibrary?.levels[indexPath.section] {
+            cell.stories = level.stories
+            cell.levelInt = level.level
         }
         return cell
     }
@@ -73,7 +74,7 @@ extension LibraryViewController: UITableViewDataSource, UITableViewDelegate {
         if let level = self.storyLibrary?.levels[section].level {
              return "Level \(level)"
         }
-        return "Level"
+        return ""
     }
 }
 

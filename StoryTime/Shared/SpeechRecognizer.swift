@@ -18,7 +18,7 @@ class SpeechRecognizer: NSObject {
     }
     
     static let shared = SpeechRecognizer()
-    
+    public var speechText = ""
     private let speechRecognizer = SFSpeechRecognizer(locale: Locale.init(identifier: "en-US"))!
     private var recognitionRequest: SFSpeechAudioBufferRecognitionRequest?
     private var recognitionTask: SFSpeechRecognitionTask?
@@ -29,10 +29,11 @@ class SpeechRecognizer: NSObject {
             recognitionTask?.cancel()
             recognitionTask = nil
         }
-        
+        self.speechText = ""
         let audioSession = AVAudioSession.sharedInstance()
         do {
-            try audioSession.setCategory(AVAudioSessionCategoryRecord)
+            //try audioSession.setCategory(AVAudioSessionCategoryRecord)
+            try audioSession.setCategory(AVAudioSessionCategoryPlayAndRecord)
             try audioSession.setMode(AVAudioSessionModeMeasurement)
             try audioSession.setActive(true, with: .notifyOthersOnDeactivation)
         } catch {
@@ -55,6 +56,7 @@ class SpeechRecognizer: NSObject {
             
             if result != nil, let text = result?.bestTranscription.formattedString {
                 print("Speech Recognized Text: \(text)")
+                self.speechText = text
                 isFinal = (result?.isFinal)!
             }
             

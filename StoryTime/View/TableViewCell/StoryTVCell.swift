@@ -10,9 +10,10 @@ import Hero
 class StoryTVCell: UITableViewCell {
 
     @IBOutlet weak var storyCollectionView: UICollectionView!
-    var tableSection: Int = 0
+    
     var parent: LibraryViewController? //Parent ViewController
     var stories: [Library.Level.Story] = []
+    var levelInt = 0
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -52,14 +53,11 @@ extension StoryTVCell: UICollectionViewDelegateFlowLayout, UICollectionViewDataS
         preView.isHeroEnabled = true
         preView.heroModalAnimationType = .push(direction: .left)
         //Pass Library
-        if let  parent = self.parent {
-            
-            if let level = parent.storyLibrary?.levels[tableSection]{
-                preView.story = level.stories[indexPath.row]
-                preView.levelStr = level.level
-            }
-            parent.hero_replaceViewController(with: preView)
-        }
+        preView.story = stories[indexPath.row]
+        preView.levelStr = self.levelInt
+        
+        self.parent?.hero_replaceViewController(with: preView)
+       
         
     }
     
