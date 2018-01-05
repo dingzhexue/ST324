@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="1mk-AQ-JlZ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="1mk-AQ-JlZ">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -167,7 +167,7 @@
                                 <rect key="frame" x="0.0" y="500" width="375" height="167"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jSI-zP-968" customClass="SwiftSiriWaveformView" customModule="SwiftSiriWaveformView">
-                                        <rect key="frame" x="120" y="33" width="168" height="100"/>
+                                        <rect key="frame" x="120" y="33" width="245" height="100"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <userDefinedRuntimeAttributes>
@@ -206,29 +206,17 @@
                                             <constraint firstAttribute="width" secondItem="vdM-J2-dAi" secondAttribute="height" multiplier="1:1" id="EmG-7c-cpH"/>
                                         </constraints>
                                     </imageView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ABE-UA-ZiJ">
-                                        <rect key="frame" x="300" y="50" width="50" height="50"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="50" id="JNu-4y-ej9"/>
-                                            <constraint firstAttribute="width" constant="50" id="x1n-1C-3r1"/>
-                                        </constraints>
-                                        <connections>
-                                            <action selector="btnStartStopClicked:" destination="rwM-pv-47X" eventType="touchUpInside" id="4PW-B5-ksf"/>
-                                        </connections>
-                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="jSI-zP-968" firstAttribute="top" secondItem="0AO-fJ-mR1" secondAttribute="top" constant="33" id="2Ud-rw-Hfa"/>
-                                    <constraint firstItem="ABE-UA-ZiJ" firstAttribute="top" secondItem="0AO-fJ-mR1" secondAttribute="top" constant="50" id="5Ia-c5-c9Y"/>
                                     <constraint firstItem="vdM-J2-dAi" firstAttribute="top" secondItem="0AO-fJ-mR1" secondAttribute="top" constant="33" id="AjR-Zx-kL6"/>
                                     <constraint firstAttribute="bottom" secondItem="jSI-zP-968" secondAttribute="bottom" constant="34" id="Cgo-3N-yvy"/>
                                     <constraint firstItem="vdM-J2-dAi" firstAttribute="leading" secondItem="0AO-fJ-mR1" secondAttribute="leading" constant="8" id="GDI-GE-4l1"/>
                                     <constraint firstAttribute="bottom" secondItem="vdM-J2-dAi" secondAttribute="bottom" constant="34" id="Wqb-1e-mZK"/>
                                     <constraint firstAttribute="width" secondItem="0AO-fJ-mR1" secondAttribute="height" multiplier="375:167" id="aXd-9n-Kp3"/>
-                                    <constraint firstAttribute="trailing" secondItem="ABE-UA-ZiJ" secondAttribute="trailing" constant="25" id="pE1-Gw-rkJ"/>
+                                    <constraint firstAttribute="trailing" secondItem="jSI-zP-968" secondAttribute="trailing" constant="10" id="rC3-E6-3Vf"/>
                                     <constraint firstItem="jSI-zP-968" firstAttribute="leading" secondItem="vdM-J2-dAi" secondAttribute="trailing" constant="12" id="sB2-EI-wyl"/>
-                                    <constraint firstItem="ABE-UA-ZiJ" firstAttribute="leading" secondItem="jSI-zP-968" secondAttribute="trailing" constant="12" id="xfS-2F-HxR"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4t3-3s-xgu">
@@ -285,7 +273,6 @@
                     <connections>
                         <outlet property="animatedScene" destination="1qS-Dd-0vG" id="YiE-Oy-mhr"/>
                         <outlet property="audioView" destination="jSI-zP-968" id="VCQ-yC-3md"/>
-                        <outlet property="btnStartRecog" destination="ABE-UA-ZiJ" id="qEc-do-iGG"/>
                         <outlet property="scrollView" destination="AJI-fZ-clO" id="JbC-Iy-sDf"/>
                         <outlet property="userImage" destination="vdM-J2-dAi" id="qEl-JL-qr1"/>
                     </connections>

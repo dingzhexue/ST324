@@ -8,6 +8,10 @@
 import Foundation
 import Speech
 
+protocol SpeechRecognizerDelegate: NSObjectProtocol {
+    func onDetect(_ speech: String, _ isFinal: Bool)
+}
+
 class SpeechRecognizer: NSObject {
     
     private override init() {
@@ -18,7 +22,7 @@ class SpeechRecognizer: NSObject {
     }
     
     static let shared = SpeechRecognizer()
-    public var speechText = ""
+    public weak var recognizerDelegate: SpeechRecognizerDelegate?
     private let speechRecognizer = SFSpeechRecognizer(locale: Locale.init(identifier: "en-US"))!
     private var recognitionRequest: SFSpeechAudioBufferRecognitionRequest?
     private var recognitionTask: SFSpeechRecognitionTask?
@@ -29,7 +33,6 @@ class SpeechRecognizer: NSObject {
             recognitionTask?.cancel()
             recognitionTask = nil
         }
-        self.speechText = ""
         let audioSession = AVAudioSession.sharedInstance()
         do {
             //try audioSession.setCategory(AVAudioSessionCategoryRecord)
@@ -56,8 +59,8 @@ class SpeechRecognizer: NSObject {
             
             if result != nil, let text = result?.bestTranscription.formattedString {
                 print("Speech Recognized Text: \(text)")
-                self.speechText = text
                 isFinal = (result?.isFinal)!
+                self.recognizerDelegate?.onDetect(text, isFinal)
             }
             
             if error != nil || isFinal {
