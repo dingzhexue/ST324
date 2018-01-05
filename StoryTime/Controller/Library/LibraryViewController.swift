@@ -6,12 +6,13 @@
 //
 
 import UIKit
-
+import ExpyTableView
+import MBProgressHUD
 class LibraryViewController: BaseViewController {
-
+    
     
     @IBOutlet weak var btnBuyAllLibrary: UIButton!
-    @IBOutlet weak var storyTableView: UITableView!
+    @IBOutlet weak var storyTableView: ExpyTableView!
     var storyLibrary: Library?
     var spinnerView: UIView!
     override func viewDidLoad() {
@@ -19,20 +20,24 @@ class LibraryViewController: BaseViewController {
         //Rounded Button & View
         btnBuyAllLibrary.layer.cornerRadius = 20
         btnBuyAllLibrary.layer.borderWidth = 2
+        storyTableView.dataSource = self
+        storyTableView.delegate = self
+        //Remove Cell separator
+        storyTableView.separatorStyle = .none
         //Spinner View
-        spinnerView = UIViewController.displaySpinner(onView: self.view)
+        MBProgressHUD.showAdded(to: self.view, animated: true)
         loadLibrary()
         
     }
     
     private func loadLibrary() {
         Library.loadLibrary { (library) in
-            UIViewController.removeSpinner(spinner: self.spinnerView)
+            MBProgressHUD.hide(for: self.view, animated: true)
             self.storyLibrary = library
             self.storyTableView.reloadData()
         }
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -45,10 +50,22 @@ class LibraryViewController: BaseViewController {
     }
 }
 
-extension LibraryViewController: UITableViewDataSource, UITableViewDelegate {
-   
+extension LibraryViewController: ExpyTableViewDelegate, ExpyTableViewDataSource {
+    
+    
+    func expandableCell(forSection section: Int, inTableView tableView: ExpyTableView) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "HeaderTableViewCell") as! HeaderTableViewCell
+        //Make your customizations here.
+        if let level = self.storyLibrary?.levels[section].level {
+            cell.lblHeader.text = "Level \(level)"
+        } else {
+            cell.lblHeader.text = "Level"
+        }
+        return cell
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return 2
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -67,39 +84,21 @@ extension LibraryViewController: UITableViewDataSource, UITableViewDelegate {
         if let levels = self.storyLibrary?.levels {
             return levels.count
         }
-        return 1
+        return 0
     }
     
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if let level = self.storyLibrary?.levels[section].level {
-             return "Level \(level)"
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if indexPath.row == 0 {
+            return 35.0
+        }else {
+            return 150
         }
-        return ""
+        
     }
+    
+    
 }
 
-extension UIViewController {
-    class func displaySpinner(onView : UIView) -> UIView {
-        let spinnerView = UIView.init(frame: onView.bounds)
-        spinnerView.backgroundColor = UIColor.init(red: 0.5, green: 0.5, blue: 0.5, alpha: 0.5)
-        let ai = UIActivityIndicatorView.init(activityIndicatorStyle: .whiteLarge)
-        ai.startAnimating()
-        ai.center = spinnerView.center
-        
-        DispatchQueue.main.async {
-            spinnerView.addSubview(ai)
-            onView.addSubview(spinnerView)
-        }
-        
-        return spinnerView
-    }
-    
-    class func removeSpinner(spinner :UIView) {
-        DispatchQueue.main.async {
-            spinner.removeFromSuperview()
-        }
-    }
-}
 
 
 

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="1mk-AQ-JlZ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="rwM-pv-47X">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -167,7 +167,7 @@
                                 <rect key="frame" x="0.0" y="500" width="375" height="167"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jSI-zP-968" customClass="SwiftSiriWaveformView" customModule="SwiftSiriWaveformView">
-                                        <rect key="frame" x="120" y="33" width="245" height="100"/>
+                                        <rect key="frame" x="120" y="33" width="235" height="100"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <userDefinedRuntimeAttributes>
@@ -213,9 +213,9 @@
                                     <constraint firstItem="vdM-J2-dAi" firstAttribute="top" secondItem="0AO-fJ-mR1" secondAttribute="top" constant="33" id="AjR-Zx-kL6"/>
                                     <constraint firstAttribute="bottom" secondItem="jSI-zP-968" secondAttribute="bottom" constant="34" id="Cgo-3N-yvy"/>
                                     <constraint firstItem="vdM-J2-dAi" firstAttribute="leading" secondItem="0AO-fJ-mR1" secondAttribute="leading" constant="8" id="GDI-GE-4l1"/>
+                                    <constraint firstAttribute="trailing" secondItem="jSI-zP-968" secondAttribute="trailing" constant="20" id="MdF-2m-o98"/>
                                     <constraint firstAttribute="bottom" secondItem="vdM-J2-dAi" secondAttribute="bottom" constant="34" id="Wqb-1e-mZK"/>
                                     <constraint firstAttribute="width" secondItem="0AO-fJ-mR1" secondAttribute="height" multiplier="375:167" id="aXd-9n-Kp3"/>
-                                    <constraint firstAttribute="trailing" secondItem="jSI-zP-968" secondAttribute="trailing" constant="10" id="rC3-E6-3Vf"/>
                                     <constraint firstItem="jSI-zP-968" firstAttribute="leading" secondItem="vdM-J2-dAi" secondAttribute="trailing" constant="12" id="sB2-EI-wyl"/>
                                 </constraints>
                             </view>
@@ -679,12 +679,32 @@
                                     <constraint firstAttribute="bottom" secondItem="GbN-6o-bpJ" secondAttribute="bottom" id="rg9-Hh-Sma"/>
                                 </constraints>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="150" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Tiw-dj-7LJ">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="150" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Tiw-dj-7LJ" customClass="ExpyTableView" customModule="ExpyTableView">
                                 <rect key="frame" x="0.0" y="270" width="375" height="397"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="storyTVCell" id="dSt-5e-yv9" customClass="StoryTVCell" customModule="StoryTime" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="HeaderTableViewCell" id="w5m-YC-wjJ" customClass="HeaderTableViewCell" customModule="StoryTime" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="150"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="w5m-YC-wjJ" id="nOP-Dn-DRq">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="149.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jxr-nf-HEL">
+                                                    <rect key="frame" x="73" y="37" width="165" height="75"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="lblHeader" destination="jxr-nf-HEL" id="iU3-3G-cve"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="storyTVCell" id="dSt-5e-yv9" customClass="StoryTVCell" customModule="StoryTime" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="178" width="375" height="150"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="dSt-5e-yv9" id="l2i-4I-SfH">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="149.5"/>
@@ -748,10 +768,6 @@
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
-                                <connections>
-                                    <outlet property="dataSource" destination="pP0-KI-xvx" id="f1G-nZ-lSv"/>
-                                    <outlet property="delegate" destination="pP0-KI-xvx" id="oBW-Nw-Acd"/>
-                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -778,7 +794,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0No-wk-nVy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="679" y="170"/>
+            <point key="canvasLocation" x="677.60000000000002" y="169.56521739130437"/>
         </scene>
         <!--Preview View Controller-->
         <scene sceneID="EHm-LR-F7i">
