@@ -26,7 +26,7 @@ class ExperienceViewController: BaseViewController {
         self.audioView.density = 1.0
         
         speechRecognizer.recognizerDelegate = self
-        // speechRecognizer.startRecording()
+        speechRecognizer.startRecording()
        
         timer = Timer.scheduledTimer(timeInterval: 0.1,
                                      target: self,
@@ -56,9 +56,9 @@ class ExperienceViewController: BaseViewController {
         }
         //Make Arrary of words...
         
-//        for sentence in (self.story?.sentences)! {
-//             arrWords.append(sentence.components(separatedBy: " "))
-//        }
+        for sentence in (self.story?.sentences)! {
+             arrWords.append(sentence.components(separatedBy: " "))
+        }
        
     }
     
@@ -79,6 +79,38 @@ class ExperienceViewController: BaseViewController {
         
         self.hero_replaceViewController(with: preView)
     }
+    
+}
+//SpeechRecognizerDelegate Methods
+extension ExperienceViewController: SpeechRecognizerDelegate {
+    func onDetect(_ speech: String, _ isFinal: Bool) {
+        // this is real time callback - you can analyze here
+        if speech == self.arrWords[i][j] {
+            j += 1
+            if j >= arrWords[i].count {
+                i += 1
+                j = 0
+                if i >= arrWords.count {
+                    // finish reading....
+                    print("completed reading text!")
+                }
+                // display new sentence...
+                // MakescrollTextView(scrollView: self.scrollView, displayStr: (self.story?.sentences[i])!)
+                self.textview.text = self.story?.sentences[i]
+            }
+        } else {
+            // set red color for wrongly reading word..
+            // MakescrollTextView(scrollView: self.scrollView, displayStr: SetRedColorForWrongWord(text: self.story?.sentences[i], word: arrWords[i][j]))
+            self.textview.attributedText = GetRedColorForWrongWord(text: (self.story?.sentences[i])!, word: arrWords[i][j])
+            self.scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
+            j = 0
+            
+        }
+    }
+}
+// Self Definition Methods
+extension ExperienceViewController {
+    
     func MakescrollTextView(scrollView: UIScrollView, displayStr:String) {
         //Make Scroll Text View
         let maxSize = CGSize(width: 9999, height: 9999)
@@ -99,7 +131,7 @@ class ExperienceViewController: BaseViewController {
         scrollView.addSubview(textView!)
     }
     
-    func SetRedColorForWrongWord(text: String, word: String) -> NSMutableAttributedString{
+    func GetRedColorForWrongWord(text: String, word: String) -> NSMutableAttributedString{
         
         var startPos = 0, endPos = 0
         if let range = text.range(of: word) {
@@ -117,32 +149,6 @@ class ExperienceViewController: BaseViewController {
         return myMutableString
     }
 }
-extension ExperienceViewController: SpeechRecognizerDelegate {
-    func onDetect(_ speech: String, _ isFinal: Bool) {
-        // this is real time callback - you can analyze here
-        if speech == self.arrWords[i][j] {
-            j += 1
-            if j > arrWords[i].count {
-                i += 1
-                j = 0
-                if i > arrWords.count {
-                    // finish reading....
-                    print("completed reading text!")
-                }
-                // display new sentence...
-                MakescrollTextView(scrollView: self.scrollView, displayStr: (self.story?.sentences[i])!)
-            }
-        } else {
-            // set red color for wrongly reading word..
-            // MakescrollTextView(scrollView: self.scrollView, displayStr: SetRedColorForWrongWord(text: self.story?.sentences[i], word: arrWords[i][j]))
-            self.textview.attributedText = SetRedColorForWrongWord(text: (self.story?.sentences[i])!, word: arrWords[i][j])
-            self.scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
-            j = 0
-            
-        }
-    }
-}
-
 
 
 
