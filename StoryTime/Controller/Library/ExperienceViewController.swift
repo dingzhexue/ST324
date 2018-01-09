@@ -63,6 +63,12 @@ class ExperienceViewController: BaseViewController {
        
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        
+        speechRecognizer.stopRecording()
+    }
+    
     @objc internal func refreshAudioView(_:Timer) {
         
         if self.audioView.amplitude <= self.audioView.idleAmplitude || self.audioView.amplitude > 1.0 {
