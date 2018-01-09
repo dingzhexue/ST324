@@ -31,7 +31,6 @@
 		C3BBFD451FE96FDE00CBACA7 /* ExperienceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3BBFD441FE96FDE00CBACA7 /* ExperienceViewController.swift */; };
 		C3BBFD481FEAD0DD00CBACA7 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3BBFD471FEAD0DD00CBACA7 /* SettingsViewController.swift */; };
 		E697AF187E00F7F0D9349C36 /* Pods_StoryTime.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE2528B1FA1036B4ED133F41 /* Pods_StoryTime.framework */; };
-		EC21A9931FFEC6C60001D4A4 /* HeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC21A9921FFEC6C60001D4A4 /* HeaderTableViewCell.swift */; };
 		EC4F5D721FEBF05D00898C2B /* StoryCVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4F5D711FEBF05D00898C2B /* StoryCVCell.swift */; };
 		EC7832281FECE37400E092AF /* StoryTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7832271FECE37400E092AF /* StoryTVCell.swift */; };
 		ECEBE6181FE81E3000A47878 /* GameCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECEBE6171FE81E3000A47878 /* GameCenter.swift */; };
@@ -66,7 +65,6 @@
 		C3BBFD421FE96EF800CBACA7 /* PreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewViewController.swift; sourceTree = "<group>"; };
 		C3BBFD441FE96FDE00CBACA7 /* ExperienceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExperienceViewController.swift; sourceTree = "<group>"; };
 		C3BBFD471FEAD0DD00CBACA7 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
-		EC21A9921FFEC6C60001D4A4 /* HeaderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderTableViewCell.swift; sourceTree = "<group>"; };
 		EC4F5D711FEBF05D00898C2B /* StoryCVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryCVCell.swift; sourceTree = "<group>"; };
 		EC7832271FECE37400E092AF /* StoryTVCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryTVCell.swift; sourceTree = "<group>"; };
 		ECEBE6171FE81E3000A47878 /* GameCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameCenter.swift; sourceTree = "<group>"; };
@@ -237,7 +235,6 @@
 			isa = PBXGroup;
 			children = (
 				EC7832271FECE37400E092AF /* StoryTVCell.swift */,
-				EC21A9921FFEC6C60001D4A4 /* HeaderTableViewCell.swift */,
 			);
 			path = TableViewCell;
 			sourceTree = "<group>";
@@ -335,7 +332,6 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-StoryTime/Pods-StoryTime-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/ExpyTableView/ExpyTableView.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/Hero/Hero.framework",
@@ -346,7 +342,6 @@
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ExpyTableView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Hero.framework",
@@ -406,7 +401,6 @@
 				C3616B941FE2E7C200EECBD7 /* BaseViewController.swift in Sources */,
 				C3616BA21FE2ECD900EECBD7 /* GroupViewController.swift in Sources */,
 				C3616BB51FE3052C00EECBD7 /* Theme.swift in Sources */,
-				EC21A9931FFEC6C60001D4A4 /* HeaderTableViewCell.swift in Sources */,
 				EC7832281FECE37400E092AF /* StoryTVCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

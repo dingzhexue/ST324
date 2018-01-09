@@ -12,6 +12,5 @@ pod 'Firebase/Database'
 pod 'Firebase/Storage'
 pod 'SwiftSiriWaveformView'
 pod 'Hero'
-pod 'ExpyTableView'
 pod 'MBProgressHUD'
 end

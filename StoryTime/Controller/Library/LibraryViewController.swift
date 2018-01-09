@@ -6,13 +6,13 @@
 //
 
 import UIKit
-import ExpyTableView
 import MBProgressHUD
+
 class LibraryViewController: BaseViewController {
     
     
     @IBOutlet weak var btnBuyAllLibrary: UIButton!
-    @IBOutlet weak var storyTableView: ExpyTableView!
+    @IBOutlet weak var storyTableView: UITableView!
     var storyLibrary: Library?
     var spinnerView: UIView!
     override func viewDidLoad() {
@@ -27,7 +27,6 @@ class LibraryViewController: BaseViewController {
         //Spinner View
         MBProgressHUD.showAdded(to: self.view, animated: true)
         loadLibrary()
-        
     }
     
     private func loadLibrary() {
@@ -50,22 +49,10 @@ class LibraryViewController: BaseViewController {
     }
 }
 
-extension LibraryViewController: ExpyTableViewDelegate, ExpyTableViewDataSource {
-    
-    
-    func expandableCell(forSection section: Int, inTableView tableView: ExpyTableView) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "HeaderTableViewCell") as! HeaderTableViewCell
-        //Make your customizations here.
-        if let level = self.storyLibrary?.levels[section].level {
-            cell.lblHeader.text = "Level \(level)"
-        } else {
-            cell.lblHeader.text = "Level"
-        }
-        return cell
-    }
+extension LibraryViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
+        return 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -87,15 +74,13 @@ extension LibraryViewController: ExpyTableViewDelegate, ExpyTableViewDataSource 
         return 0
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if indexPath.row == 0 {
-            return 35.0
-        }else {
-            return 150
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if let level = self.storyLibrary?.levels[section].level {
+            return "Level \(level)"
+        } else {
+            return  "Level"
         }
-        
     }
-    
     
 }
 

@@ -12,6 +12,7 @@ class ExperienceViewController: BaseViewController {
     var timer:Timer?
     var change:CGFloat = 0.01
     var story: Library.Level.Story?
+    var levelStr = 0
     var i = 0, j = 0
     var arrWords:[[String]] = []
     var textview: UITextView!
@@ -76,7 +77,8 @@ class ExperienceViewController: BaseViewController {
         let preView = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PreviewViewController") as! PreviewViewController
         preView.isHeroEnabled = true
         preView.heroModalAnimationType = .pull(direction: .right)
-        
+        preView.story = self.story
+        preView.levelStr = self.levelStr
         self.hero_replaceViewController(with: preView)
     }
     
