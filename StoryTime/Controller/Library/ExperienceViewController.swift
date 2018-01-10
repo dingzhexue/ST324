@@ -14,7 +14,8 @@ class ExperienceViewController: BaseViewController {
     var story: Library.Level.Story?
     var levelStr = 0
     var i = 0, j = 0
-    var arrWords:[[String]] = []
+    var arrWords: [[String]] = []
+    var arrSpeech: [String] = []
     var textview: UITextView!
     @IBOutlet weak var audioView: SwiftSiriWaveformView!
     @IBOutlet weak var userImage: UIImageView!
@@ -93,11 +94,17 @@ class ExperienceViewController: BaseViewController {
 extension ExperienceViewController: SpeechRecognizerDelegate {
     func onDetect(_ speech: String, _ isFinal: Bool) {
         // this is real time callback - you can analyze here
-        if speech == self.arrWords[i][j] {
+        // Get last word of speech
+        
+        arrSpeech = speech.components(separatedBy: " ")
+        
+        // Compare and analyse
+        if arrSpeech.last?.caseInsensitiveCompare(self.arrWords[i][j]) == ComparisonResult.orderedSame {
             j += 1
             if j >= arrWords[i].count {
                 i += 1
                 j = 0
+                self.speechRecognizer.stopRecording()
                 if i >= arrWords.count {
                     // finish reading....
                     print("completed reading text!")
@@ -105,14 +112,16 @@ extension ExperienceViewController: SpeechRecognizerDelegate {
                 // display new sentence...
                 // MakescrollTextView(scrollView: self.scrollView, displayStr: (self.story?.sentences[i])!)
                 self.textview.text = self.story?.sentences[i]
+                self.speechRecognizer.startRecording()
             }
         } else {
             // set red color for wrongly reading word..
             // MakescrollTextView(scrollView: self.scrollView, displayStr: SetRedColorForWrongWord(text: self.story?.sentences[i], word: arrWords[i][j]))
+            self.speechRecognizer.stopRecording()
             self.textview.attributedText = GetRedColorForWrongWord(text: (self.story?.sentences[i])!, word: arrWords[i][j])
             self.scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
             j = 0
-            
+            self.speechRecognizer.startRecording()
         }
     }
 }
