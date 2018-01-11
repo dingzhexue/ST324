@@ -49,19 +49,12 @@ extension StoryTVCell: UICollectionViewDelegateFlowLayout, UICollectionViewDataS
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        let preView = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PreviewViewController") as! PreviewViewController
-        preView.isHeroEnabled = true
-        preView.heroModalAnimationType = .push(direction: .left)
-        //Pass Library
-        preView.story = stories[indexPath.row]
-        preView.levelStr = self.levelInt
-        
-        self.parent?.hero_replaceViewController(with: preView)
-       
-        
+        if let previewViewController = parent?.storyboard?.instantiateViewController(withIdentifier: "PreviewViewController") as? PreviewViewController {
+            previewViewController.story = stories[indexPath.row]
+            previewViewController.levelStr = self.levelInt
+            self.parent?.navigationController?.pushViewController(previewViewController, animated: true)
+        }
     }
-    
-    
 }
 
 

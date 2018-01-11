@@ -42,10 +42,7 @@ class LibraryViewController: BaseViewController {
         // Dispose of any resources that can be recreated.
     }
     @IBAction func btnBackClicked(_ sender: Any) {
-        let preView = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
-        preView.isHeroEnabled = true
-        preView.heroModalAnimationType = .pull(direction: .right)
-        self.hero_replaceViewController(with: preView)
+        navigationController?.popViewController(animated: true)
     }
 }
 

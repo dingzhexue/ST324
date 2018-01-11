@@ -29,11 +29,9 @@ class HomeViewController: BaseViewController {
     
    
     @IBAction func btnLibraryClicked(_ sender: Any) {
-        let preView = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LibraryViewController") as! LibraryViewController
-        preView.isHeroEnabled = true
-        preView.heroModalAnimationType = .push(direction: .left)
-        
-        self.hero_replaceViewController(with: preView)
+        if let libraryViewController = storyboard?.instantiateViewController(withIdentifier: "LibraryViewController") as? LibraryViewController {
+            navigationController?.pushViewController(libraryViewController, animated: true)
+        }
     }
     @IBAction func btnSettingClicked(_ sender: Any) {
         let preView = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SettingsViewController") as! SettingsViewController

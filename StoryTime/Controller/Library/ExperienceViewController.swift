@@ -81,12 +81,7 @@ class ExperienceViewController: BaseViewController {
     }
    
     @IBAction func btnBackClicked(_ sender: Any) {
-        let preView = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PreviewViewController") as! PreviewViewController
-        preView.isHeroEnabled = true
-        preView.heroModalAnimationType = .pull(direction: .right)
-        preView.story = self.story
-        preView.levelStr = self.levelStr
-        self.hero_replaceViewController(with: preView)
+        navigationController?.popViewController(animated: true)
     }
     
 }
@@ -121,6 +116,7 @@ extension ExperienceViewController: SpeechRecognizerDelegate {
             self.textview.attributedText = GetRedColorForWrongWord(text: (self.story?.sentences[i])!, word: arrWords[i][j])
             self.scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
             j = 0
+            self.speechRecognizer.stopRecording()
             self.speechRecognizer.startRecording()
         }
     }

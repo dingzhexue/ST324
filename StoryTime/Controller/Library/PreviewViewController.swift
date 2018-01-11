@@ -43,30 +43,14 @@ class PreviewViewController: BaseViewController {
         // Dispose of any resources that can be recreated.
     }
     @IBAction func btnPreImageClickedToExperienceView(_ sender: Any) {
-        let preView = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ExperienceViewController") as! ExperienceViewController
-        preView.isHeroEnabled = true
-        preView.heroModalAnimationType = .push(direction: .left)
-        preView.story = self.story
-        preView.levelStr = self.levelStr
-        self.hero_replaceViewController(with: preView)
+        if let experienceViewController = storyboard?.instantiateViewController(withIdentifier: "ExperienceViewController") as? ExperienceViewController {
+            experienceViewController.story = self.story
+            experienceViewController.levelStr = self.levelStr
+            navigationController?.pushViewController(experienceViewController, animated: true)
+        }
     }
     
     @IBAction func btnBackClicked(_ sender: Any) {
-        let preView = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LibraryViewController") as! LibraryViewController
-        preView.isHeroEnabled = true
-        preView.heroModalAnimationType = .pull(direction: .right)
-       
-        self.hero_replaceViewController(with: preView)
+        navigationController?.popViewController(animated: true)
     }
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

@@ -89,6 +89,7 @@ class SpeechRecognizer: NSObject {
     func stopRecording() {
         if audioEngine.isRunning {
             audioEngine.stop()
+            audioEngine.inputNode.removeTap(onBus: 0)
             recognitionRequest?.endAudio()
         }
     }
