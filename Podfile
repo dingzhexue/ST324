@@ -13,4 +13,5 @@ pod 'Firebase/Storage'
 pod 'SwiftSiriWaveformView'
 pod 'Hero'
 pod 'MBProgressHUD'
+pod 'SMPageControl'
 end

@@ -54,6 +54,10 @@ class SettingsViewController: BaseViewController {
     }
     @IBAction func btnHelpClicked(_ sender: Any) {
         
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let HelpPageViewController = storyboard.instantiateViewController(withIdentifier: "HelpPageViewController") as! HelpPageViewController
+        navigationController?.pushViewController(HelpPageViewController, animated: true)
+        
     }
     @IBAction func btnBackClicked(_ sender: Any) {
         let preView = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController

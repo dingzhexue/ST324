@@ -31,8 +31,11 @@
 		C3BBFD451FE96FDE00CBACA7 /* ExperienceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3BBFD441FE96FDE00CBACA7 /* ExperienceViewController.swift */; };
 		C3BBFD481FEAD0DD00CBACA7 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3BBFD471FEAD0DD00CBACA7 /* SettingsViewController.swift */; };
 		E697AF187E00F7F0D9349C36 /* Pods_StoryTime.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE2528B1FA1036B4ED133F41 /* Pods_StoryTime.framework */; };
+		EC3F69EA2013794C00FAD3A1 /* NavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC3F69E92013794C00FAD3A1 /* NavigationViewController.swift */; };
+		EC40BED82012633100F46103 /* Help2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC40BED72012633100F46103 /* Help2ViewController.swift */; };
 		EC4F5D721FEBF05D00898C2B /* StoryCVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4F5D711FEBF05D00898C2B /* StoryCVCell.swift */; };
 		EC7832281FECE37400E092AF /* StoryTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7832271FECE37400E092AF /* StoryTVCell.swift */; };
+		EC86DDC22012351C00095CE3 /* HelpPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC86DDC12012351C00095CE3 /* HelpPageViewController.swift */; };
 		ECEBE6181FE81E3000A47878 /* GameCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECEBE6171FE81E3000A47878 /* GameCenter.swift */; };
 /* End PBXBuildFile section */
 
@@ -65,8 +68,11 @@
 		C3BBFD421FE96EF800CBACA7 /* PreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewViewController.swift; sourceTree = "<group>"; };
 		C3BBFD441FE96FDE00CBACA7 /* ExperienceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExperienceViewController.swift; sourceTree = "<group>"; };
 		C3BBFD471FEAD0DD00CBACA7 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		EC3F69E92013794C00FAD3A1 /* NavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationViewController.swift; sourceTree = "<group>"; };
+		EC40BED72012633100F46103 /* Help2ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Help2ViewController.swift; sourceTree = "<group>"; };
 		EC4F5D711FEBF05D00898C2B /* StoryCVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryCVCell.swift; sourceTree = "<group>"; };
 		EC7832271FECE37400E092AF /* StoryTVCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryTVCell.swift; sourceTree = "<group>"; };
+		EC86DDC12012351C00095CE3 /* HelpPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelpPageViewController.swift; sourceTree = "<group>"; };
 		ECEBE6171FE81E3000A47878 /* GameCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameCenter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -129,6 +135,7 @@
 		C3616B921FE2E58300EECBD7 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				EC86DDC0201234DD00095CE3 /* Help */,
 				C3BBFD3C1FE96BA000CBACA7 /* Home */,
 				C3BBFD3F1FE96CA300CBACA7 /* Library */,
 				C3BBFD461FEAC8CC00CBACA7 /* Settings */,
@@ -239,6 +246,16 @@
 			path = TableViewCell;
 			sourceTree = "<group>";
 		};
+		EC86DDC0201234DD00095CE3 /* Help */ = {
+			isa = PBXGroup;
+			children = (
+				EC86DDC12012351C00095CE3 /* HelpPageViewController.swift */,
+				EC40BED72012633100F46103 /* Help2ViewController.swift */,
+				EC3F69E92013794C00FAD3A1 /* NavigationViewController.swift */,
+			);
+			path = Help;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -336,6 +353,7 @@
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/Hero/Hero.framework",
 				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
+				"${BUILT_PRODUCTS_DIR}/SMPageControl/SMPageControl.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftSiriWaveformView/SwiftSiriWaveformView.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
@@ -346,6 +364,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Hero.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SMPageControl.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftSiriWaveformView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
@@ -383,6 +402,8 @@
 				C3616BA81FE2F6D200EECBD7 /* ThemeViewController.swift in Sources */,
 				C3616BB91FE4208A00EECBD7 /* SpeechRecognizer.swift in Sources */,
 				C3616BBF1FE42E1A00EECBD7 /* Library.swift in Sources */,
+				EC3F69EA2013794C00FAD3A1 /* NavigationViewController.swift in Sources */,
+				EC86DDC22012351C00095CE3 /* HelpPageViewController.swift in Sources */,
 				C3BBFD481FEAD0DD00CBACA7 /* SettingsViewController.swift in Sources */,
 				C3616BA41FE2ED1600EECBD7 /* StoreViewController.swift in Sources */,
 				C3BBFD411FE96D5300CBACA7 /* LibraryViewController.swift in Sources */,
@@ -401,6 +422,7 @@
 				C3616B941FE2E7C200EECBD7 /* BaseViewController.swift in Sources */,
 				C3616BA21FE2ECD900EECBD7 /* GroupViewController.swift in Sources */,
 				C3616BB51FE3052C00EECBD7 /* Theme.swift in Sources */,
+				EC40BED82012633100F46103 /* Help2ViewController.swift in Sources */,
 				EC7832281FECE37400E092AF /* StoryTVCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
