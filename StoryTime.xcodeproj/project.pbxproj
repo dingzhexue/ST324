@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		054B4D19201C82D300C23E6A /* WaveformView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054B4D18201C82D200C23E6A /* WaveformView.swift */; };
 		C3616B811FE2E52900EECBD7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3616B801FE2E52900EECBD7 /* AppDelegate.swift */; };
 		C3616B861FE2E52900EECBD7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C3616B841FE2E52900EECBD7 /* Main.storyboard */; };
 		C3616B881FE2E52900EECBD7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C3616B871FE2E52900EECBD7 /* Assets.xcassets */; };
@@ -40,6 +41,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		054B4D18201C82D200C23E6A /* WaveformView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaveformView.swift; sourceTree = "<group>"; };
 		AE2528B1FA1036B4ED133F41 /* Pods_StoryTime.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StoryTime.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE87EE5191B24F22AA9AC346 /* Pods-StoryTime.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StoryTime.release.xcconfig"; path = "Pods/Target Support Files/Pods-StoryTime/Pods-StoryTime.release.xcconfig"; sourceTree = "<group>"; };
 		B9B97089D4F24B29DEF17B0E /* Pods-StoryTime.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StoryTime.debug.xcconfig"; path = "Pods/Target Support Files/Pods-StoryTime/Pods-StoryTime.debug.xcconfig"; sourceTree = "<group>"; };
@@ -177,6 +179,7 @@
 		C3616BAE1FE2FC0F00EECBD7 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				054B4D18201C82D200C23E6A /* WaveformView.swift */,
 				C3616BB01FE2FC2800EECBD7 /* Firebase.swift */,
 				C3616BB81FE4208A00EECBD7 /* SpeechRecognizer.swift */,
 				ECEBE6171FE81E3000A47878 /* GameCenter.swift */,
@@ -290,7 +293,7 @@
 				TargetAttributes = {
 					C3616B7C1FE2E52900EECBD7 = {
 						CreatedOnToolsVersion = 9.2;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 					};
 				};
 			};
@@ -408,6 +411,7 @@
 				C3616BA41FE2ED1600EECBD7 /* StoreViewController.swift in Sources */,
 				C3BBFD411FE96D5300CBACA7 /* LibraryViewController.swift in Sources */,
 				C3616BB71FE3053300EECBD7 /* Music.swift in Sources */,
+				054B4D19201C82D300C23E6A /* WaveformView.swift in Sources */,
 				C3BBFD3E1FE96BAD00CBACA7 /* HomeViewController.swift in Sources */,
 				ECEBE6181FE81E3000A47878 /* GameCenter.swift in Sources */,
 				EC4F5D721FEBF05D00898C2B /* StoryCVCell.swift in Sources */,
@@ -561,13 +565,15 @@
 			baseConfigurationReference = B9B97089D4F24B29DEF17B0E /* Pods-StoryTime.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = W783B6Q8FR;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = H63U8F484A;
 				INFOPLIST_FILE = StoryTime/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.bradcink.StoryTime;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "2756e846-ea96-4908-92ae-ad2a80eb4690";
+				PROVISIONING_PROFILE_SPECIFIER = "Elf Wildcard";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -578,13 +584,14 @@
 			baseConfigurationReference = AE87EE5191B24F22AA9AC346 /* Pods-StoryTime.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = W783B6Q8FR;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = StoryTime/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.bradcink.StoryTime;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
