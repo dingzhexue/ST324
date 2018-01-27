@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import SwiftSiriWaveformView
 import AVFoundation
 
 enum EndState : Int{
@@ -26,11 +25,9 @@ class ExperienceViewController: BaseViewController {
     var arrWords: [[String]] = []
     var arrSpeech: [String] = []
     var textview: UITextView!
-    
-    var prevSpeech : String = ""
-    
+    @IBOutlet weak var lblSpeaking: UILabel!
+
     @IBOutlet weak var waveformView: WaveformView!
-    @IBOutlet weak var audioView: SwiftSiriWaveformView!
     @IBOutlet weak var userImage: UIImageView!
     @IBOutlet weak var animatedScene: UIImageView!
     @IBOutlet weak var scrollView: UIScrollView!
@@ -40,16 +37,9 @@ class ExperienceViewController: BaseViewController {
     
     override open func viewDidLoad() {
         super.viewDidLoad()
-        self.audioView.density = 1.0
         
         speechRecognizer.recognizerDelegate = self
         speechRecognizer.startRecording()
-        
-        timer = Timer.scheduledTimer(timeInterval: 0.1,
-                                     target: self,
-                                     selector: #selector(refreshAudioView(_:)),
-                                     userInfo: nil,
-                                     repeats: true)
         
         //Get Animated Scene
         if let  story = self.story {
@@ -97,15 +87,7 @@ class ExperienceViewController: BaseViewController {
         let displayLink = CADisplayLink(target: self, selector: #selector(updateMeters))
         displayLink.add(to: RunLoop.current, forMode: RunLoopMode.commonModes)
     }
-    @objc internal func refreshAudioView(_:Timer) {
-        
-        if self.audioView.amplitude <= self.audioView.idleAmplitude || self.audioView.amplitude > 1.0 {
-            self.change *= -1.0
-        }
-        
-        // Simply set the amplitude to whatever you need and the view will update itself.
-        self.audioView.amplitude += self.change
-    }
+    
     //100 is go back screen
     //101 is next sentence
     //102 is replay sentence
@@ -138,7 +120,7 @@ class ExperienceViewController: BaseViewController {
     
     @objc func updateMeters() {
         audioRecorder.updateMeters()
-        let normalizedValue = pow(10, audioRecorder.averagePower(forChannel: 0) / 20)
+        let normalizedValue = pow(5, audioRecorder.averagePower(forChannel: 0) / 20)
         waveformView.updateWithLevel(CGFloat(normalizedValue))
     }
     
@@ -166,11 +148,19 @@ extension ExperienceViewController: SpeechRecognizerDelegate {
         // Get last word of speech
         
         arrSpeech = speech.components(separatedBy: " ")
+        lblSpeaking.text = speech;
+        
         var isAllCorrect = true
-        for i in 0 ..< arrSpeech.count{
-            if arrSpeech[i].caseInsensitiveCompare(self.arrWords[nIdxSentence][i]) != ComparisonResult.orderedSame {
-                isAllCorrect = false
-                break
+        
+        if arrSpeech.count > arrWords[nIdxSentence].count {
+            isAllCorrect = false
+        }
+        else{
+            for i in 0 ..< min(arrWords[nIdxSentence].count, arrSpeech.count){
+                if arrSpeech[i].caseInsensitiveCompare(self.arrWords[nIdxSentence][i]) != ComparisonResult.orderedSame {
+                    isAllCorrect = false
+                    break
+                }
             }
         }
         
@@ -217,7 +207,8 @@ extension ExperienceViewController: SpeechRecognizerDelegate {
     
     func onEnd(_ status: Int){
         print("Speech End Status: \(status)")
-        self.prevSpeech = ""
+        lblSpeaking.text = ""
+        
         if status == EndState.normal.rawValue{
             speechRecognizer.startRecording()
         }
@@ -236,7 +227,7 @@ extension ExperienceViewController {
     func MakescrollTextView(scrollView: UIScrollView, displayStr:String) {
         //Make Scroll Text View
         let maxSize = CGSize(width: 9999, height: 9999)
-        let font = UIFont(name: "Menlo", size: 16)!
+        let font = UIFont(name: "Menlo", size: 18)!
         //key function is coming!!!
         let strSize = (displayStr as NSString).boundingRect(with: maxSize, options: NSStringDrawingOptions.usesLineFragmentOrigin, attributes: [NSAttributedStringKey.font : font], context: nil)
         
