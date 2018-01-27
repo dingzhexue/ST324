@@ -7,6 +7,8 @@
 
 import UIKit
 import SwiftSiriWaveformView
+import AVFoundation
+
 enum EndState : Int{
     case normal = 0
     case backscreen = 1
@@ -27,10 +29,13 @@ class ExperienceViewController: BaseViewController {
     
     var prevSpeech : String = ""
     
+    @IBOutlet weak var waveformView: WaveformView!
     @IBOutlet weak var audioView: SwiftSiriWaveformView!
     @IBOutlet weak var userImage: UIImageView!
     @IBOutlet weak var animatedScene: UIImageView!
     @IBOutlet weak var scrollView: UIScrollView!
+    var audioRecorder: AVAudioRecorder!
+    
     let speechRecognizer = SpeechRecognizer.shared
     
     override open func viewDidLoad() {
@@ -85,6 +90,12 @@ class ExperienceViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         //speechRecognizer.stopRecording()
         super.viewWillAppear(animated)
+        
+        audioRecorder = audioRecorder(URL(fileURLWithPath:"/dev/null"))
+        audioRecorder.record()
+        
+        let displayLink = CADisplayLink(target: self, selector: #selector(updateMeters))
+        displayLink.add(to: RunLoop.current, forMode: RunLoopMode.commonModes)
     }
     @objc internal func refreshAudioView(_:Timer) {
         
@@ -123,6 +134,29 @@ class ExperienceViewController: BaseViewController {
     func replaySentence(){
         MakescrollTextView(scrollView: scrollView, displayStr: (self.story?.sentences[nIdxSentence])!)
         speechRecognizer.startRecording()
+    }
+    
+    @objc func updateMeters() {
+        audioRecorder.updateMeters()
+        let normalizedValue = pow(10, audioRecorder.averagePower(forChannel: 0) / 20)
+        waveformView.updateWithLevel(CGFloat(normalizedValue))
+    }
+    
+    func audioRecorder(_ filePath: URL) -> AVAudioRecorder {
+        let recorderSettings: [String : AnyObject] = [
+            AVSampleRateKey: 44100.0 as AnyObject,
+            AVFormatIDKey: NSNumber(value: kAudioFormatMPEG4AAC),
+            AVNumberOfChannelsKey: 2 as AnyObject,
+            AVEncoderAudioQualityKey: AVAudioQuality.min.rawValue as AnyObject
+        ]
+        
+        try! AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayAndRecord)
+        
+        let audioRecorder = try! AVAudioRecorder(url: filePath, settings: recorderSettings)
+        audioRecorder.isMeteringEnabled = true
+        audioRecorder.prepareToRecord()
+        
+        return audioRecorder
     }
 }
 //SpeechRecognizerDelegate Methods
