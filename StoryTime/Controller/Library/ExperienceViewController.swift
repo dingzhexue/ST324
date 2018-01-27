@@ -22,14 +22,14 @@ class ExperienceViewController: BaseViewController {
     @IBOutlet weak var animatedScene: UIImageView!
     @IBOutlet weak var scrollView: UIScrollView!
     let speechRecognizer = SpeechRecognizer.shared
-   
+    
     override open func viewDidLoad() {
         super.viewDidLoad()
         self.audioView.density = 1.0
         
         speechRecognizer.recognizerDelegate = self
         speechRecognizer.startRecording()
-       
+        
         timer = Timer.scheduledTimer(timeInterval: 0.1,
                                      target: self,
                                      selector: #selector(refreshAudioView(_:)),
@@ -39,7 +39,9 @@ class ExperienceViewController: BaseViewController {
         //Get Animated Scene
         if let  story = self.story {
             Library.loadStoryScreenshot(story, { (image) in
-                self.animatedScene.image = image!
+                if image != nil {
+                    self.animatedScene.image = image!
+                }
             })
         }
         //Get User Photo
@@ -59,17 +61,21 @@ class ExperienceViewController: BaseViewController {
         //Make Arrary of words...
         
         for sentence in (self.story?.sentences)! {
-             arrWords.append(sentence.components(separatedBy: " "))
+            arrWords.append(sentence.components(separatedBy: " "))
         }
-       
+        
     }
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        
         speechRecognizer.stopRecording()
+        
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        speechRecognizer.stopRecording()
+        super.viewWillAppear(animated)
+    }
     @objc internal func refreshAudioView(_:Timer) {
         
         if self.audioView.amplitude <= self.audioView.idleAmplitude || self.audioView.amplitude > 1.0 {
@@ -79,7 +85,7 @@ class ExperienceViewController: BaseViewController {
         // Simply set the amplitude to whatever you need and the view will update itself.
         self.audioView.amplitude += self.change
     }
-   
+    
     @IBAction func btnBackClicked(_ sender: Any) {
         navigationController?.popViewController(animated: true)
     }
@@ -99,7 +105,7 @@ extension ExperienceViewController: SpeechRecognizerDelegate {
             if j >= arrWords[i].count {
                 i += 1
                 j = 0
-                self.speechRecognizer.stopRecording()
+                //self.speechRecognizer.stopRecording()
                 if i >= arrWords.count {
                     // finish reading....
                     print("completed reading text!")

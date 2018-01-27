@@ -56,9 +56,11 @@ extension Firebase {
         storageRef.child(childPath).getData(maxSize: maxDownloadFileSize) { (data, error) in
             if let error = error {
                 print("Firebase download \(childPath) failed \(error.localizedDescription)")
+                completionHandler(nil)
             } else {
                 completionHandler(data)
             }
         }
     }
 }
+

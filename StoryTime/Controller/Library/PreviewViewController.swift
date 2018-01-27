@@ -26,7 +26,9 @@ class PreviewViewController: BaseViewController {
         //Get All Datas
         if let story = self.story  {
             Library.loadStoryScreenshot(story, { (image) in
-                self.imagePreStory.image = image!
+                if image != nil{
+                    self.imagePreStory.image = image
+                }
                 MBProgressHUD.hide(for: self.view, animated: true)
             })
             lblStoryName.text? = story.name
@@ -37,7 +39,7 @@ class PreviewViewController: BaseViewController {
         }
         
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
