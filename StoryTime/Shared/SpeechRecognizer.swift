@@ -10,10 +10,12 @@ import Speech
 
 protocol SpeechRecognizerDelegate: NSObjectProtocol {
     func onDetect(_ speech: String, _ isFinal: Bool)
+    func onEnd(_ status: Int)
 }
 
 class SpeechRecognizer: NSObject {
-    
+    var isStarted : Bool = false
+    var nEndStatus : Int = 0
     private override init() {
         super.init()
         
@@ -52,7 +54,7 @@ class SpeechRecognizer: NSObject {
         }
         
         recognitionRequest.shouldReportPartialResults = true
-        
+        self.isStarted = true
         recognitionTask = speechRecognizer.recognitionTask(with: recognitionRequest, resultHandler: { (result, error) in
             
             var isFinal = false
@@ -69,6 +71,8 @@ class SpeechRecognizer: NSObject {
                 
                 self.recognitionRequest = nil
                 self.recognitionTask = nil
+                self.isStarted = false
+                self.recognizerDelegate?.onEnd(self.nEndStatus)
             }
         })
         
@@ -86,8 +90,9 @@ class SpeechRecognizer: NSObject {
         }
     }
     
-    func stopRecording() {
+    func stopRecording(status:Int = 0) {
         if audioEngine.isRunning {
+            nEndStatus = status
             audioEngine.stop()
             audioEngine.inputNode.removeTap(onBus: 0)
             recognitionRequest?.endAudio()
@@ -119,5 +124,7 @@ extension SpeechRecognizer: SFSpeechRecognizerDelegate {
             print("Speech Recognizer is not available")
         }
     }
+    
+    
 }
 

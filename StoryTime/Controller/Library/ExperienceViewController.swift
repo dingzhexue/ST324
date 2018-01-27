@@ -68,12 +68,12 @@ class ExperienceViewController: BaseViewController {
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        speechRecognizer.stopRecording()
+        //speechRecognizer.stopRecording()
         
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        speechRecognizer.stopRecording()
+        //speechRecognizer.stopRecording()
         super.viewWillAppear(animated)
     }
     @objc internal func refreshAudioView(_:Timer) {
@@ -87,7 +87,8 @@ class ExperienceViewController: BaseViewController {
     }
     
     @IBAction func btnBackClicked(_ sender: Any) {
-        navigationController?.popViewController(animated: true)
+        //navigationController?.popViewController(animated: true)
+        speechRecognizer.stopRecording(status: 100)
     }
     
 }
@@ -113,17 +114,24 @@ extension ExperienceViewController: SpeechRecognizerDelegate {
                 // display new sentence...
                 // MakescrollTextView(scrollView: self.scrollView, displayStr: (self.story?.sentences[i])!)
                 self.textview.text = self.story?.sentences[i]
-                self.speechRecognizer.startRecording()
+                //self.speechRecognizer.startRecording()
             }
         } else {
             // set red color for wrongly reading word..
             // MakescrollTextView(scrollView: self.scrollView, displayStr: SetRedColorForWrongWord(text: self.story?.sentences[i], word: arrWords[i][j]))
-            self.speechRecognizer.stopRecording()
+            //self.speechRecognizer.stopRecording()
             self.textview.attributedText = GetRedColorForWrongWord(text: (self.story?.sentences[i])!, word: arrWords[i][j])
             self.scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
             j = 0
-            self.speechRecognizer.stopRecording()
-            self.speechRecognizer.startRecording()
+            //self.speechRecognizer.stopRecording()
+            //self.speechRecognizer.startRecording()
+        }
+    }
+    
+    func onEnd(_ status: Int){
+        print("End Called \(status)")
+        if status == 100 {
+            self.navigationController?.popViewController(animated: true)
         }
     }
 }
