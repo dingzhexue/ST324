@@ -7,16 +7,26 @@
 
 import UIKit
 import SwiftSiriWaveformView
+enum EndState : Int{
+    case normal = 0
+    case backscreen = 1
+    case replay = 2
+    case next = 3
+}
+
 class ExperienceViewController: BaseViewController {
     
     var timer:Timer?
     var change:CGFloat = 0.01
     var story: Library.Level.Story?
     var levelStr = 0
-    var i = 0, j = 0
+    var nIdxSentence = 0, nIdxWord = 0
     var arrWords: [[String]] = []
     var arrSpeech: [String] = []
     var textview: UITextView!
+    
+    var prevSpeech : String = ""
+    
     @IBOutlet weak var audioView: SwiftSiriWaveformView!
     @IBOutlet weak var userImage: UIImageView!
     @IBOutlet weak var animatedScene: UIImageView!
@@ -85,12 +95,35 @@ class ExperienceViewController: BaseViewController {
         // Simply set the amplitude to whatever you need and the view will update itself.
         self.audioView.amplitude += self.change
     }
-    
+    //100 is go back screen
+    //101 is next sentence
+    //102 is replay sentence
     @IBAction func btnBackClicked(_ sender: Any) {
         //navigationController?.popViewController(animated: true)
-        speechRecognizer.stopRecording(status: 100)
+        if speechRecognizer.isStarted{
+            speechRecognizer.stopRecording(status: EndState.backscreen.rawValue)
+        }
+        else {
+            self.navigationController?.popViewController(animated: true)
+        }
     }
     
+    func prepareNextSentence(){
+        if nIdxSentence < arrWords.count-1
+        {
+            nIdxSentence += 1
+            MakescrollTextView(scrollView: scrollView, displayStr: (self.story?.sentences[nIdxSentence])!)
+            speechRecognizer.startRecording()
+        }else{ //Read All Senteces!!
+            MakescrollTextView(scrollView: scrollView, displayStr: "Great! You finished all read!")
+            print("Finished Reading")
+        }
+    }
+    
+    func replaySentence(){
+        MakescrollTextView(scrollView: scrollView, displayStr: (self.story?.sentences[nIdxSentence])!)
+        speechRecognizer.startRecording()
+    }
 }
 //SpeechRecognizerDelegate Methods
 extension ExperienceViewController: SpeechRecognizerDelegate {
@@ -99,39 +132,67 @@ extension ExperienceViewController: SpeechRecognizerDelegate {
         // Get last word of speech
         
         arrSpeech = speech.components(separatedBy: " ")
+        var isAllCorrect = true
+        for i in 0 ..< arrSpeech.count{
+            if arrSpeech[i].caseInsensitiveCompare(self.arrWords[nIdxSentence][i]) != ComparisonResult.orderedSame {
+                isAllCorrect = false
+                break
+            }
+        }
         
+        if isAllCorrect{
+            if arrSpeech.count == self.arrWords[nIdxSentence].count{ //Whole Sentence Correct
+                //Prepare next sentence
+                speechRecognizer.stopRecording(status: EndState.next.rawValue)
+                print("correct sentence")
+            }else{ //Just spoke partial
+                
+            }
+        }
+        else{ //incorrect
+            speechRecognizer.stopRecording(status: EndState.replay.rawValue)
+            print("incorrect")
+        }
         // Compare and analyse
-        if arrSpeech.last?.caseInsensitiveCompare(self.arrWords[i][j]) == ComparisonResult.orderedSame {
-            j += 1
-            if j >= arrWords[i].count {
-                i += 1
-                j = 0
+        /*if arrSpeech.last?.caseInsensitiveCompare(self.arrWords[nIdxSentence][nIdxWord]) == ComparisonResult.orderedSame {
+            nIdxWord += 1
+            if nIdxWord >= arrWords[nIdxSentence].count {
+                nIdxSentence += 1
+                nIdxWord = 0
                 //self.speechRecognizer.stopRecording()
-                if i >= arrWords.count {
+                if nIdxSentence >= arrWords.count {
                     // finish reading....
                     print("completed reading text!")
                 }
                 // display new sentence...
                 // MakescrollTextView(scrollView: self.scrollView, displayStr: (self.story?.sentences[i])!)
-                self.textview.text = self.story?.sentences[i]
+                self.textview.text = self.story?.sentences[nIdxSentence]
                 //self.speechRecognizer.startRecording()
             }
         } else {
             // set red color for wrongly reading word..
             // MakescrollTextView(scrollView: self.scrollView, displayStr: SetRedColorForWrongWord(text: self.story?.sentences[i], word: arrWords[i][j]))
             //self.speechRecognizer.stopRecording()
-            self.textview.attributedText = GetRedColorForWrongWord(text: (self.story?.sentences[i])!, word: arrWords[i][j])
+            self.textview.attributedText = GetRedColorForWrongWord(text: (self.story?.sentences[nIdxSentence])!, word: arrWords[nIdxSentence][nIdxWord])
             self.scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
-            j = 0
+            nIdxWord = 0
             //self.speechRecognizer.stopRecording()
             //self.speechRecognizer.startRecording()
-        }
+        }*/
     }
     
     func onEnd(_ status: Int){
-        print("End Called \(status)")
-        if status == 100 {
+        print("Speech End Status: \(status)")
+        self.prevSpeech = ""
+        if status == EndState.normal.rawValue{
+            speechRecognizer.startRecording()
+        }
+        else if status == EndState.backscreen.rawValue {
             self.navigationController?.popViewController(animated: true)
+        }else if status == EndState.replay.rawValue{
+            replaySentence()
+        }else if status == EndState.next.rawValue{
+            prepareNextSentence()
         }
     }
 }
