@@ -21,7 +21,7 @@ class ExperienceViewController: BaseViewController {
     var change:CGFloat = 0.01
     var story: Library.Level.Story?
     var levelStr = 0
-    var nIdxSentence = 0, nIdxWord = 0
+    var nIdxSentence = 0
     var arrWords: [[String]] = []
     var arrSpeech: [String] = []
     var textview: UITextView!
@@ -73,12 +73,10 @@ class ExperienceViewController: BaseViewController {
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        //speechRecognizer.stopRecording()
         
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        //speechRecognizer.stopRecording()
         super.viewWillAppear(animated)
         
         audioRecorder = audioRecorder(URL(fileURLWithPath:"/dev/null"))
@@ -101,6 +99,14 @@ class ExperienceViewController: BaseViewController {
         }
     }
     
+    func gotoComplete(){
+        if let completeVC = storyboard?.instantiateViewController(withIdentifier: "CompleteVC") as? CompleteViewController {
+            completeVC.story = self.story
+            completeVC.levelStr = self.levelStr
+            navigationController?.pushViewController(completeVC, animated: true)
+        }
+    }
+    
     func prepareNextSentence(){
         if nIdxSentence < arrWords.count-1
         {
@@ -110,6 +116,7 @@ class ExperienceViewController: BaseViewController {
         }else{ //Read All Senteces!!
             MakescrollTextView(scrollView: scrollView, displayStr: "Great! You finished all read!")
             print("Finished Reading")
+            gotoComplete()
         }
     }
     
@@ -177,32 +184,6 @@ extension ExperienceViewController: SpeechRecognizerDelegate {
             speechRecognizer.stopRecording(status: EndState.replay.rawValue)
             print("incorrect")
         }
-        // Compare and analyse
-        /*if arrSpeech.last?.caseInsensitiveCompare(self.arrWords[nIdxSentence][nIdxWord]) == ComparisonResult.orderedSame {
-            nIdxWord += 1
-            if nIdxWord >= arrWords[nIdxSentence].count {
-                nIdxSentence += 1
-                nIdxWord = 0
-                //self.speechRecognizer.stopRecording()
-                if nIdxSentence >= arrWords.count {
-                    // finish reading....
-                    print("completed reading text!")
-                }
-                // display new sentence...
-                // MakescrollTextView(scrollView: self.scrollView, displayStr: (self.story?.sentences[i])!)
-                self.textview.text = self.story?.sentences[nIdxSentence]
-                //self.speechRecognizer.startRecording()
-            }
-        } else {
-            // set red color for wrongly reading word..
-            // MakescrollTextView(scrollView: self.scrollView, displayStr: SetRedColorForWrongWord(text: self.story?.sentences[i], word: arrWords[i][j]))
-            //self.speechRecognizer.stopRecording()
-            self.textview.attributedText = GetRedColorForWrongWord(text: (self.story?.sentences[nIdxSentence])!, word: arrWords[nIdxSentence][nIdxWord])
-            self.scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
-            nIdxWord = 0
-            //self.speechRecognizer.stopRecording()
-            //self.speechRecognizer.startRecording()
-        }*/
     }
     
     func onEnd(_ status: Int){

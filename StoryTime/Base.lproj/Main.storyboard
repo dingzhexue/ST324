@@ -245,7 +245,7 @@
         <!--Complete View Controller-->
         <scene sceneID="bfX-gf-My9">
             <objects>
-                <viewController id="xW5-YM-wwh" customClass="CompleteViewController" customModule="StoryTime" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CompleteVC" id="xW5-YM-wwh" customClass="CompleteViewController" customModule="StoryTime" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Wnc-jf-KVk">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -267,6 +267,7 @@
                                 <state key="normal" image="backButton"/>
                                 <connections>
                                     <action selector="btnBackClicked:" destination="rwM-pv-47X" eventType="touchUpInside" id="5E3-S9-dgU"/>
+                                    <action selector="onBack:" destination="xW5-YM-wwh" eventType="touchUpInside" id="R7I-wL-M5G"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="A Camping Tale" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="8uV-Re-mKH">

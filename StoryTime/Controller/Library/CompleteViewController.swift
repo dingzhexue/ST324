@@ -17,10 +17,14 @@ class CompleteViewController: UIViewController {
     @IBOutlet weak var imgAccBefore: UIImageView!
     @IBOutlet weak var imgAccNow: UIImageView!
     
+    var story: Library.Level.Story?
+    var levelStr = 0
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        lblTitle.text = story?.name
+        lblLevel.text = "Level \(levelStr)"
     }
 
     override func didReceiveMemoryWarning() {
@@ -28,7 +32,11 @@ class CompleteViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
+    @IBAction func onBack(_ sender: Any) {
+        self.navigationController?.popToRootViewController(animated: true)
+    }
+    
+    
     /*
     // MARK: - Navigation
 
