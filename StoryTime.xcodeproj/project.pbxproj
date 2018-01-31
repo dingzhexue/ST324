@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		054B4D19201C82D300C23E6A /* WaveformView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054B4D18201C82D200C23E6A /* WaveformView.swift */; };
+		05E885C4202214150073DE52 /* CompleteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E885C3202214150073DE52 /* CompleteViewController.swift */; };
 		C3616B811FE2E52900EECBD7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3616B801FE2E52900EECBD7 /* AppDelegate.swift */; };
 		C3616B861FE2E52900EECBD7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C3616B841FE2E52900EECBD7 /* Main.storyboard */; };
 		C3616B881FE2E52900EECBD7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C3616B871FE2E52900EECBD7 /* Assets.xcassets */; };
@@ -42,6 +43,7 @@
 
 /* Begin PBXFileReference section */
 		054B4D18201C82D200C23E6A /* WaveformView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaveformView.swift; sourceTree = "<group>"; };
+		05E885C3202214150073DE52 /* CompleteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompleteViewController.swift; sourceTree = "<group>"; };
 		AE2528B1FA1036B4ED133F41 /* Pods_StoryTime.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StoryTime.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE87EE5191B24F22AA9AC346 /* Pods-StoryTime.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StoryTime.release.xcconfig"; path = "Pods/Target Support Files/Pods-StoryTime/Pods-StoryTime.release.xcconfig"; sourceTree = "<group>"; };
 		B9B97089D4F24B29DEF17B0E /* Pods-StoryTime.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StoryTime.debug.xcconfig"; path = "Pods/Target Support Files/Pods-StoryTime/Pods-StoryTime.debug.xcconfig"; sourceTree = "<group>"; };
@@ -221,6 +223,7 @@
 				C3BBFD401FE96D5300CBACA7 /* LibraryViewController.swift */,
 				C3BBFD421FE96EF800CBACA7 /* PreviewViewController.swift */,
 				C3BBFD441FE96FDE00CBACA7 /* ExperienceViewController.swift */,
+				05E885C3202214150073DE52 /* CompleteViewController.swift */,
 			);
 			path = Library;
 			sourceTree = "<group>";
@@ -425,6 +428,7 @@
 				C3616BB31FE3028700EECBD7 /* Icon.swift in Sources */,
 				C3616B941FE2E7C200EECBD7 /* BaseViewController.swift in Sources */,
 				C3616BA21FE2ECD900EECBD7 /* GroupViewController.swift in Sources */,
+				05E885C4202214150073DE52 /* CompleteViewController.swift in Sources */,
 				C3616BB51FE3052C00EECBD7 /* Theme.swift in Sources */,
 				EC40BED82012633100F46103 /* Help2ViewController.swift in Sources */,
 				EC7832281FECE37400E092AF /* StoryTVCell.swift in Sources */,

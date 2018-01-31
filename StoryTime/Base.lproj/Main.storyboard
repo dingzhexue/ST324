@@ -242,10 +242,10 @@
             </objects>
             <point key="canvasLocation" x="2131.875" y="169.01408450704224"/>
         </scene>
-        <!--View Controller-->
+        <!--Complete View Controller-->
         <scene sceneID="bfX-gf-My9">
             <objects>
-                <viewController id="xW5-YM-wwh" sceneMemberID="viewController">
+                <viewController id="xW5-YM-wwh" customClass="CompleteViewController" customModule="StoryTime" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Wnc-jf-KVk">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -269,14 +269,14 @@
                                     <action selector="btnBackClicked:" destination="rwM-pv-47X" eventType="touchUpInside" id="5E3-S9-dgU"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="A Camping Tale" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8uV-Re-mKH">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="A Camping Tale" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="8uV-Re-mKH">
                                 <rect key="frame" x="16" y="401" width="343" height="37"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Level 1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PvE-XJ-Xtx">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Level 1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="PvE-XJ-Xtx">
                                 <rect key="frame" x="16" y="448" width="343" height="21"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
@@ -311,18 +311,22 @@
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="09Q-qo-Hgl">
                                         <rect key="frame" x="232" y="0.0" width="20" height="129"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" heightSizable="YES"/>
+                                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                     </imageView>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Yzd-FK-XzW">
                                         <rect key="frame" x="256" y="0.0" width="20" height="129"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" heightSizable="YES"/>
+                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </imageView>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wbh-Gh-crb">
                                         <rect key="frame" x="99" y="0.0" width="20" height="129"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" heightSizable="YES"/>
+                                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                     </imageView>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="K0H-mS-DHD">
                                         <rect key="frame" x="123" y="0.0" width="20" height="129"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" heightSizable="YES"/>
+                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </imageView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -331,6 +335,16 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="ivs-2h-Q4y"/>
                     </view>
+                    <connections>
+                        <outlet property="imgAccBefore" destination="09Q-qo-Hgl" id="IOT-LF-QA8"/>
+                        <outlet property="imgAccNow" destination="Yzd-FK-XzW" id="5HS-Xx-KI9"/>
+                        <outlet property="imgSpeedBefore" destination="wbh-Gh-crb" id="W13-1B-Swl"/>
+                        <outlet property="imgSpeedNow" destination="K0H-mS-DHD" id="SIh-NB-Yuz"/>
+                        <outlet property="lblDescription" destination="gOn-6i-TTQ" id="6Aa-4H-eyX"/>
+                        <outlet property="lblGrade" destination="sZ3-Uq-bYd" id="3y1-YV-XTL"/>
+                        <outlet property="lblLevel" destination="PvE-XJ-Xtx" id="1dE-iV-bLN"/>
+                        <outlet property="lblTitle" destination="8uV-Re-mKH" id="hIm-Md-jht"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PWB-eW-c9B" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
