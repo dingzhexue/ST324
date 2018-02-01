@@ -19,12 +19,16 @@ class CompleteViewController: UIViewController {
     
     var story: Library.Level.Story?
     var levelStr = 0
+    var timeCnt: CGFloat = 0
+    var wrongCnt = 0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         lblTitle.text = story?.name
         lblLevel.text = "Level \(levelStr)"
+        print("Time Spent: \(timeCnt) seconds, Wrong Count: \(wrongCnt)")
     }
 
     override func didReceiveMemoryWarning() {

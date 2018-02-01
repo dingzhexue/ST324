@@ -17,8 +17,11 @@ enum EndState : Int{
 
 class ExperienceViewController: BaseViewController {
     
-    var timer:Timer?
-    var change:CGFloat = 0.01
+    var timer = Timer()
+    var counter:CGFloat = 0
+    var wrongCnt = 0
+    
+    var isTimerRunning = false
     var story: Library.Level.Story?
     var levelStr = 0
     var nIdxSentence = 0
@@ -91,6 +94,7 @@ class ExperienceViewController: BaseViewController {
     //102 is replay sentence
     @IBAction func btnBackClicked(_ sender: Any) {
         //navigationController?.popViewController(animated: true)
+        stopTimer()
         if speechRecognizer.isStarted{
             speechRecognizer.stopRecording(status: EndState.backscreen.rawValue)
         }
@@ -100,11 +104,18 @@ class ExperienceViewController: BaseViewController {
     }
     
     func gotoComplete(){
+        stopTimer()
         if let completeVC = storyboard?.instantiateViewController(withIdentifier: "CompleteVC") as? CompleteViewController {
             completeVC.story = self.story
             completeVC.levelStr = self.levelStr
+            completeVC.timeCnt = self.counter
+            completeVC.wrongCnt = self.wrongCnt
             navigationController?.pushViewController(completeVC, animated: true)
         }
+    }
+    
+    func stopTimer(){
+        timer.invalidate()
     }
     
     func prepareNextSentence(){
@@ -147,12 +158,26 @@ class ExperienceViewController: BaseViewController {
         
         return audioRecorder
     }
+    
+    @objc func updateTimer(){
+        counter += 0.1
+    }
+    
+    func startTimer(){
+        if !isTimerRunning{
+            isTimerRunning = true
+            wrongCnt = 0
+            counter = 0
+            timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
+        }
+    }
 }
 //SpeechRecognizerDelegate Methods
 extension ExperienceViewController: SpeechRecognizerDelegate {
     func onDetect(_ speech: String, _ isFinal: Bool) {
         // this is real time callback - you can analyze here
         // Get last word of speech
+        startTimer()
         
         arrSpeech = speech.components(separatedBy: " ")
         lblSpeaking.text = speech;
@@ -182,6 +207,7 @@ extension ExperienceViewController: SpeechRecognizerDelegate {
         }
         else{ //incorrect
             speechRecognizer.stopRecording(status: EndState.replay.rawValue)
+            wrongCnt += 1
             print("incorrect")
         }
     }
