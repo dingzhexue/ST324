@@ -18,7 +18,7 @@ enum EndState : Int{
 class ExperienceViewController: BaseViewController {
     
     var timer = Timer()
-    var counter:CGFloat = 0
+    var counter:Int = 0
     var wrongCnt = 0
     
     var isTimerRunning = false
@@ -160,7 +160,7 @@ class ExperienceViewController: BaseViewController {
     }
     
     @objc func updateTimer(){
-        counter += 0.1
+        counter += 1
     }
     
     func startTimer(){
@@ -168,7 +168,7 @@ class ExperienceViewController: BaseViewController {
             isTimerRunning = true
             wrongCnt = 0
             counter = 0
-            timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
+            timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
         }
     }
 }

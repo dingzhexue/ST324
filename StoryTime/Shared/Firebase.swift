@@ -19,6 +19,7 @@ class Firebase {
     
     let dbRef = Database.database().reference()
     let storageRef = Storage.storage().reference()
+    var REF_RESULTS = Database.database().reference().child("results")
     
     func signInAnonymously() {
         Auth.auth().signInAnonymously { (user, error) in
@@ -47,6 +48,34 @@ extension Firebase {
         dbRef.child(childPath).observeSingleEvent(of: .value) { (snapshot) in
             completionHandler(snapshot)
         }
+    }
+    
+    var CURRENT_USER: User? {
+        if let currentUser = Auth.auth().currentUser {
+            return currentUser
+        }
+        
+        return nil
+    }
+    
+    func currentUserId() -> String{
+        guard let currentUser = Auth.auth().currentUser else {
+            return ""
+        }
+        return currentUser.uid
+    }
+    
+    func observeResult(id:String, level: Int, story: String, completion: @escaping (DataSnapshot) -> Void){
+        REF_RESULTS.child(id + "/\(level)/" + story).observeSingleEvent(of: DataEventType.value, with: {
+            snapshot in
+            completion(snapshot)
+        })
+    }
+    
+    func postResult(id:String, level: Int, story: String, wrongCount: Int, time: Int, onSuccess: @escaping () -> Void){
+        let ref = REF_RESULTS.child(id + "/\(level)/" + story)
+        ref.setValue(["wrongcount" : wrongCount, "time": time])
+        onSuccess()
     }
 }
 
