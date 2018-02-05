@@ -6,14 +6,20 @@
 //
 
 import UIKit
+import SDWebImage
+import MBProgressHUD
 
-class SettingsViewController: BaseViewController {
+class SettingsViewController: BaseViewController , UIImagePickerControllerDelegate,
+UINavigationControllerDelegate{
 
     @IBOutlet weak var imageUser: UIImageView!
     @IBOutlet weak var lblUserName: UILabel!
     @IBOutlet weak var btnStatistics: UIButton!
     @IBOutlet weak var btnMusic: UIButton!
     @IBOutlet weak var btnHelp: UIButton!
+    
+    var picker:UIImagePickerController?=UIImagePickerController()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         //Rounded Button
@@ -25,25 +31,42 @@ class SettingsViewController: BaseViewController {
         btnMusic.layer.borderWidth = 2
         imageUser.layer.cornerRadius = imageUser.frame.width / 2
         imageUser.layer.borderWidth = 2
+        imageUser.clipsToBounds = true
         //Do any additional setup after loading the view.
         
         //Get User Photo and DisplayName From GameCenter
-        if let currentPlayer = GameCenter().currentPlayer {
+        /*if let currentPlayer = GameCenter().currentPlayer {
             currentPlayer.loadPhoto(for: .normal, withCompletionHandler: {(image, error) in
                 if image != nil && error != nil {
-                    self.imageUser.image = image
+                    self.btnPhoto.image(for: .normal)
                 }
                 
             })
             if let displayName = currentPlayer.displayName {
                 lblUserName.text? = displayName
             }
-        }        
+        }*/
+        
+        picker?.delegate = self
+        fetchCurrentUser()
     }
-    
+    func fetchCurrentUser(){
+        MBProgressHUD.showAdded(to: self.view, animated: true)
+        Firebase.shared.observeCurrentUser(completion: { snapshot in
+            if let dict = snapshot.value as? [String: Any]{
+                if let imgUrl = dict["profileImage"]{
+                    self.imageUser.sd_setImage(with: URL.init(string: imgUrl as! String), completed: nil)
+                }
+            }
+            MBProgressHUD.hide(for: self.view, animated:true)
+        })
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    @IBAction func onPhoto(_ sender: Any) {
+        openSheet()
     }
     
     @IBAction func btnStatisticsClicked(_ sender: Any) {
@@ -66,6 +89,82 @@ class SettingsViewController: BaseViewController {
         self.hero_replaceViewController(with: preView)
     }
     
+    func openSheet(){
+        let actionSheetController: UIAlertController = UIAlertController(title: "Please select", message: "Option to select", preferredStyle: .actionSheet)
+        
+        let cancelActionButton = UIAlertAction(title: "Cancel", style: .cancel) { _ in
+            print("Cancel")
+        }
+        actionSheetController.addAction(cancelActionButton)
+        
+        let saveActionButton = UIAlertAction(title: "Camera", style: .default)
+        { _ in
+            self.openCamera()
+        }
+        actionSheetController.addAction(saveActionButton)
+        
+        let deleteActionButton = UIAlertAction(title: "Photo Gallery", style: .default)
+        { _ in
+            self.openGallary()
+        }
+        actionSheetController.addAction(deleteActionButton)
+        self.present(actionSheetController, animated: true, completion: nil)
+    }
+    func openGallary()
+    {
+        if(UIImagePickerController .isSourceTypeAvailable(UIImagePickerControllerSourceType.photoLibrary)){
+            picker!.allowsEditing = true
+            picker!.sourceType = UIImagePickerControllerSourceType.photoLibrary
+            present(picker!, animated: true, completion: nil)
+        }else{
+            let alert = UIAlertController(title: "Photo Gallery Error", message: "Can't access to Photo Gallery", preferredStyle: .alert)
+            let ok = UIAlertAction(title: "OK", style:.default, handler: nil)
+            alert.addAction(ok)
+            present(alert, animated: true, completion: nil)
+        }
+    }
+    
+    
+    func openCamera()
+    {
+        if UIImagePickerController .isSourceTypeAvailable(UIImagePickerControllerSourceType.camera) {
+            picker!.allowsEditing = true
+            picker!.sourceType = UIImagePickerControllerSourceType.camera
+            picker!.cameraCaptureMode = .photo
+            present(picker!, animated: true, completion: nil)
+        }else{
+            let alert = UIAlertController(title: "Camera Not Found", message: "This device has no Camera", preferredStyle: .alert)
+            let ok = UIAlertAction(title: "OK", style:.default, handler: nil)
+            alert.addAction(ok)
+            present(alert, animated: true, completion: nil)
+        }
+    }
+    
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    internal func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        let chosenImage = info[UIImagePickerControllerEditedImage] as! UIImage
+        imageUser.image = chosenImage
+        
+        let imageData = UIImageJPEGRepresentation(chosenImage, 0.1)
+        //imageView.contentMode = .ScaleAspectFit
+        //imageView.image = chosenImage
+        dismiss(animated: true, completion: {
+            MBProgressHUD.showAdded(to: self.view, animated: true)
+            Firebase.shared.uploadImage(imageData: imageData!, onSuccess: {(imageURL) in
+                Firebase.shared.saveUserProfile(imgUrl: imageURL, onSucess: {
+                    MBProgressHUD.hide(for: self.view, animated:true)
+                }, onError: { (error) in
+                    MBProgressHUD.hide(for: self.view, animated:true)
+                })
+            }, onError: { (errorMessage) in
+                MBProgressHUD.hide(for: self.view, animated:true)
+            })
+        })
+    }
     /*
     // MARK: - Navigation
 

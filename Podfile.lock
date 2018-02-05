@@ -51,6 +51,9 @@ PODS:
     - nanopb/encode (= 0.3.8)
   - nanopb/decode (0.3.8)
   - nanopb/encode (0.3.8)
+  - SDWebImage (4.3.0):
+    - SDWebImage/Core (= 4.3.0)
+  - SDWebImage/Core (4.3.0)
   - SMPageControl (1.2)
   - SwiftSiriWaveformView (2.4.0)
   - SwiftyStoreKit (0.13.0)
@@ -62,6 +65,7 @@ DEPENDENCIES:
   - Firebase/Storage
   - Hero
   - MBProgressHUD
+  - SDWebImage
   - SMPageControl
   - SwiftSiriWaveformView
   - SwiftyStoreKit
@@ -80,10 +84,11 @@ SPEC CHECKSUMS:
   leveldb-library: 08cba283675b7ed2d99629a4bc5fd052cd2bb6a5
   MBProgressHUD: e7baa36a220447d8aeb12769bf0585582f3866d9
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
+  SDWebImage: 6da6c8bca115addc4de8613362e1b15f66333825
   SMPageControl: 922892813001cfaf059e86e6801f46a967e9ee29
   SwiftSiriWaveformView: baa04ed2089e854af00ea54c38a7700ca43d7ae0
   SwiftyStoreKit: df6a58aba530128e1c5d5ae4fe7d191e5ac50d5d
 
-PODFILE CHECKSUM: 3547a9fd1dfd121c8c220151e2c4ab2a98a468af
+PODFILE CHECKSUM: 97a1ead302273247b3439af30af4246cd357b919
 
 COCOAPODS: 1.4.0

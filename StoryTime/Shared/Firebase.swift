@@ -20,6 +20,8 @@ class Firebase {
     let dbRef = Database.database().reference()
     let storageRef = Storage.storage().reference()
     var REF_RESULTS = Database.database().reference().child("results")
+    var REF_USERS = Database.database().reference().child("users")
+    static var STORAGE_ROOF_REF = "gs://storytime-app.appspot.com"
     
     func signInAnonymously() {
         Auth.auth().signInAnonymously { (user, error) in
@@ -65,6 +67,39 @@ extension Firebase {
         return currentUser.uid
     }
     
+    func observeCurrentUser(completion: @escaping (DataSnapshot) -> Void){
+        REF_USERS.child(currentUserId()).observeSingleEvent(of: DataEventType.value, with: {
+            snapshot in
+            completion(snapshot)
+        })
+    }
+    
+    func saveUserProfile(imgUrl:String, onSucess: @escaping() -> Void, onError:  @escaping (_ errorMessage: String?) -> Void){
+        let dict = ["profileImage": imgUrl]
+        REF_USERS.child(currentUserId()).updateChildValues(dict) { (error, ref) in
+            if(error != nil){
+                onError(error?.localizedDescription)
+            }else{
+                onSucess()
+            }
+        }
+    }
+    
+    func uploadImage(imageData: Data, onSuccess: @escaping(_ imageUrl:String) -> Void, onError: @escaping (_ errorMessage: String?)->Void){
+        let uid = currentUserId()
+        storageRef.child("users").child(uid).putData(imageData, metadata: nil) { (metadata, error) in
+            if error != nil{
+                onError(error?.localizedDescription)
+                return
+            }
+            
+            if let profileImageUrl = metadata?.downloadURL()?.absoluteString{
+                onSuccess(profileImageUrl)
+            }else{
+                onError("Can't get image URL")
+            }
+        }
+    }
     func observeResult(id:String, level: Int, story: String, completion: @escaping (DataSnapshot) -> Void){
         REF_RESULTS.child(id + "/\(level)/" + story).observeSingleEvent(of: DataEventType.value, with: {
             snapshot in
