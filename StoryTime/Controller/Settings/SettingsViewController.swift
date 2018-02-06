@@ -32,6 +32,7 @@ UINavigationControllerDelegate{
         imageUser.layer.cornerRadius = imageUser.frame.width / 2
         imageUser.layer.borderWidth = 2
         imageUser.clipsToBounds = true
+        
         //Do any additional setup after loading the view.
         
         //Get User Photo and DisplayName From GameCenter
@@ -55,7 +56,7 @@ UINavigationControllerDelegate{
         Firebase.shared.observeCurrentUser(completion: { snapshot in
             if let dict = snapshot.value as? [String: Any]{
                 if let imgUrl = dict["profileImage"]{
-                    self.imageUser.sd_setImage(with: URL.init(string: imgUrl as! String), completed: nil)
+                    self.imageUser.sd_setImage(with: URL(string: imgUrl as! String), completed: nil)
                 }
             }
             MBProgressHUD.hide(for: self.view, animated:true)

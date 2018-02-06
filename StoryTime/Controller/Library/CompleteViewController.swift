@@ -86,7 +86,7 @@ class CompleteViewController: UIViewController {
         let newHeight = height * percent
         
         let orgRect = imgView.frame
-        let newRect = CGRect.init(origin: CGPoint.init(x: orgRect.origin.x, y: orgRect.origin.y + (height - newHeight)), size: CGSize.init(width: orgRect.size.width, height: newHeight))
+        let newRect = CGRect(origin: CGPoint(x: orgRect.origin.x, y: orgRect.origin.y + (height - newHeight)), size: CGSize(width: orgRect.size.width, height: newHeight))
         imgView.frame = newRect
     }
     override func didReceiveMemoryWarning() {

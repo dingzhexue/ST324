@@ -41,7 +41,7 @@ extension IconViewController: UICollectionViewDelegateFlowLayout, UICollectionVi
         let padding:CGFloat = 30
         let width = (collectionView.bounds.size.width - padding * 3) / 2
         
-        return CGSize.init(width: width, height: width)
+        return CGSize(width: width, height: width)
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
