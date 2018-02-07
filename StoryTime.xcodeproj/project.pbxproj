@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		054B4D19201C82D300C23E6A /* WaveformView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054B4D18201C82D200C23E6A /* WaveformView.swift */; };
+		05C15DDE202B501E00831635 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05C15DDD202B501E00831635 /* StoreKit.framework */; };
 		05E885C4202214150073DE52 /* CompleteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E885C3202214150073DE52 /* CompleteViewController.swift */; };
 		C3616B811FE2E52900EECBD7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3616B801FE2E52900EECBD7 /* AppDelegate.swift */; };
 		C3616B861FE2E52900EECBD7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C3616B841FE2E52900EECBD7 /* Main.storyboard */; };
@@ -43,6 +44,7 @@
 
 /* Begin PBXFileReference section */
 		054B4D18201C82D200C23E6A /* WaveformView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaveformView.swift; sourceTree = "<group>"; };
+		05C15DDD202B501E00831635 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		05E885C3202214150073DE52 /* CompleteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompleteViewController.swift; sourceTree = "<group>"; };
 		AE2528B1FA1036B4ED133F41 /* Pods_StoryTime.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StoryTime.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE87EE5191B24F22AA9AC346 /* Pods-StoryTime.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StoryTime.release.xcconfig"; path = "Pods/Target Support Files/Pods-StoryTime/Pods-StoryTime.release.xcconfig"; sourceTree = "<group>"; };
@@ -86,6 +88,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E697AF187E00F7F0D9349C36 /* Pods_StoryTime.framework in Frameworks */,
+				05C15DDE202B501E00831635 /* StoreKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -239,6 +242,7 @@
 		CC68E77FCBAA133C28E733DE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				05C15DDD202B501E00831635 /* StoreKit.framework */,
 				AE2528B1FA1036B4ED133F41 /* Pods_StoryTime.framework */,
 			);
 			name = Frameworks;
@@ -297,6 +301,11 @@
 					C3616B7C1FE2E52900EECBD7 = {
 						CreatedOnToolsVersion = 9.2;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.InAppPurchase = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
