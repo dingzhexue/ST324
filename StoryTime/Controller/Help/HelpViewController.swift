@@ -7,15 +7,12 @@
 
 import UIKit
 
-class Help2ViewController: UIViewController {
+class HelpViewController: UIViewController {
 
-    
-
-    @IBOutlet weak var lblLong: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        lblLong.adjustsFontSizeToFitWidth = true
+        
         // Do any additional setup after loading the view.
     }
 
@@ -24,7 +21,13 @@ class Help2ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
+    @IBAction func onGetStart(_ sender: Any) {
+        let preView = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
+        preView.isHeroEnabled = true
+        preView.heroModalAnimationType = .fade//.zoomSlide(direction: HeroDefaultAnimationType.Direction.down)
+        self.hero_replaceViewController(with: preView)
+    }
+    
     /*
     // MARK: - Navigation
 

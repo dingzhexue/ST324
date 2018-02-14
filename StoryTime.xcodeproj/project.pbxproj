@@ -35,7 +35,7 @@
 		C3BBFD481FEAD0DD00CBACA7 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3BBFD471FEAD0DD00CBACA7 /* SettingsViewController.swift */; };
 		E697AF187E00F7F0D9349C36 /* Pods_StoryTime.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE2528B1FA1036B4ED133F41 /* Pods_StoryTime.framework */; };
 		EC3F69EA2013794C00FAD3A1 /* NavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC3F69E92013794C00FAD3A1 /* NavigationViewController.swift */; };
-		EC40BED82012633100F46103 /* Help2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC40BED72012633100F46103 /* Help2ViewController.swift */; };
+		EC40BED82012633100F46103 /* HelpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC40BED72012633100F46103 /* HelpViewController.swift */; };
 		EC4F5D721FEBF05D00898C2B /* StoryCVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4F5D711FEBF05D00898C2B /* StoryCVCell.swift */; };
 		EC7832281FECE37400E092AF /* StoryTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7832271FECE37400E092AF /* StoryTVCell.swift */; };
 		EC86DDC22012351C00095CE3 /* HelpPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC86DDC12012351C00095CE3 /* HelpPageViewController.swift */; };
@@ -75,7 +75,7 @@
 		C3BBFD441FE96FDE00CBACA7 /* ExperienceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExperienceViewController.swift; sourceTree = "<group>"; };
 		C3BBFD471FEAD0DD00CBACA7 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		EC3F69E92013794C00FAD3A1 /* NavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationViewController.swift; sourceTree = "<group>"; };
-		EC40BED72012633100F46103 /* Help2ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Help2ViewController.swift; sourceTree = "<group>"; };
+		EC40BED72012633100F46103 /* HelpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpViewController.swift; sourceTree = "<group>"; };
 		EC4F5D711FEBF05D00898C2B /* StoryCVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryCVCell.swift; sourceTree = "<group>"; };
 		EC7832271FECE37400E092AF /* StoryTVCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryTVCell.swift; sourceTree = "<group>"; };
 		EC86DDC12012351C00095CE3 /* HelpPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelpPageViewController.swift; sourceTree = "<group>"; };
@@ -260,7 +260,7 @@
 			isa = PBXGroup;
 			children = (
 				EC86DDC12012351C00095CE3 /* HelpPageViewController.swift */,
-				EC40BED72012633100F46103 /* Help2ViewController.swift */,
+				EC40BED72012633100F46103 /* HelpViewController.swift */,
 				EC3F69E92013794C00FAD3A1 /* NavigationViewController.swift */,
 			);
 			path = Help;
@@ -443,7 +443,7 @@
 				C3616BA21FE2ECD900EECBD7 /* GroupViewController.swift in Sources */,
 				05E885C4202214150073DE52 /* CompleteViewController.swift in Sources */,
 				C3616BB51FE3052C00EECBD7 /* Theme.swift in Sources */,
-				EC40BED82012633100F46103 /* Help2ViewController.swift in Sources */,
+				EC40BED82012633100F46103 /* HelpViewController.swift in Sources */,
 				EC7832281FECE37400E092AF /* StoryTVCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

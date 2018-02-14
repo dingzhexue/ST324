@@ -17,7 +17,7 @@ class HelpPageViewController: UIPageViewController {
             self.getViewController(withIdentifier: "Help3ViewController"),
             self.getViewController(withIdentifier: "Help4ViewController"),
             self.getViewController(withIdentifier: "Help5ViewController"),
-            self.getViewController(withIdentifier: "HomeViewController")
+            //self.getViewController(withIdentifier: "HomeViewController")
         ]
     }()
     fileprivate func getViewController(withIdentifier identifier: String) -> UIViewController
