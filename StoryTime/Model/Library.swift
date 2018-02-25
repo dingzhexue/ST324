@@ -11,7 +11,6 @@ import FirebaseDatabase
 
 class Library {
     var levels: [Level] = []
-    
     init(_ snapshot: DataSnapshot) {
         let levelEnumerator = snapshot.children
         while let levelSnapshot = levelEnumerator.nextObject() as? DataSnapshot {

@@ -53,13 +53,18 @@ class ExperienceViewController: BaseViewController {
             })
         }
         //Get User Photo
-        if let currentPlayer = GameCenter().currentPlayer {
+        /*if let currentPlayer = GameCenter().currentPlayer {
             currentPlayer.loadPhoto(for: .normal, withCompletionHandler: {(image, error) in
                 if image != nil && error != nil {
                     self.userImage.image = image
                 }
             })
-        }
+        }*/
+        userImage.layer.cornerRadius = userImage.frame.width / 2
+        userImage.layer.borderWidth = 2
+        userImage.clipsToBounds = true
+        userImage.sd_setImage(with: URL(string: g_sProfileImgURL), completed: nil)
+        
         //Make Horizontal TextView
         if let firstSentence = self.story?.sentences.first {
             MakescrollTextView(scrollView: scrollView, displayStr: firstSentence)
@@ -234,7 +239,7 @@ extension ExperienceViewController {
     func MakescrollTextView(scrollView: UIScrollView, displayStr:String) {
         //Make Scroll Text View
         let maxSize = CGSize(width: 9999, height: 9999)
-        let font = UIFont(name: "Menlo", size: 18)!
+        let font = UIFont(name: "Menlo", size: 24)!
         //key function is coming!!!
         let strSize = (displayStr as NSString).boundingRect(with: maxSize, options: NSStringDrawingOptions.usesLineFragmentOrigin, attributes: [NSAttributedStringKey.font : font], context: nil)
         

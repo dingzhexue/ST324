@@ -27,6 +27,20 @@ class LibraryViewController: BaseViewController {
         //Spinner View
         MBProgressHUD.showAdded(to: self.view, animated: true)
         loadLibrary()
+        
+        fetchCurrentUser()
+    }
+    
+    func fetchCurrentUser(){
+        MBProgressHUD.showAdded(to: self.view, animated: true)
+        Firebase.shared.observeCurrentUser(completion: { snapshot in
+            if let dict = snapshot.value as? [String: Any]{
+                if let imgUrl = dict["profileImage"]{
+                    g_sProfileImgURL = imgUrl as! String
+                }
+            }
+            MBProgressHUD.hide(for: self.view, animated:true)
+        })
     }
     
     private func loadLibrary() {

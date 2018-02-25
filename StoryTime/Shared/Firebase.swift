@@ -10,6 +10,8 @@ import FirebaseAuth
 import FirebaseDatabase
 import FirebaseStorage
 
+var g_sProfileImgURL = ""
+
 class Firebase {
     let maxDownloadFileSize: Int64 = 100 * 1024 * 1024
     

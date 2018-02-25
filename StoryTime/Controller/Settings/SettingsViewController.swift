@@ -49,7 +49,8 @@ UINavigationControllerDelegate{
         }*/
         
         picker?.delegate = self
-        fetchCurrentUser()
+        //fetchCurrentUser()
+        self.imageUser.sd_setImage(with: URL(string: g_sProfileImgURL), completed: nil)
     }
     func fetchCurrentUser(){
         MBProgressHUD.showAdded(to: self.view, animated: true)
@@ -158,6 +159,7 @@ UINavigationControllerDelegate{
             Firebase.shared.uploadImage(imageData: imageData!, onSuccess: {(imageURL) in
                 Firebase.shared.saveUserProfile(imgUrl: imageURL, onSucess: {
                     MBProgressHUD.hide(for: self.view, animated:true)
+                    g_sProfileImgURL = imageURL
                 }, onError: { (error) in
                     MBProgressHUD.hide(for: self.view, animated:true)
                 })
