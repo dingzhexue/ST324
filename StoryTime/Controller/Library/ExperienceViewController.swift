@@ -7,6 +7,7 @@
 
 import UIKit
 import AVFoundation
+import MBProgressHUD
 
 enum EndState : Int{
     case normal = 0
@@ -99,6 +100,7 @@ class ExperienceViewController: BaseViewController {
     //102 is replay sentence
     @IBAction func btnBackClicked(_ sender: Any) {
         //navigationController?.popViewController(animated: true)
+        MBProgressHUD.showAdded(to: self.view, animated: true)
         stopTimer()
         if speechRecognizer.isStarted{
             speechRecognizer.stopRecording(status: EndState.backscreen.rawValue)

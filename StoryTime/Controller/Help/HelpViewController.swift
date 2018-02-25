@@ -26,6 +26,7 @@ class HelpViewController: UIViewController {
         preView.isHeroEnabled = true
         preView.heroModalAnimationType = .fade//.zoomSlide(direction: HeroDefaultAnimationType.Direction.down)
         self.hero_replaceViewController(with: preView)
+    //self.navigationController?.pushViewController(preView, animated: true)
     }
     
     /*
