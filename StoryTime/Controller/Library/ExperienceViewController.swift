@@ -190,7 +190,10 @@ class ExperienceViewController: BaseViewController {
     }
     
     @IBAction func onTap(_ sender: UITapGestureRecognizer) {
-        _ = getWordFromGesture(gesture: sender)
+        let sWord = getWordFromGesture(gesture: sender)
+        if sWord != "" {
+            openDicWith(word: sWord)
+        }
     }
 }
 //SpeechRecognizerDelegate Methods
@@ -267,7 +270,7 @@ extension ExperienceViewController {
                 //print("character index: \(characterIndex)")
                 
                 // print the character at the index successfully
-                let myRange = NSRange(location: characterIndex, length: 1)
+                //let myRange = NSRange(location: characterIndex, length: 1)
                 //let substring = (textView.attributedText.string as NSString).substring(with: myRange)
                 //print("character at index: \(substring)")
                 
@@ -285,6 +288,15 @@ extension ExperienceViewController {
         return text
     }
     
+    func openDicWith(word:String){
+        if UIReferenceLibraryViewController.dictionaryHasDefinition(forTerm: word) {
+            MBProgressHUD.showAdded(to: self.view, animated: true)
+            let ref: UIReferenceLibraryViewController = UIReferenceLibraryViewController(term: word)
+            self.present(ref, animated: true, completion: {
+                MBProgressHUD.hide(for: self.view, animated: true)
+            })
+        }
+    }
     func MakescrollTextView(scrollView: UIScrollView, displayStr:String) {
         //Make Scroll Text View
         let maxSize = CGSize(width: 9999, height: 9999)
