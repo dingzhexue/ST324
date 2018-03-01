@@ -38,7 +38,7 @@ class SpeechRecognizer: NSObject {
         let audioSession = AVAudioSession.sharedInstance()
         do {
             //try audioSession.setCategory(AVAudioSessionCategoryRecord)
-            try audioSession.setCategory(AVAudioSessionCategoryPlayAndRecord)
+            try audioSession.setCategory(AVAudioSessionCategoryPlayAndRecord, with: .defaultToSpeaker)
             try audioSession.setMode(AVAudioSessionModeMeasurement)
             try audioSession.setActive(true, with: .notifyOthersOnDeactivation)
         } catch {
@@ -91,12 +91,19 @@ class SpeechRecognizer: NSObject {
     }
     
     func stopRecording(status:Int = 0) {
-        if audioEngine.isRunning {
+        //if audioEngine.isRunning {
+        if(isStarted || audioEngine.isRunning){
+            do {
+            try AVAudioSession.sharedInstance().setMode(AVAudioSessionModeSpokenAudio)
+            }catch{
+                print("audioSession properties weren't set because of an error.")
+            }
             nEndStatus = status
             audioEngine.stop()
             audioEngine.inputNode.removeTap(onBus: 0)
             recognitionRequest?.endAudio()
         }
+        //}
     }
     
     private func requestAuthorization() {

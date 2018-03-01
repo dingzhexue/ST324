@@ -14,12 +14,16 @@ enum EndState : Int{
     case backscreen = 1
     case replay = 2
     case next = 3
+    case speakword = 4
 }
 
 class ExperienceViewController: BaseViewController {
     
     @IBOutlet var longpressGesture: UILongPressGestureRecognizer!
     @IBOutlet var tapGesture: UITapGestureRecognizer!
+    
+    let synth = AVSpeechSynthesizer()
+    var myUtterance = AVSpeechUtterance(string: "")
     
     var timer = Timer()
     var counter:Int = 0
@@ -42,8 +46,12 @@ class ExperienceViewController: BaseViewController {
     
     let speechRecognizer = SpeechRecognizer.shared
     
+    var m_sWord = ""
+    var m_bIsSpeak = false
     override open func viewDidLoad() {
         super.viewDidLoad()
+        
+        synth.delegate = self
         
         speechRecognizer.recognizerDelegate = self
         speechRecognizer.startRecording()
@@ -185,7 +193,20 @@ class ExperienceViewController: BaseViewController {
     
     @IBAction func onLongpress(_ sender: UILongPressGestureRecognizer) {
         if sender.state == .began {
-            _ = getWordFromGesture(gesture: sender)
+            let sWord = getWordFromGesture(gesture: sender)
+            if sWord != "" {
+                if(speechRecognizer.isStarted){
+                    if !m_bIsSpeak{
+                        m_bIsSpeak = true
+                        MBProgressHUD.showAdded(to: self.view, animated: true)
+                        m_sWord = sWord
+                        speechRecognizer.stopRecording(status: EndState.speakword.rawValue)
+                    }
+                }else
+                {
+                    self.speakWith(word: sWord)
+                }
+            }
         }
     }
     
@@ -194,6 +215,14 @@ class ExperienceViewController: BaseViewController {
         if sWord != "" {
             openDicWith(word: sWord)
         }
+    }
+}
+
+extension ExperienceViewController: AVSpeechSynthesizerDelegate{
+    func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didFinish utterance: AVSpeechUtterance) {
+        m_bIsSpeak = false
+        speechRecognizer.startRecording()
+        MBProgressHUD.hide(for: self.view, animated: true)
     }
 }
 //SpeechRecognizerDelegate Methods
@@ -249,13 +278,13 @@ extension ExperienceViewController: SpeechRecognizerDelegate {
             replaySentence()
         }else if status == EndState.next.rawValue{
             prepareNextSentence()
+        }else if status == EndState.speakword.rawValue{
+            speakWith(word: m_sWord)
         }
     }
 }
 // Self Definition Methods
 extension ExperienceViewController {
-
-    
     func getWordFromGesture(gesture:UIGestureRecognizer) -> String{
         var text = ""
         if let textView = gesture.view as? UITextView {
@@ -296,6 +325,13 @@ extension ExperienceViewController {
                 MBProgressHUD.hide(for: self.view, animated: true)
             })
         }
+    }
+    
+    func speakWith(word:String) {
+        myUtterance = AVSpeechUtterance(string: word)
+        myUtterance.volume = 1
+        //myUtterance.rate = 0.3
+        synth.speak(myUtterance)
     }
     func MakescrollTextView(scrollView: UIScrollView, displayStr:String) {
         //Make Scroll Text View
