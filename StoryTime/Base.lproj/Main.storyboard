@@ -225,12 +225,24 @@
                     <connections>
                         <outlet property="animatedScene" destination="1qS-Dd-0vG" id="YiE-Oy-mhr"/>
                         <outlet property="lblSpeaking" destination="o4m-xv-h1U" id="76R-Q7-KBv"/>
+                        <outlet property="longpressGesture" destination="idK-2v-ppJ" id="P8K-VY-YXK"/>
                         <outlet property="scrollView" destination="AJI-fZ-clO" id="JbC-Iy-sDf"/>
+                        <outlet property="tapGesture" destination="NlL-sk-llR" id="j6M-g1-wma"/>
                         <outlet property="userImage" destination="vdM-J2-dAi" id="qEl-JL-qr1"/>
                         <outlet property="waveformView" destination="eda-Co-2is" id="RWT-Wj-wVS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mWt-p9-bTg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="NlL-sk-llR">
+                    <connections>
+                        <action selector="onTap:" destination="rwM-pv-47X" id="Os4-O0-Rz5"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="idK-2v-ppJ">
+                    <connections>
+                        <action selector="onLongpress:" destination="rwM-pv-47X" id="C6M-xJ-4Jy"/>
+                    </connections>
+                </pongPressGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="2131.875" y="169.01408450704224"/>
         </scene>

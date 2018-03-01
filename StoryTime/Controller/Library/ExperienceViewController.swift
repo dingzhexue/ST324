@@ -17,6 +17,7 @@ enum EndState : Int{
 }
 
 class ExperienceViewController: BaseViewController {
+    
     @IBOutlet var longpressGesture: UILongPressGestureRecognizer!
     @IBOutlet var tapGesture: UITapGestureRecognizer!
     
@@ -182,6 +183,15 @@ class ExperienceViewController: BaseViewController {
         }
     }
     
+    @IBAction func onLongpress(_ sender: UILongPressGestureRecognizer) {
+        if sender.state == .began {
+            _ = getWordFromGesture(gesture: sender)
+        }
+    }
+    
+    @IBAction func onTap(_ sender: UITapGestureRecognizer) {
+        _ = getWordFromGesture(gesture: sender)
+    }
 }
 //SpeechRecognizerDelegate Methods
 extension ExperienceViewController: SpeechRecognizerDelegate {
@@ -241,15 +251,7 @@ extension ExperienceViewController: SpeechRecognizerDelegate {
 }
 // Self Definition Methods
 extension ExperienceViewController {
-    @IBAction func onLongpress(_ sender: UILongPressGestureRecognizer) {
-        if sender.state == .began {
-            _ = getWordFromGesture(gesture: sender)
-        }
-    }
-    
-    @IBAction func onTap(_ sender: UITapGestureRecognizer) {
-        _ = getWordFromGesture(gesture: sender)
-    }
+
     
     func getWordFromGesture(gesture:UIGestureRecognizer) -> String{
         var text = ""
