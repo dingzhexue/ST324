@@ -17,6 +17,8 @@ enum EndState : Int{
 }
 
 class ExperienceViewController: BaseViewController {
+    @IBOutlet var longpressGesture: UILongPressGestureRecognizer!
+    @IBOutlet var tapGesture: UITapGestureRecognizer!
     
     var timer = Timer()
     var counter:Int = 0
@@ -169,6 +171,7 @@ class ExperienceViewController: BaseViewController {
     @objc func updateTimer(){
         counter += 1
     }
+
     
     func startTimer(){
         if !isTimerRunning{
@@ -178,6 +181,7 @@ class ExperienceViewController: BaseViewController {
             timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
         }
     }
+    
 }
 //SpeechRecognizerDelegate Methods
 extension ExperienceViewController: SpeechRecognizerDelegate {
@@ -237,6 +241,47 @@ extension ExperienceViewController: SpeechRecognizerDelegate {
 }
 // Self Definition Methods
 extension ExperienceViewController {
+    @IBAction func onLongpress(_ sender: UILongPressGestureRecognizer) {
+        if sender.state == .began {
+            _ = getWordFromGesture(gesture: sender)
+        }
+    }
+    
+    @IBAction func onTap(_ sender: UITapGestureRecognizer) {
+        _ = getWordFromGesture(gesture: sender)
+    }
+    
+    func getWordFromGesture(gesture:UIGestureRecognizer) -> String{
+        var text = ""
+        if let textView = gesture.view as? UITextView {
+            let layoutManager = textView.layoutManager
+            var location = gesture.location(in: textView)
+            location.x -= textView.textContainerInset.left
+            location.y -= textView.textContainerInset.top
+            
+            let characterIndex = layoutManager.characterIndex(for: location, in: textView.textContainer, fractionOfDistanceBetweenInsertionPoints: nil)
+            
+            if(characterIndex < textView.textStorage.length){
+                //print("character index: \(characterIndex)")
+                
+                // print the character at the index successfully
+                let myRange = NSRange(location: characterIndex, length: 1)
+                //let substring = (textView.attributedText.string as NSString).substring(with: myRange)
+                //print("character at index: \(substring)")
+                
+                let tapPosition: UITextPosition? = textView.closestPosition(to: location)
+                //fetch the word at this position (or nil, if not available)
+                if let textRange = textView.tokenizer.rangeEnclosingPosition(tapPosition!, with: .word, inDirection: 1) {
+                    if let tappedWord = textView.text(in: textRange) {
+                        print("selected word :\(tappedWord)")
+                        //This only prints when I seem to tap the first letter of word.
+                        text = tappedWord
+                    }
+                }
+            }
+        }
+        return text
+    }
     
     func MakescrollTextView(scrollView: UIScrollView, displayStr:String) {
         //Make Scroll Text View
@@ -250,9 +295,12 @@ extension ExperienceViewController {
         let textView = self.textview
         textView?.isEditable = false
         textView?.isScrollEnabled = false//let textView becomes unScrollable
+        textView?.isSelectable = false
         textView?.font = font
         textView?.text = displayStr
         
+        textView?.addGestureRecognizer(tapGesture)
+        textView?.addGestureRecognizer(longpressGesture)
         scrollView.contentSize = CGSize(width: strSize.width, height: 50)
         
         scrollView.addSubview(textView!)
