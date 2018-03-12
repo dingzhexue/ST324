@@ -16,4 +16,5 @@ pod 'MBProgressHUD'
 pod 'SMPageControl'
 pod 'SwiftyStoreKit'
 pod 'SDWebImage'
+pod 'lottie-ios'
 end

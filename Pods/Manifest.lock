@@ -45,6 +45,7 @@ PODS:
   - GTMSessionFetcher/Core (1.1.13)
   - Hero (1.0.1)
   - leveldb-library (1.20)
+  - lottie-ios (2.5.0)
   - MBProgressHUD (1.1.0)
   - nanopb (0.3.8):
     - nanopb/decode (= 0.3.8)
@@ -64,6 +65,7 @@ DEPENDENCIES:
   - Firebase/Database
   - Firebase/Storage
   - Hero
+  - lottie-ios
   - MBProgressHUD
   - SDWebImage
   - SMPageControl
@@ -82,6 +84,7 @@ SPEC CHECKSUMS:
   GTMSessionFetcher: 5bb1eae636127de695590f50e7d248483eb891e6
   Hero: cee286821578e170d8c0c9c9cda7897357401112
   leveldb-library: 08cba283675b7ed2d99629a4bc5fd052cd2bb6a5
+  lottie-ios: d699fdee68d7b63e721d949388b015fef1aaa4ac
   MBProgressHUD: e7baa36a220447d8aeb12769bf0585582f3866d9
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
   SDWebImage: 6da6c8bca115addc4de8613362e1b15f66333825
@@ -89,6 +92,6 @@ SPEC CHECKSUMS:
   SwiftSiriWaveformView: baa04ed2089e854af00ea54c38a7700ca43d7ae0
   SwiftyStoreKit: df6a58aba530128e1c5d5ae4fe7d191e5ac50d5d
 
-PODFILE CHECKSUM: 97a1ead302273247b3439af30af4246cd357b919
+PODFILE CHECKSUM: 465b679518f0b4cb7755994386865598c292a383
 
 COCOAPODS: 1.4.0
