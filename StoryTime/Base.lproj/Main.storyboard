@@ -203,7 +203,7 @@
                                 <rect key="frame" x="0.0" y="70" width="375" height="329"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1qS-Dd-0vG">
+                                    <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1qS-Dd-0vG">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="329"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     </imageView>
@@ -223,7 +223,8 @@
                         <viewLayoutGuide key="safeArea" id="vLW-er-KPP"/>
                     </view>
                     <connections>
-                        <outlet property="animatedScene" destination="1qS-Dd-0vG" id="YiE-Oy-mhr"/>
+                        <outlet property="animatedScene" destination="1qS-Dd-0vG" id="2Is-jP-eox"/>
+                        <outlet property="animatedView" destination="bmY-N2-Q2M" id="cXg-EC-PzR"/>
                         <outlet property="lblSpeaking" destination="o4m-xv-h1U" id="76R-Q7-KBv"/>
                         <outlet property="longpressGesture" destination="idK-2v-ppJ" id="P8K-VY-YXK"/>
                         <outlet property="scrollView" destination="AJI-fZ-clO" id="JbC-Iy-sDf"/>

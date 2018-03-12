@@ -8,6 +8,7 @@
 import UIKit
 import AVFoundation
 import MBProgressHUD
+import Lottie
 
 enum EndState : Int{
     case normal = 0
@@ -21,6 +22,8 @@ class ExperienceViewController: BaseViewController {
     
     @IBOutlet var longpressGesture: UILongPressGestureRecognizer!
     @IBOutlet var tapGesture: UITapGestureRecognizer!
+    
+    private var boatAnimation: LOTAnimationView?
     
     let synth = AVSpeechSynthesizer()
     var myUtterance = AVSpeechUtterance(string: "")
@@ -37,10 +40,14 @@ class ExperienceViewController: BaseViewController {
     var arrSpeech: [String] = []
     var textview: UITextView!
     @IBOutlet weak var lblSpeaking: UILabel!
-
+    @IBOutlet weak var animatedView: UIView!
+    @IBOutlet weak var animatedScene: UIImageView!
+    
     @IBOutlet weak var waveformView: WaveformView!
     @IBOutlet weak var userImage: UIImageView!
-    @IBOutlet weak var animatedScene: UIImageView!
+    
+    
+    
     @IBOutlet weak var scrollView: UIScrollView!
     var audioRecorder: AVAudioRecorder!
     
@@ -89,6 +96,15 @@ class ExperienceViewController: BaseViewController {
             arrWords.append(sentence.components(separatedBy: " "))
         }
         
+        boatAnimation = LOTAnimationView(name: "story")
+        boatAnimation!.autoresizingMask = [.flexibleHeight, .flexibleWidth]
+        boatAnimation!.contentMode = .scaleAspectFill
+        boatAnimation!.frame = animatedScene.bounds
+        animatedView.addSubview(boatAnimation!)
+        boatAnimation!.loopAnimation = true
+        boatAnimation!.play(fromProgress: 0,
+                            toProgress: 1,
+                            withCompletion: nil)
     }
     
     override func viewDidDisappear(_ animated: Bool) {
