@@ -64,13 +64,13 @@ class ExperienceViewController: BaseViewController {
         speechRecognizer.startRecording()
         
         //Get Animated Scene
-        if let  story = self.story {
+        /*if let  story = self.story {
             Library.loadStoryScreenshot(story, { (image) in
                 if image != nil {
                     self.animatedScene.image = image!
                 }
             })
-        }
+        }*/
         //Get User Photo
         /*if let currentPlayer = GameCenter().currentPlayer {
             currentPlayer.loadPhoto(for: .normal, withCompletionHandler: {(image, error) in

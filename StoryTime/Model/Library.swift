@@ -30,6 +30,7 @@ class Library {
             var summary = ""
             var keyMetrics = ""
             var sentences: [String] = []
+            var story : [Scene] = []
             
             struct StoryKey {
                 static let nameKey = "name"
@@ -37,8 +38,9 @@ class Library {
                 static let summaryKey = "summary"
                 static let keyMetricsKey = "keyMetrics"
                 static let sentencesKey = "sentences"
+                static let storyKey = "story"
             }
-            
+            //Init Story
             init(_ snapshot: DataSnapshot) {
                 refId = snapshot.key
                 
@@ -49,10 +51,39 @@ class Library {
                     keyMetrics = value[StoryKey.keyMetricsKey] as? String ?? ""
                     let sentencesString = value[StoryKey.sentencesKey] as? String ?? ""
                     sentences = sentencesString.components(separatedBy: "\n")
+                    
+                    let storydata = value[StoryKey.storyKey] as? Dictionary<String, Any>
+                    
+                    if storydata != nil {
+                        let sortedKeys = Array(storydata!.keys).sorted()
+                        
+                        for key in sortedKeys{
+                            let scene = Level.Story.Scene(storydata![key] as! Dictionary<String, Any>)
+                            story.append(scene)
+                        }
+                    }
+                    /*while let storySnapshot = storyEnumerator.nextObject() as? DataSnapshot{
+                        let scene = Level.Story.Scene(storySnapshot)
+                        story.append(scene)
+                    }*/
+                }
+            }
+            
+            class Scene {
+                var sentence = ""
+                var fPosEnd = 1.0
+                var fPosStart = 0.0
+                var sentences : [String] = []
+                init(_ story: Dictionary<String, Any>){
+                    sentence = story["sentence"] as? String ?? ""
+                    fPosEnd = story["posend"] as? Double ?? 0.0
+                    fPosStart = story["posstart"] as? Double ?? 1.0
+                    sentences = sentence.components(separatedBy: "#")
                 }
             }
         }
         
+        //Init Level
         init(_ snapshot: DataSnapshot) {
             let index = snapshot.key.index(snapshot.key.endIndex, offsetBy: -(snapshot.key.count - 5))
             let levelString = snapshot.key.suffix(from: index)
