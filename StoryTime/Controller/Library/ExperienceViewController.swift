@@ -23,7 +23,7 @@ class ExperienceViewController: BaseViewController {
     @IBOutlet var longpressGesture: UILongPressGestureRecognizer!
     @IBOutlet var tapGesture: UITapGestureRecognizer!
     
-    private var boatAnimation: LOTAnimationView?
+    private var storyAnimation: LOTAnimationView?
     
     let synth = AVSpeechSynthesizer()
     var myUtterance = AVSpeechUtterance(string: "")
@@ -39,6 +39,8 @@ class ExperienceViewController: BaseViewController {
     var arrWords: [[String]] = []
     var arrSpeech: [String] = []
     var textview: UITextView!
+    
+    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var lblSpeaking: UILabel!
     @IBOutlet weak var animatedView: UIView!
     @IBOutlet weak var animatedScene: UIImageView!
@@ -46,15 +48,13 @@ class ExperienceViewController: BaseViewController {
     @IBOutlet weak var waveformView: WaveformView!
     @IBOutlet weak var userImage: UIImageView!
     
-    
-    
-    @IBOutlet weak var scrollView: UIScrollView!
     var audioRecorder: AVAudioRecorder!
     
     let speechRecognizer = SpeechRecognizer.shared
     
     var m_sWord = ""
     var m_bIsSpeak = false
+    
     override open func viewDidLoad() {
         super.viewDidLoad()
         
@@ -79,6 +79,7 @@ class ExperienceViewController: BaseViewController {
                 }
             })
         }*/
+        
         userImage.layer.cornerRadius = userImage.frame.width / 2
         userImage.layer.borderWidth = 2
         userImage.clipsToBounds = true
@@ -96,15 +97,10 @@ class ExperienceViewController: BaseViewController {
             arrWords.append(sentence.components(separatedBy: " "))
         }
         
-        boatAnimation = LOTAnimationView(name: "story")
-        boatAnimation!.autoresizingMask = [.flexibleHeight, .flexibleWidth]
-        boatAnimation!.contentMode = .scaleAspectFill
-        boatAnimation!.frame = animatedScene.bounds
-        animatedView.addSubview(boatAnimation!)
-        boatAnimation!.loopAnimation = true
-        boatAnimation!.play(fromProgress: 0,
-                            toProgress: 1,
-                            withCompletion: nil)
+        createAnimation(name: "story")
+        
+        storyAnimation!.loopAnimation = true
+        storyAnimation!.play(fromProgress: 0, toProgress: 1, withCompletion: nil)
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -137,6 +133,13 @@ class ExperienceViewController: BaseViewController {
         }
     }
     
+    func createAnimation(name: String){
+        storyAnimation = LOTAnimationView(name: name)
+        storyAnimation!.autoresizingMask = [.flexibleHeight, .flexibleWidth]
+        storyAnimation!.contentMode = .scaleAspectFill
+        storyAnimation!.frame = animatedScene.bounds
+        animatedView.addSubview(storyAnimation!)
+    }
     func gotoComplete(){
         stopTimer()
         if let completeVC = storyboard?.instantiateViewController(withIdentifier: "CompleteVC") as? CompleteViewController {
