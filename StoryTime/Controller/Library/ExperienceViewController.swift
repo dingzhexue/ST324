@@ -347,6 +347,13 @@ extension ExperienceViewController {
     }
     
     func speakWith(word:String) {
+        let audioSession = AVAudioSession.sharedInstance()
+        do {
+            try audioSession.setCategory(AVAudioSessionCategoryPlayAndRecord, with: .defaultToSpeaker)
+        }catch {
+            print("audioSession properties weren't set because of an error.")
+            MBProgressHUD.hide(for: self.view, animated: true)
+        }
         myUtterance = AVSpeechUtterance(string: word)
         myUtterance.volume = 1
         //myUtterance.rate = 0.3
