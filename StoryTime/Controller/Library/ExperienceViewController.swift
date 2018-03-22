@@ -102,29 +102,6 @@ class ExperienceViewController: BaseViewController {
         startWaveForm()
     }
     
-    @IBAction func btnBackClicked(_ sender: Any) {
-        //navigationController?.popViewController(animated: true)
-        MBProgressHUD.showAdded(to: self.view, animated: true)
-        stopTimer()
-        if speechRecognizer.isStarted{
-            speechRecognizer.stopRecording(status: EndState.backscreen.rawValue)
-        }
-        else {
-            self.navigationController?.popViewController(animated: true)
-        }
-    }
-    
-    func gotoComplete(){
-        stopTimer()
-        if let completeVC = storyboard?.instantiateViewController(withIdentifier: "CompleteVC") as? CompleteViewController {
-            completeVC.story = self.story
-            completeVC.levelStr = self.levelStr
-            completeVC.timeCnt = self.counter
-            completeVC.wrongCnt = self.wrongCnt
-            navigationController?.pushViewController(completeVC, animated: true)
-        }
-    }
-    
     //For the Speech Sentences
     func prepareStory(){
         //Make Horizontal TextView
@@ -156,6 +133,17 @@ class ExperienceViewController: BaseViewController {
     func replaySentence(){
         MakescrollTextView(scrollView: scrollView, displayStr: (self.story?.sentences[nIdxSentence])!)
         speechRecognizer.startRecording()
+    }
+    
+    func gotoComplete(){
+        stopTimer()
+        if let completeVC = storyboard?.instantiateViewController(withIdentifier: "CompleteVC") as? CompleteViewController {
+            completeVC.story = self.story
+            completeVC.levelStr = self.levelStr
+            completeVC.timeCnt = self.counter
+            completeVC.wrongCnt = self.wrongCnt
+            navigationController?.pushViewController(completeVC, animated: true)
+        }
     }
     
     //For the Animation
@@ -219,6 +207,18 @@ class ExperienceViewController: BaseViewController {
     
     func stopTimer(){
         timer.invalidate()
+    }
+    
+    @IBAction func btnBackClicked(_ sender: Any) {
+        //navigationController?.popViewController(animated: true)
+        MBProgressHUD.showAdded(to: self.view, animated: true)
+        stopTimer()
+        if speechRecognizer.isStarted{
+            speechRecognizer.stopRecording(status: EndState.backscreen.rawValue)
+        }
+        else {
+            self.navigationController?.popViewController(animated: true)
+        }
     }
     
     //Long press gesture recognizer for speak touched word
