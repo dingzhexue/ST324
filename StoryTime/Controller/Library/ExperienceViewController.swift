@@ -23,7 +23,19 @@ class ExperienceViewController: BaseViewController {
     @IBOutlet var longpressGesture: UILongPressGestureRecognizer!
     @IBOutlet var tapGesture: UITapGestureRecognizer!
     
+    @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var lblSpeaking: UILabel!
+    
+    @IBOutlet weak var waveformView: WaveformView!
+    @IBOutlet weak var userImage: UIImageView!
+    
+    @IBOutlet weak var animatedView: UIView!
+    @IBOutlet weak var animatedScene: UIImageView!
+    
     private var storyAnimation: LOTAnimationView?
+    
+    var audioRecorder: AVAudioRecorder!
+    let speechRecognizer = SpeechRecognizer.shared
     
     let synth = AVSpeechSynthesizer()
     var myUtterance = AVSpeechUtterance(string: "")
@@ -31,27 +43,14 @@ class ExperienceViewController: BaseViewController {
     var timer = Timer()
     var counter:Int = 0
     var wrongCnt = 0
-    
     var isTimerRunning = false
+    
     var story: Library.Level.Story?
+    var textview: UITextView!
     var levelStr = 0
     var nIdxSentence = 0
     var arrWords: [[String]] = []
     var arrSpeech: [String] = []
-    var textview: UITextView!
-    
-    @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet weak var lblSpeaking: UILabel!
-    @IBOutlet weak var animatedView: UIView!
-    @IBOutlet weak var animatedScene: UIImageView!
-    
-    @IBOutlet weak var waveformView: WaveformView!
-    @IBOutlet weak var userImage: UIImageView!
-    
-    var audioRecorder: AVAudioRecorder!
-    
-    let speechRecognizer = SpeechRecognizer.shared
-    
     var m_sWord = ""
     var m_bIsSpeak = false
     
