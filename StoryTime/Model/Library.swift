@@ -30,7 +30,7 @@ class Library {
             var summary = ""
             var keyMetrics = ""
             var sentences: [String] = []
-            var story : [Scene] = []
+            var scenes : [Scene] = []
             
             struct StoryKey {
                 static let nameKey = "name"
@@ -59,7 +59,7 @@ class Library {
                         
                         for key in sortedKeys{
                             let scene = Level.Story.Scene(storydata![key] as! Dictionary<String, Any>)
-                            story.append(scene)
+                            scenes.append(scene)
                         }
                     }
                     /*while let storySnapshot = storyEnumerator.nextObject() as? DataSnapshot{

@@ -37,9 +37,7 @@ class ExperienceViewController: BaseViewController {
     var audioRecorder: AVAudioRecorder!
     let speechRecognizer = SpeechRecognizer.shared
     
-    let synth = AVSpeechSynthesizer()
-    var myUtterance = AVSpeechUtterance(string: "")
-    
+    //Reading duration calcuate
     var timer = Timer()
     var counter:Int = 0
     var wrongCnt = 0
@@ -51,8 +49,20 @@ class ExperienceViewController: BaseViewController {
     var nIdxSentence = 0
     var arrWords: [[String]] = []
     var arrSpeech: [String] = []
+    
+    //New reading style
+    var sStorySentence = ""
+    var arrSWords: [[[String]]] = []
+    var nScene = 0
+    var nSentence = 0
+    var nWord = 0
+    
+    //For dictionary and speak, when tap and long press
     var m_sWord = ""
     var m_bIsSpeak = false
+    let synth = AVSpeechSynthesizer()
+    var myUtterance = AVSpeechUtterance(string: "")
+    
     
     override open func viewDidLoad() {
         super.viewDidLoad()
@@ -87,50 +97,65 @@ class ExperienceViewController: BaseViewController {
         prepareStory()
         
         createAnimation(name: "story")
-        startAnimation(loop: true, start: 0, end: 1)
-    }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        
+        startSAnimation(loop: false, start: (story?.scenes[0].fPosStart)!, end: (story?.scenes[0].fPosEnd)!)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
         startWaveForm()
     }
     
     //For the Speech Sentences
     func prepareStory(){
+        for scene in (self.story?.scenes)!{
+            var aScene = [[String]]()
+            for sentence in scene.sentences{
+                sStorySentence += sentence + " "
+                let words = sentence.components(separatedBy: " ")
+                
+                var aSentense = [String]()
+                for word in words{
+                    let w = removeSpecialCharFrom(string: word).lowercased()
+                    aSentense.append(w)
+                }
+                
+                aScene.append(aSentense)
+            }
+            
+            arrSWords.append(aScene)
+        }
+        
+        makeScrollTextView(scrollView: scrollView, displayStr: sStorySentence)
         //Make Horizontal TextView
-        if let firstSentence = self.story?.sentences.first {
+        /*if let firstSentence = self.story?.sentences.first {
             MakescrollTextView(scrollView: scrollView, displayStr: firstSentence)
         } else {
             MakescrollTextView(scrollView: scrollView, displayStr: "")
-        }
+        }*/
         //Make Arrary of words...
         
         for sentence in (self.story?.sentences)! {
             arrWords.append(sentence.components(separatedBy: " "))
         }
     }
-    
+    func removeSpecialCharFrom(string:String)->String{
+        return string.components(separatedBy: CharacterSet.alphanumerics.inverted).joined()
+    }
     func prepareNextSentence(){
         if nIdxSentence < arrWords.count-1
         {
             nIdxSentence += 1
-            MakescrollTextView(scrollView: scrollView, displayStr: (self.story?.sentences[nIdxSentence])!)
+            makeScrollTextView(scrollView: scrollView, displayStr: (self.story?.sentences[nIdxSentence])!)
             speechRecognizer.startRecording()
         }else{ //Read All Senteces!!
-            MakescrollTextView(scrollView: scrollView, displayStr: "Great! You finished all read!")
+            makeScrollTextView(scrollView: scrollView, displayStr: "Great! You finished all read!")
             print("Finished Reading")
             gotoComplete()
         }
     }
     
     func replaySentence(){
-        MakescrollTextView(scrollView: scrollView, displayStr: (self.story?.sentences[nIdxSentence])!)
+        makeScrollTextView(scrollView: scrollView, displayStr: (self.story?.sentences[nIdxSentence])!)
         speechRecognizer.startRecording()
     }
     
@@ -153,9 +178,9 @@ class ExperienceViewController: BaseViewController {
         storyAnimation!.frame = animatedScene.bounds
         animatedView.addSubview(storyAnimation!)
     }
-    func startAnimation(loop: Bool, start: CGFloat, end: CGFloat){
+    func startSAnimation(loop: Bool, start: Double, end: Double){
         storyAnimation!.loopAnimation = loop
-        storyAnimation!.play(fromProgress: start, toProgress: end, withCompletion: nil)
+        storyAnimation!.play(fromProgress: CGFloat(start), toProgress: CGFloat(end), withCompletion: nil)
     }
     
     //For the Wave form view
@@ -375,16 +400,17 @@ extension ExperienceViewController {
         synth.speak(myUtterance)
     }
     
-    func MakescrollTextView(scrollView: UIScrollView, displayStr:String) {
+    func makeScrollTextView(scrollView: UIScrollView, displayStr:String) {
         //Make Scroll Text View
-        let maxSize = CGSize(width: 9999, height: 9999)
+        let maxSize = CGSize(width: Int.max, height: 60)
         let font = UIFont(name: "Menlo", size: 24)!
         //key function is coming!!!
         let strSize = (displayStr as NSString).boundingRect(with: maxSize, options: NSStringDrawingOptions.usesLineFragmentOrigin, attributes: [NSAttributedStringKey.font : font], context: nil)
         
-        let frame = CGRect(x: 10, y: 10, width: strSize.width+50, height: scrollView.frame.size.height)
+        let frame = CGRect(x: 10, y: 10, width: strSize.width+10, height: scrollView.frame.size.height)
         self.textview = UITextView(frame: frame)
         let textView = self.textview
+        //textView?.textContainer.maximumNumberOfLines = 1
         textView?.isEditable = false
         textView?.isScrollEnabled = false//let textView becomes unScrollable
         textView?.isSelectable = false
@@ -393,11 +419,22 @@ extension ExperienceViewController {
         
         textView?.addGestureRecognizer(tapGesture)
         textView?.addGestureRecognizer(longpressGesture)
-        scrollView.contentSize = CGSize(width: strSize.width, height: 50)
+        scrollView.contentSize = CGSize(width: strSize.width+20, height: scrollView.frame.size.height)
         
         scrollView.addSubview(textView!)
     }
     
+    func getRedColor(toText:String, wordPos: Int, wordLength: Int) -> NSMutableAttributedString{
+        let startPos = 0, endPos = startPos + wordLength
+        
+        var myMutableString = NSMutableAttributedString()
+        
+        myMutableString = NSMutableAttributedString(string: toText)
+        
+        myMutableString.setAttributes([NSAttributedStringKey.font : UIFont(name: "HelveticaNeue-Light", size: CGFloat(17.0))!
+            , NSAttributedStringKey.foregroundColor : UIColor(red: 1.0, green: 0, blue: 0, alpha: 1.0)], range: NSRange(location:startPos,length:endPos - startPos))
+        return myMutableString
+    }
     func GetRedColorForWrongWord(text: String, word: String) -> NSMutableAttributedString{
         
         var startPos = 0, endPos = 0
