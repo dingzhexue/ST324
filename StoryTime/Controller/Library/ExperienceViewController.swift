@@ -59,7 +59,6 @@ class ExperienceViewController: BaseViewController {
         super.viewDidLoad()
         
         synth.delegate = self
-        
         speechRecognizer.recognizerDelegate = self
         speechRecognizer.startRecording()
         
@@ -80,27 +79,16 @@ class ExperienceViewController: BaseViewController {
             })
         }*/
         
+        //User Image
         userImage.layer.cornerRadius = userImage.frame.width / 2
         userImage.layer.borderWidth = 2
         userImage.clipsToBounds = true
         userImage.sd_setImage(with: URL(string: g_sProfileImgURL), completed: nil)
         
-        //Make Horizontal TextView
-        if let firstSentence = self.story?.sentences.first {
-            MakescrollTextView(scrollView: scrollView, displayStr: firstSentence)
-        } else {
-            MakescrollTextView(scrollView: scrollView, displayStr: "sdfsdfsdfsdfb")
-        }
-        //Make Arrary of words...
-        
-        for sentence in (self.story?.sentences)! {
-            arrWords.append(sentence.components(separatedBy: " "))
-        }
+        prepareStory()
         
         createAnimation(name: "story")
-        
-        storyAnimation!.loopAnimation = true
-        storyAnimation!.play(fromProgress: 0, toProgress: 1, withCompletion: nil)
+        startAnimation(loop: true, start: 0, end: 1)
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -111,16 +99,9 @@ class ExperienceViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        audioRecorder = audioRecorder(URL(fileURLWithPath:"/dev/null"))
-        audioRecorder.record()
-        
-        let displayLink = CADisplayLink(target: self, selector: #selector(updateMeters))
-        displayLink.add(to: RunLoop.current, forMode: RunLoopMode.commonModes)
+        startWaveForm()
     }
     
-    //100 is go back screen
-    //101 is next sentence
-    //102 is replay sentence
     @IBAction func btnBackClicked(_ sender: Any) {
         //navigationController?.popViewController(animated: true)
         MBProgressHUD.showAdded(to: self.view, animated: true)
@@ -133,13 +114,6 @@ class ExperienceViewController: BaseViewController {
         }
     }
     
-    func createAnimation(name: String){
-        storyAnimation = LOTAnimationView(name: name)
-        storyAnimation!.autoresizingMask = [.flexibleHeight, .flexibleWidth]
-        storyAnimation!.contentMode = .scaleAspectFill
-        storyAnimation!.frame = animatedScene.bounds
-        animatedView.addSubview(storyAnimation!)
-    }
     func gotoComplete(){
         stopTimer()
         if let completeVC = storyboard?.instantiateViewController(withIdentifier: "CompleteVC") as? CompleteViewController {
@@ -151,8 +125,19 @@ class ExperienceViewController: BaseViewController {
         }
     }
     
-    func stopTimer(){
-        timer.invalidate()
+    //For the Speech Sentences
+    func prepareStory(){
+        //Make Horizontal TextView
+        if let firstSentence = self.story?.sentences.first {
+            MakescrollTextView(scrollView: scrollView, displayStr: firstSentence)
+        } else {
+            MakescrollTextView(scrollView: scrollView, displayStr: "")
+        }
+        //Make Arrary of words...
+        
+        for sentence in (self.story?.sentences)! {
+            arrWords.append(sentence.components(separatedBy: " "))
+        }
     }
     
     func prepareNextSentence(){
@@ -173,12 +158,34 @@ class ExperienceViewController: BaseViewController {
         speechRecognizer.startRecording()
     }
     
+    //For the Animation
+    func createAnimation(name: String){
+        storyAnimation = LOTAnimationView(name: name)
+        storyAnimation!.autoresizingMask = [.flexibleHeight, .flexibleWidth]
+        storyAnimation!.contentMode = .scaleAspectFill
+        storyAnimation!.frame = animatedScene.bounds
+        animatedView.addSubview(storyAnimation!)
+    }
+    func startAnimation(loop: Bool, start: CGFloat, end: CGFloat){
+        storyAnimation!.loopAnimation = loop
+        storyAnimation!.play(fromProgress: start, toProgress: end, withCompletion: nil)
+    }
+    
+    //For the Wave form view
+    func startWaveForm(){
+        audioRecorder = audioRecorder(URL(fileURLWithPath:"/dev/null"))
+        audioRecorder.record()
+        
+        let displayLink = CADisplayLink(target: self, selector: #selector(updateMeters))
+        displayLink.add(to: RunLoop.current, forMode: RunLoopMode.commonModes)
+    }
+    
     @objc func updateMeters() {
         audioRecorder.updateMeters()
         let normalizedValue = pow(5, audioRecorder.averagePower(forChannel: 0) / 20)
         waveformView.updateWithLevel(CGFloat(normalizedValue))
     }
-    
+    //For the Wave form view
     func audioRecorder(_ filePath: URL) -> AVAudioRecorder {
         let recorderSettings: [String : AnyObject] = [
             AVSampleRateKey: 44100.0 as AnyObject,
@@ -196,12 +203,12 @@ class ExperienceViewController: BaseViewController {
         return audioRecorder
     }
     
+    //Count the total elapsed time.
     @objc func updateTimer(){
         counter += 1
     }
 
-    
-    func startTimer(){
+    func startTimer(){ //Start the timer calculation for the reading story
         if !isTimerRunning{
             isTimerRunning = true
             wrongCnt = 0
@@ -210,6 +217,11 @@ class ExperienceViewController: BaseViewController {
         }
     }
     
+    func stopTimer(){
+        timer.invalidate()
+    }
+    
+    //Long press gesture recognizer for speak touched word
     @IBAction func onLongpress(_ sender: UILongPressGestureRecognizer) {
         if sender.state == .began {
             let sWord = getWordFromGesture(gesture: sender)
@@ -229,6 +241,7 @@ class ExperienceViewController: BaseViewController {
         }
     }
     
+    //Tap guesture recognizer for show dictionary
     @IBAction func onTap(_ sender: UITapGestureRecognizer) {
         let sWord = getWordFromGesture(gesture: sender)
         if sWord != "" {
@@ -238,12 +251,14 @@ class ExperienceViewController: BaseViewController {
 }
 
 extension ExperienceViewController: AVSpeechSynthesizerDelegate{
+    //Speech Delegate to proceed for end of speaking word and start speed recognition.
     func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didFinish utterance: AVSpeechUtterance) {
         m_bIsSpeak = false
         speechRecognizer.startRecording()
         MBProgressHUD.hide(for: self.view, animated: true)
     }
 }
+
 //SpeechRecognizerDelegate Methods
 extension ExperienceViewController: SpeechRecognizerDelegate {
     func onDetect(_ speech: String, _ isFinal: Bool) {
@@ -302,6 +317,7 @@ extension ExperienceViewController: SpeechRecognizerDelegate {
         }
     }
 }
+
 // Self Definition Methods
 extension ExperienceViewController {
     func getWordFromGesture(gesture:UIGestureRecognizer) -> String{
@@ -359,6 +375,7 @@ extension ExperienceViewController {
         //myUtterance.rate = 0.3
         synth.speak(myUtterance)
     }
+    
     func MakescrollTextView(scrollView: UIScrollView, displayStr:String) {
         //Make Scroll Text View
         let maxSize = CGSize(width: 9999, height: 9999)
