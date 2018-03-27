@@ -60,7 +60,8 @@ public class WaveformView: UIView {
             let progress: CGFloat = 1.0 - CGFloat(waveNumber) / CGFloat(numberOfWaves)
             let normedAmplitude = (1.5 * progress - 0.5) * amplitude
 
-            let multiplier: CGFloat = 1.0
+            //let multiplier: CGFloat = 1.0
+            let multiplier: CGFloat = 1.0 * progress //(1 - progress)
             waveColor.withAlphaComponent(multiplier * waveColor.cgColor.alpha).set()
 
             var x: CGFloat = 0.0

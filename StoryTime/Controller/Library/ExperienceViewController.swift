@@ -185,6 +185,10 @@ class ExperienceViewController: BaseViewController {
     
     //For the Wave form view
     func startWaveForm(){
+        waveformView.waveColor = UIColor.orange
+        waveformView.numberOfWaves = 10
+        waveformView.secondaryWaveLineWidth = 2.0
+        //input
         audioRecorder = audioRecorder(URL(fileURLWithPath:"/dev/null"))
         audioRecorder.record()
         
@@ -331,6 +335,7 @@ extension ExperienceViewController: SpeechRecognizerDelegate {
             speechRecognizer.startRecording()
         }
         else if status == EndState.backscreen.rawValue {
+            ProgressHUD.dismiss()
             self.navigationController?.popViewController(animated: true)
         }else if status == EndState.replay.rawValue{
             replaySentence()
@@ -435,6 +440,7 @@ extension ExperienceViewController {
             , NSAttributedStringKey.foregroundColor : UIColor(red: 1.0, green: 0, blue: 0, alpha: 1.0)], range: NSRange(location:startPos,length:endPos - startPos))
         return myMutableString
     }
+    
     func GetRedColorForWrongWord(text: String, word: String) -> NSMutableAttributedString{
         
         var startPos = 0, endPos = 0
