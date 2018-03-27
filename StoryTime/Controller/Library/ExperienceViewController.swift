@@ -26,6 +26,12 @@ class ExperienceViewController: BaseViewController {
         var wordOrg : String //Original word with special characters
     }
     
+    struct WordIndexInfo{
+        var scene: Int
+        var sentence: Int
+        var word : Int
+    }
+    
     @IBOutlet var longpressGesture: UILongPressGestureRecognizer!
     @IBOutlet var tapGesture: UITapGestureRecognizer!
     
@@ -63,10 +69,6 @@ class ExperienceViewController: BaseViewController {
     var arrRawWords: [String] = [] //Raw story words
     
     var nReadWordIndex = 0
-    
-    var nScene = 0
-    var nSentence = 0
-    var nWord = 0
     
     //For dictionary and speak, when tap and long press
     var m_sWord = ""
@@ -254,8 +256,11 @@ class ExperienceViewController: BaseViewController {
     
     //UI Actions
     @IBAction func onTest(_ sender: Any) {
-        let wordinfo = getWordInfo(byWordIndex: 3)
+        let wordinfo = getWordInfo(byWordIndex: 7)
         print("\(wordinfo)")
+        
+        let wordIndexInfo = getWordIndexInfo(byWordIndex: 7)
+        print("\(wordIndexInfo)")
     }
     
 
@@ -464,6 +469,22 @@ extension ExperienceViewController {
         return myMutableString
     }
     
+    func getWordIndexInfo(byWordIndex: Int) -> WordIndexInfo{
+        var nTotalWordCount = 0
+        for i in 0..<arrSWords.count{
+            for j in 0..<arrSWords[i].count{
+                if byWordIndex < nTotalWordCount + arrSWords[i][j].count{
+                    let nWord = byWordIndex - nTotalWordCount
+                    
+                    return WordIndexInfo(scene: i, sentence: j, word: nWord)
+                }else{
+                    nTotalWordCount += arrSWords[i][j].count
+                }
+            }
+        }
+        return WordIndexInfo(scene: 0, sentence: 0, word: 0)
+    }
+    
     func getWordInfo(byWordIndex: Int) -> WordInfo{
         return getWordInfoFromWordList(words: arrRawWords, byWordIndex: byWordIndex)
     }
@@ -485,8 +506,7 @@ extension ExperienceViewController {
             }
         //}
         
-        let wordInfo = WordInfo(pos: letterPostion, index:byWordIndex, word: newWord, wordOrg: myWord)
-        return wordInfo
+        return WordInfo(pos: letterPostion, index:byWordIndex, word: newWord, wordOrg: myWord)
     }
     
     func removeSpecialCharFrom(string:String)->String{
@@ -511,17 +531,3 @@ extension ExperienceViewController {
         return myMutableString
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
