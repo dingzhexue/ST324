@@ -6,7 +6,8 @@
 //
 
 import UIKit
-import MBProgressHUD
+import ProgressHUD
+
 class PreviewViewController: BaseViewController {
     
     @IBOutlet weak var btnBack: UIButton!
@@ -20,7 +21,7 @@ class PreviewViewController: BaseViewController {
     var levelStr = 0
     override func viewDidLoad() {
         super.viewDidLoad()
-        MBProgressHUD.showAdded(to: self.view, animated: true)
+        ProgressHUD.show("Loading...", interaction: false)
         imagePreStory.layer.cornerRadius = 10
         // Do any additional setup after loading the view.
         //Get All Datas
@@ -29,7 +30,7 @@ class PreviewViewController: BaseViewController {
                 if image != nil{
                     self.imagePreStory.image = image
                 }
-                MBProgressHUD.hide(for: self.view, animated: true)
+                ProgressHUD.dismiss()
             })
             lblStoryName.text? = story.name
             lblLevel.text? = "Level \(levelStr)"

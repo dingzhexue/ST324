@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import MBProgressHUD
+import ProgressHUD
 
 class LibraryViewController: BaseViewController {
     
@@ -25,27 +25,27 @@ class LibraryViewController: BaseViewController {
         //Remove Cell separator
         storyTableView.separatorStyle = .none
         //Spinner View
-        MBProgressHUD.showAdded(to: self.view, animated: true)
+        ProgressHUD.show("Loading...", interaction: false)
         loadLibrary()
         
         fetchCurrentUser()
     }
     
     func fetchCurrentUser(){
-        MBProgressHUD.showAdded(to: self.view, animated: true)
+        ProgressHUD.show("Loading...", interaction: false)
         Firebase.shared.observeCurrentUser(completion: { snapshot in
             if let dict = snapshot.value as? [String: Any]{
                 if let imgUrl = dict["profileImage"]{
                     g_sProfileImgURL = imgUrl as! String
                 }
             }
-            MBProgressHUD.hide(for: self.view, animated:true)
+            ProgressHUD.dismiss()
         })
     }
     
     private func loadLibrary() {
         Library.loadLibrary { (library) in
-            MBProgressHUD.hide(for: self.view, animated: true)
+            ProgressHUD.dismiss()
             self.storyLibrary = library
             self.storyTableView.reloadData()
         }
@@ -94,13 +94,3 @@ extension LibraryViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
 }
-
-
-
-
-
-
-
-
-
-

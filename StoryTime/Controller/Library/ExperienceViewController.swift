@@ -7,7 +7,7 @@
 
 import UIKit
 import AVFoundation
-import MBProgressHUD
+import ProgressHUD
 import Lottie
 
 enum EndState : Int{
@@ -235,7 +235,7 @@ class ExperienceViewController: BaseViewController {
     
     @IBAction func btnBackClicked(_ sender: Any) {
         //navigationController?.popViewController(animated: true)
-        MBProgressHUD.showAdded(to: self.view, animated: true)
+        ProgressHUD.show("Loading...", interaction: false)
         stopTimer()
         if speechRecognizer.isStarted{
             speechRecognizer.stopRecording(status: EndState.backscreen.rawValue)
@@ -253,7 +253,7 @@ class ExperienceViewController: BaseViewController {
                 if(speechRecognizer.isStarted){
                     if !m_bIsSpeak{
                         m_bIsSpeak = true
-                        MBProgressHUD.showAdded(to: self.view, animated: true)
+                        ProgressHUD.show("Loading...", interaction: false)
                         m_sWord = sWord
                         speechRecognizer.stopRecording(status: EndState.speakword.rawValue)
                     }
@@ -279,7 +279,7 @@ extension ExperienceViewController: AVSpeechSynthesizerDelegate{
     func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didFinish utterance: AVSpeechUtterance) {
         m_bIsSpeak = false
         speechRecognizer.startRecording()
-        MBProgressHUD.hide(for: self.view, animated: true)
+        ProgressHUD.dismiss()
     }
 }
 
@@ -378,10 +378,10 @@ extension ExperienceViewController {
     
     func openDicWith(word:String){
         if UIReferenceLibraryViewController.dictionaryHasDefinition(forTerm: word) {
-            MBProgressHUD.showAdded(to: self.view, animated: true)
+            ProgressHUD.show("Loading...", interaction: false)
             let ref: UIReferenceLibraryViewController = UIReferenceLibraryViewController(term: word)
             self.present(ref, animated: true, completion: {
-                MBProgressHUD.hide(for: self.view, animated: true)
+                ProgressHUD.dismiss()
             })
         }
     }
@@ -392,7 +392,7 @@ extension ExperienceViewController {
             try audioSession.setCategory(AVAudioSessionCategoryPlayAndRecord, with: .defaultToSpeaker)
         }catch {
             print("audioSession properties weren't set because of an error.")
-            MBProgressHUD.hide(for: self.view, animated: true)
+            ProgressHUD.dismiss()
         }
         myUtterance = AVSpeechUtterance(string: word)
         myUtterance.volume = 1

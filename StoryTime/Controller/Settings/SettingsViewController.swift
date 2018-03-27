@@ -7,7 +7,7 @@
 
 import UIKit
 import SDWebImage
-import MBProgressHUD
+import ProgressHUD
 
 class SettingsViewController: BaseViewController , UIImagePickerControllerDelegate,
 UINavigationControllerDelegate{
@@ -53,14 +53,14 @@ UINavigationControllerDelegate{
         self.imageUser.sd_setImage(with: URL(string: g_sProfileImgURL), completed: nil)
     }
     func fetchCurrentUser(){
-        MBProgressHUD.showAdded(to: self.view, animated: true)
+        ProgressHUD.show("Loading...", interaction: false)
         Firebase.shared.observeCurrentUser(completion: { snapshot in
             if let dict = snapshot.value as? [String: Any]{
                 if let imgUrl = dict["profileImage"]{
                     self.imageUser.sd_setImage(with: URL(string: imgUrl as! String), completed: nil)
                 }
             }
-            MBProgressHUD.hide(for: self.view, animated:true)
+            ProgressHUD.dismiss()
         })
     }
     override func didReceiveMemoryWarning() {
@@ -155,16 +155,16 @@ UINavigationControllerDelegate{
         //imageView.contentMode = .ScaleAspectFit
         //imageView.image = chosenImage
         dismiss(animated: true, completion: {
-            MBProgressHUD.showAdded(to: self.view, animated: true)
+            ProgressHUD.show("Loading...", interaction: false)
             Firebase.shared.uploadImage(imageData: imageData!, onSuccess: {(imageURL) in
                 Firebase.shared.saveUserProfile(imgUrl: imageURL, onSucess: {
-                    MBProgressHUD.hide(for: self.view, animated:true)
+                    ProgressHUD.dismiss()
                     g_sProfileImgURL = imageURL
                 }, onError: { (error) in
-                    MBProgressHUD.hide(for: self.view, animated:true)
+                    ProgressHUD.dismiss()
                 })
             }, onError: { (errorMessage) in
-                MBProgressHUD.hide(for: self.view, animated:true)
+                ProgressHUD.dismiss()
             })
         })
     }
