@@ -218,6 +218,14 @@
                                     <action selector="btnBackClicked:" destination="rwM-pv-47X" eventType="touchUpInside" id="OWZ-wS-QmT"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eSz-QS-19y">
+                                <rect key="frame" x="313" y="25" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Test"/>
+                                <connections>
+                                    <action selector="onTest:" destination="rwM-pv-47X" eventType="touchUpInside" id="HSl-lU-uDj"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="vLW-er-KPP"/>

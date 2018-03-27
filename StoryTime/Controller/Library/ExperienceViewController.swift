@@ -19,6 +19,12 @@ enum EndState : Int{
 }
 
 class ExperienceViewController: BaseViewController {
+    struct WordInfo{
+        var pos : Int   //Letter Position
+        var index : Int //Word index
+        var word : String //Fresh word
+        var wordOrg : String //Original word with special characters
+    }
     
     @IBOutlet var longpressGesture: UILongPressGestureRecognizer!
     @IBOutlet var tapGesture: UITapGestureRecognizer!
@@ -47,12 +53,17 @@ class ExperienceViewController: BaseViewController {
     var textview: UITextView!
     var levelStr = 0
     var nIdxSentence = 0
-    var arrWords: [[String]] = []
+    //var arrWords: [[String]] = []
     var arrSpeech: [String] = []
     
     //New reading style
     var sStorySentence = ""
-    var arrSWords: [[[String]]] = []
+    var arrSWords: [[[String]]] = [] // Story Word by remove special characters - Scene/Sentence/Word
+    var arrWords = [String]() //Whole story words without special
+    var arrRawWords: [String] = [] //Raw story words
+    
+    var nReadWordIndex = 0
+    
     var nScene = 0
     var nSentence = 0
     var nWord = 0
@@ -110,13 +121,16 @@ class ExperienceViewController: BaseViewController {
         for scene in (self.story?.scenes)!{
             var aScene = [[String]]()
             for sentence in scene.sentences{
-                sStorySentence += sentence + " "
-                let words = sentence.components(separatedBy: " ")
+                let sentence_trimmed = sentence.trimmingCharacters(in: .whitespaces)
+                sStorySentence += sentence_trimmed + " "
+                let words = sentence_trimmed.components(separatedBy: " ")
                 
                 var aSentense = [String]()
                 for word in words{
                     let w = removeSpecialCharFrom(string: word).lowercased()
                     aSentense.append(w)
+                    
+                    arrWords.append(w)
                 }
                 
                 aScene.append(aSentense)
@@ -124,6 +138,9 @@ class ExperienceViewController: BaseViewController {
             
             arrSWords.append(aScene)
         }
+        
+        sStorySentence = sStorySentence.trimmingCharacters(in: .whitespaces)
+        arrRawWords = sStorySentence.components(separatedBy: " ")
         
         makeScrollTextView(scrollView: scrollView, displayStr: sStorySentence)
         //Make Horizontal TextView
@@ -134,13 +151,11 @@ class ExperienceViewController: BaseViewController {
         }*/
         //Make Arrary of words...
         
-        for sentence in (self.story?.sentences)! {
+        /*for sentence in (self.story?.sentences)! {
             arrWords.append(sentence.components(separatedBy: " "))
-        }
+        }*/
     }
-    func removeSpecialCharFrom(string:String)->String{
-        return string.components(separatedBy: CharacterSet.alphanumerics.inverted).joined()
-    }
+    
     func prepareNextSentence(){
         if nIdxSentence < arrWords.count-1
         {
@@ -237,6 +252,13 @@ class ExperienceViewController: BaseViewController {
         timer.invalidate()
     }
     
+    //UI Actions
+    @IBAction func onTest(_ sender: Any) {
+        let wordinfo = getWordInfo(byWordIndex: 3)
+        print("\(wordinfo)")
+    }
+    
+
     @IBAction func btnBackClicked(_ sender: Any) {
         //navigationController?.popViewController(animated: true)
         ProgressHUD.show("Loading...", interaction: false)
@@ -261,8 +283,7 @@ class ExperienceViewController: BaseViewController {
                         m_sWord = sWord
                         speechRecognizer.stopRecording(status: EndState.speakword.rawValue)
                     }
-                }else
-                {
+                }else{
                     self.speakWith(word: sWord)
                 }
             }
@@ -297,7 +318,7 @@ extension ExperienceViewController: SpeechRecognizerDelegate {
         arrSpeech = speech.components(separatedBy: " ")
         lblSpeaking.text = speech;
         
-        var isAllCorrect = true
+        /*var isAllCorrect = true
         
         if arrSpeech.count > arrWords[nIdxSentence].count {
             isAllCorrect = false
@@ -324,7 +345,7 @@ extension ExperienceViewController: SpeechRecognizerDelegate {
             speechRecognizer.stopRecording(status: EndState.replay.rawValue)
             wrongCnt += 1
             print("incorrect")
-        }
+        }*/
     }
     
     func onEnd(_ status: Int){
@@ -349,6 +370,7 @@ extension ExperienceViewController: SpeechRecognizerDelegate {
 
 // Self Definition Methods
 extension ExperienceViewController {
+    //Gesture Part
     func getWordFromGesture(gesture:UIGestureRecognizer) -> String{
         var text = ""
         if let textView = gesture.view as? UITextView {
@@ -405,6 +427,7 @@ extension ExperienceViewController {
         synth.speak(myUtterance)
     }
     
+    //Scroll Part
     func makeScrollTextView(scrollView: UIScrollView, displayStr:String) {
         //Make Scroll Text View
         let maxSize = CGSize(width: Int.max, height: 60)
@@ -441,7 +464,36 @@ extension ExperienceViewController {
         return myMutableString
     }
     
-    func GetRedColorForWrongWord(text: String, word: String) -> NSMutableAttributedString{
+    func getWordInfo(byWordIndex: Int) -> WordInfo{
+        return getWordInfoFromWordList(words: arrRawWords, byWordIndex: byWordIndex)
+    }
+    
+    func getWordInfo(fromString:String, byWordIndex: Int) -> WordInfo{
+        let aWords = fromString.components(separatedBy: " ")
+        return getWordInfoFromWordList(words: aWords, byWordIndex: byWordIndex)
+    }
+    
+    func getWordInfoFromWordList(words:[String], byWordIndex: Int) -> WordInfo{
+        let myWord = words[byWordIndex]
+        let newWord = removeSpecialCharFrom(string: myWord)
+        
+        var letterPostion = 0
+        //if(byWordIndex > 0){
+            for i in 0..<byWordIndex{
+                letterPostion += words[i].count
+                letterPostion += 1 //For Space
+            }
+        //}
+        
+        let wordInfo = WordInfo(pos: letterPostion, index:byWordIndex, word: newWord, wordOrg: myWord)
+        return wordInfo
+    }
+    
+    func removeSpecialCharFrom(string:String)->String{
+        return string.components(separatedBy: CharacterSet.alphanumerics.inverted).joined()
+    }
+    
+    func getRedColorForWrongWord(text: String, word: String) -> NSMutableAttributedString{
         
         var startPos = 0, endPos = 0
         if let range = text.range(of: word) {
