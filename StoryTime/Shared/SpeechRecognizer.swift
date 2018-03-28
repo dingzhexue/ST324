@@ -91,6 +91,9 @@ class SpeechRecognizer: NSObject {
     }
     
     func stopRecording(status:Int = 0) {
+        if status == 1{
+            
+        }
         //if audioEngine.isRunning {
         if(isStarted || audioEngine.isRunning){
             do {

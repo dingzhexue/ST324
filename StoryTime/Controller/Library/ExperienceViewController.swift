@@ -16,6 +16,7 @@ enum EndState : Int{
     case replay = 2
     case next = 3
     case speakword = 4
+    case incorrect = 5
 }
 
 class ExperienceViewController: BaseViewController {
@@ -37,6 +38,7 @@ class ExperienceViewController: BaseViewController {
     
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var lblSpeaking: UILabel!
+    @IBOutlet weak var lblSpeakCorrect: UILabel!
     
     @IBOutlet weak var waveformView: WaveformView!
     @IBOutlet weak var userImage: UIImageView!
@@ -60,14 +62,14 @@ class ExperienceViewController: BaseViewController {
     var levelStr = 0
     var nIdxSentence = 0
     //var arrWords: [[String]] = []
-    var arrSpeech: [String] = []
+    //var arrSpeech: [String] = []
     
     //New reading style
     var sStorySentence = ""
     var arrSWords: [[[String]]] = [] // Story Word by remove special characters - Scene/Sentence/Word
     var arrWords = [String]() //Whole story words without special
     var arrRawWords: [String] = [] //Raw story words
-    
+    var bCorrectCnt = false
     var nReadWordIndex = 0
     
     //For dictionary and speak, when tap and long press
@@ -75,7 +77,6 @@ class ExperienceViewController: BaseViewController {
     var m_bIsSpeak = false
     let synth = AVSpeechSynthesizer()
     var myUtterance = AVSpeechUtterance(string: "")
-    
     
     override open func viewDidLoad() {
         super.viewDidLoad()
@@ -176,6 +177,10 @@ class ExperienceViewController: BaseViewController {
         speechRecognizer.startRecording()
     }
     
+    func speakAgain(){
+        speechRecognizer.startRecording()
+    }
+    
     func gotoComplete(){
         stopTimer()
         if let completeVC = storyboard?.instantiateViewController(withIdentifier: "CompleteVC") as? CompleteViewController {
@@ -203,7 +208,7 @@ class ExperienceViewController: BaseViewController {
     //For the Wave form view
     func startWaveForm(){
         waveformView.waveColor = UIColor.orange
-        waveformView.numberOfWaves = 10
+        waveformView.numberOfWaves = 5
         waveformView.secondaryWaveLineWidth = 2.0
         //input
         audioRecorder = audioRecorder(URL(fileURLWithPath:"/dev/null"))
@@ -320,8 +325,32 @@ extension ExperienceViewController: SpeechRecognizerDelegate {
         // Get last word of speech
         startTimer()
         
-        arrSpeech = speech.components(separatedBy: " ")
+        let aSpeech = speech.components(separatedBy: " ")
         lblSpeaking.text = speech;
+        
+        var correctCnt = 0
+        
+        for i in 0..<aSpeech.count{
+            let wordIndex = nReadWordIndex + i
+            let speechWord = removeSpecialCharFrom(string: aSpeech[i].lowercased())
+            // if keep saying word correctly, just pass, if say incorrect, need to pause
+            if wordIndex < arrWords.count{
+                print("to compare with \(arrWords[wordIndex]) - \(speechWord)")
+                
+                if arrWords[wordIndex] == speechWord{
+                    correctCnt = i+1
+                    print("correct \(i)")
+                }else{
+                    print("incorrect\(i)")
+                    speechRecognizer.stopRecording(status: EndState.incorrect.rawValue)
+                    break
+                }
+            }
+        }
+        
+        nReadWordIndex += correctCnt
+        print("readWord: \(nReadWordIndex)")
+        
         
         /*var isAllCorrect = true
         
@@ -369,6 +398,8 @@ extension ExperienceViewController: SpeechRecognizerDelegate {
             prepareNextSentence()
         }else if status == EndState.speakword.rawValue{
             speakWith(word: m_sWord)
+        }else if status == EndState.incorrect.rawValue{
+            speakAgain()
         }
     }
 }
