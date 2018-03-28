@@ -207,9 +207,21 @@ class ExperienceViewController: BaseViewController {
     
     //For the Wave form view
     func startWaveForm(){
-        waveformView.waveColor = UIColor.orange
-        waveformView.numberOfWaves = 5
-        waveformView.secondaryWaveLineWidth = 2.0
+        waveformView.bUseCustomColor = true
+        
+        //waveformView.numberOfWaves = 18
+        //waveformView.secondaryWaveLineWidth = 1.0
+        waveformView.numberOfWaves = 12
+        waveformView.secondaryWaveLineWidth = 1.5
+        waveformView.colorsCustom = [
+            UIColor(red: 195/255.0, green: 47/255.0, blue: 91/255.0, alpha: 1),
+            UIColor(red: 240/255.0, green: 179/255.0, blue: 84/255.0, alpha: 1),
+            UIColor(red: 151/255.0, green: 196/255.0, blue: 85/255.0, alpha: 1),
+            UIColor(red: 244/255.0, green: 129/255.0, blue: 230/255.0, alpha: 1),
+            UIColor(red: 79/255.0, green: 175/255.0, blue: 206/255.0, alpha: 1),
+            UIColor(red: 47/255.0, green: 111/255.0, blue: 182/255.0, alpha: 1),
+        ]
+        
         //input
         audioRecorder = audioRecorder(URL(fileURLWithPath:"/dev/null"))
         audioRecorder.record()

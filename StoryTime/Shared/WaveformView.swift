@@ -18,6 +18,9 @@ public class WaveformView: UIView {
 
     @IBInspectable public var waveColor: UIColor = .black
     @IBInspectable public var numberOfWaves = 5
+    
+    @IBInspectable public var bUseCustomColor = false
+    @IBInspectable public var colorsCustom : [UIColor] = [UIColor.black]
     @IBInspectable public var primaryWaveLineWidth: CGFloat = 3.0
     @IBInspectable public var secondaryWaveLineWidth: CGFloat = 1.0
     @IBInspectable public var idleAmplitude: CGFloat = 0.01
@@ -60,10 +63,16 @@ public class WaveformView: UIView {
             let progress: CGFloat = 1.0 - CGFloat(waveNumber) / CGFloat(numberOfWaves)
             let normedAmplitude = (1.5 * progress - 0.5) * amplitude
 
-            //let multiplier: CGFloat = 1.0
-            let multiplier: CGFloat = 1.0 * progress //(1 - progress)
-            waveColor.withAlphaComponent(multiplier * waveColor.cgColor.alpha).set()
-
+            var multiplier: CGFloat = 1.0
+            if bUseCustomColor{
+                multiplier = 1.0 * progress
+                colorsCustom[waveNumber % colorsCustom.count].withAlphaComponent(multiplier * waveColor.cgColor.alpha).set()
+                //waveColor.withAlphaComponent(multiplier * waveColor.cgColor.alpha).set()
+                
+            }else{
+                multiplier = 1.0
+                waveColor.withAlphaComponent(multiplier * waveColor.cgColor.alpha).set()
+            }
             var x: CGFloat = 0.0
             while x < width + density {
                 // Use a parable to scale the sinus wave, that has its peak in the middle of the view.
