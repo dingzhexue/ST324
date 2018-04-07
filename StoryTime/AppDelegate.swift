@@ -83,7 +83,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         SwiftyStoreKit.updatedDownloadsHandler = { downloads in
             
             // contentURL is not nil if downloadState == .finished
-            let contentURLs = downloads.flatMap { $0.contentURL }
+            let contentURLs = downloads.compactMap { $0.contentURL }
             if contentURLs.count == downloads.count {
                 print("Saving: \(contentURLs)")
                 SwiftyStoreKit.finishTransaction(downloads[0].transaction)
