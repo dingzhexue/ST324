@@ -273,11 +273,18 @@ class ExperienceViewController: BaseViewController {
     
     //UI Actions
     @IBAction func onTest(_ sender: Any) {
-        let wordinfo = getWordInfo(byWordIndex: 7)
+        /*let wordinfo = getWordInfo(byWordIndex: 7)
         print("\(wordinfo)")
         
         let wordIndexInfo = getWordIndexInfo(byWordIndex: 7)
-        print("\(wordIndexInfo)")
+        print("\(wordIndexInfo)")*/
+        
+        processSentence(speech: "This is")
+        processSentence(speech: "This is sentence")
+        processSentence(speech: "This is sentence aaa")
+        processSentence(speech: "one")
+        processSentence(speech: "one this is ss")
+        
     }
     
 
@@ -388,8 +395,39 @@ extension ExperienceViewController: SpeechRecognizerDelegate {
         nReadWordIndex += correctCnt
         print("readWord: \(nReadWordIndex)")*/
         
+        var posIncorrect = 0
+        
+        var isAllCorrect = true
+        for i in 0..<aSpeech.count{
+            let wordIndex = nReadWordIndex + i
+            let speechWord = removeSpecialCharFrom(string: aSpeech[i].lowercased())
+            
+            if speechWord.caseInsensitiveCompare(self.arrWords[wordIndex]) != ComparisonResult.orderedSame{
+                posIncorrect = i
+                isAllCorrect = false
+                break
+            }
+        }
         
         
+        if isAllCorrect {
+            
+        }else{
+            if posIncorrect > 0{
+                nReadWordIndex += posIncorrect
+            }
+            
+            speechRecognizer.stopRecording(status: EndState.incorrect.rawValue)
+        }
+        
+        print("readWord: \(nReadWordIndex), incorrectPos: \(posIncorrect)")
+        
+        var sRead = ""
+        for i in 0..<nReadWordIndex{
+            sRead += arrRawWords[i] + " "
+        }
+        print("-- \(sRead)")
+        lblSpeakCorrect.text = sRead
         /*var isAllCorrect = true
          
          if arrSpeech.count > arrWords[nIdxSentence].count {

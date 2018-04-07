@@ -73,6 +73,7 @@ class SpeechRecognizer: NSObject {
                 self.recognitionTask = nil
                 self.isStarted = false
                 self.recognizerDelegate?.onEnd(self.nEndStatus)
+                self.nEndStatus = 0
             }
         })
         
