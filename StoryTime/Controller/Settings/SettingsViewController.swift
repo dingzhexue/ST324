@@ -49,24 +49,15 @@ UINavigationControllerDelegate{
         }*/
         
         picker?.delegate = self
-        //fetchCurrentUser()
+
         self.imageUser.sd_setImage(with: URL(string: g_sProfileImgURL), completed: nil)
     }
-    func fetchCurrentUser(){
-        ProgressHUD.show("Loading...", interaction: false)
-        Firebase.shared.observeCurrentUser(completion: { snapshot in
-            if let dict = snapshot.value as? [String: Any]{
-                if let imgUrl = dict["profileImage"]{
-                    self.imageUser.sd_setImage(with: URL(string: imgUrl as! String), completed: nil)
-                }
-            }
-            ProgressHUD.dismiss()
-        })
-    }
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
     @IBAction func onPhoto(_ sender: Any) {
         openSheet()
     }
@@ -87,7 +78,7 @@ UINavigationControllerDelegate{
     @IBAction func btnBackClicked(_ sender: Any) {
         let preView = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
         preView.isHeroEnabled = true
-        preView.heroModalAnimationType = .fade//.zoomSlide(direction: HeroDefaultAnimationType.Direction.down)
+        preView.heroModalAnimationType = .fade
         self.hero_replaceViewController(with: preView)
     }
     
