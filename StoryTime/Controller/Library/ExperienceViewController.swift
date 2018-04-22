@@ -398,7 +398,7 @@ extension ExperienceViewController: SpeechRecognizerDelegate {
             if posIncorrect > 0{
                 nReadWordIdx += posIncorrect
             }
-            
+            setRedText(wrongIdx: nReadWordIdx)
             speechRecognizer.stopRecording(status: EndState.incorrect.rawValue)
         }
         
@@ -529,14 +529,32 @@ extension ExperienceViewController {
         let startWordInfo = getWordInfo(byWordIndex: nReadWordIdx)
         let endWordInfo = getWordInfo(byWordIndex: nReadWordIdx + readCnt - 1)
         
+        setTextColor(startPos: startWordInfo.pos, length: endWordInfo.pos+endWordInfo.word.count - startWordInfo.pos, color: UIColor.blue)
+    }
+    
+    func setRedText(wrongIdx: Int){
+        let wordInfo = getWordInfo(byWordIndex: wrongIdx)
+        
+        setTextColor(startPos: wordInfo.pos, length: wordInfo.word.count, color: UIColor.red)
+    }
+    
+    func setTextColor(startPos: Int, length: Int, color: UIColor){
         var mutableString = NSMutableAttributedString()
         mutableString = NSMutableAttributedString(string: sStorySentence)
-        mutableString.setAttributes([NSAttributedStringKey.font : UIFont(name: "HelveticaNeue-Light", size: txtSize)!
-            , NSAttributedStringKey.foregroundColor : UIColor.blue], range: NSRange(location: startWordInfo.pos, length: endWordInfo.pos+endWordInfo.word.count - startWordInfo.pos))
+        
+        //read
+        if startPos > 0{
+            mutableString.setAttributes([NSAttributedStringKey.font : UIFont(name: "HelveticaNeue-Light", size: txtSize)!, NSAttributedStringKey.foregroundColor : UIColor.lightGray], range: NSRange(location: 0, length: startPos))
+        }
+        
+        //correct or wrong
+        mutableString.setAttributes([NSAttributedStringKey.font : UIFont(name: "HelveticaNeue-Light", size: txtSize)!, NSAttributedStringKey.foregroundColor : color], range: NSRange(location: startPos, length: length))
+        
+        //will read
+        mutableString.setAttributes([NSAttributedStringKey.font : UIFont(name: "HelveticaNeue-Light", size: txtSize)!, NSAttributedStringKey.foregroundColor : UIColor.black], range: NSRange(location: startPos+length, length: sStorySentence.count - (startPos+length)))
         
         textview.attributedText = mutableString
     }
-    
     func getRedColor(toText:String, wordPos: Int, wordLength: Int) -> NSMutableAttributedString{
         let wordInfo = getWordInfo(fromString: toText, byWordIndex: wordPos)
         
