@@ -240,7 +240,6 @@
                     <connections>
                         <outlet property="animatedScene" destination="1qS-Dd-0vG" id="2Is-jP-eox"/>
                         <outlet property="animatedView" destination="bmY-N2-Q2M" id="cXg-EC-PzR"/>
-                        <outlet property="lblSpeakCorrect" destination="wFm-X2-fNe" id="49f-If-7nR"/>
                         <outlet property="lblSpeaking" destination="o4m-xv-h1U" id="76R-Q7-KBv"/>
                         <outlet property="longpressGesture" destination="idK-2v-ppJ" id="P8K-VY-YXK"/>
                         <outlet property="scrollView" destination="AJI-fZ-clO" id="JbC-Iy-sDf"/>
