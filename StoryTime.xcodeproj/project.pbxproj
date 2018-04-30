@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		054B4D19201C82D300C23E6A /* WaveformView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054B4D18201C82D200C23E6A /* WaveformView.swift */; };
 		057EC1132056A12200A4F20C /* Lottie.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 057EC1142056A12200A4F20C /* Lottie.framework */; };
-		05A88CEA207C58190053914A /* story1.json in Resources */ = {isa = PBXBuildFile; fileRef = 05A88CE9207C58190053914A /* story1.json */; };
 		05B399C12086E5E2005C9034 /* BGTrees.png in Resources */ = {isa = PBXBuildFile; fileRef = 05B399AA2086E5E2005C9034 /* BGTrees.png */; };
 		05B399C22086E5E2005C9034 /* Bus.png in Resources */ = {isa = PBXBuildFile; fileRef = 05B399AB2086E5E2005C9034 /* Bus.png */; };
 		05B399C32086E5E2005C9034 /* Bus_0Shadow.png in Resources */ = {isa = PBXBuildFile; fileRef = 05B399AC2086E5E2005C9034 /* Bus_0Shadow.png */; };
@@ -70,7 +69,6 @@
 /* Begin PBXFileReference section */
 		054B4D18201C82D200C23E6A /* WaveformView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaveformView.swift; sourceTree = "<group>"; };
 		057EC1142056A12200A4F20C /* Lottie.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Lottie.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		05A88CE9207C58190053914A /* story1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = story1.json; sourceTree = "<group>"; };
 		05B399AA2086E5E2005C9034 /* BGTrees.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BGTrees.png; sourceTree = "<group>"; };
 		05B399AB2086E5E2005C9034 /* Bus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Bus.png; sourceTree = "<group>"; };
 		05B399AC2086E5E2005C9034 /* Bus_0Shadow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Bus_0Shadow.png; sourceTree = "<group>"; };
@@ -150,7 +148,6 @@
 			isa = PBXGroup;
 			children = (
 				05B399A82086E5E2005C9034 /* PNGTest */,
-				05A88CE9207C58190053914A /* story1.json */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -158,8 +155,8 @@
 		05B399A82086E5E2005C9034 /* PNGTest */ = {
 			isa = PBXGroup;
 			children = (
-				05B399A92086E5E2005C9034 /* images */,
 				05B399C02086E5E2005C9034 /* PNGTest1.json */,
+				05B399A92086E5E2005C9034 /* images */,
 			);
 			path = PNGTest;
 			sourceTree = "<group>";
@@ -448,7 +445,6 @@
 				05B399C42086E5E2005C9034 /* Bushes.png in Resources */,
 				05B399CE2086E5E2005C9034 /* t2.png in Resources */,
 				05B399C82086E5E2005C9034 /* Mountain.png in Resources */,
-				05A88CEA207C58190053914A /* story1.json in Resources */,
 				05B399D32086E5E2005C9034 /* Water.png in Resources */,
 				05B399C52086E5E2005C9034 /* Cloud1.png in Resources */,
 				05B399D72086E5E2005C9034 /* PNGTest1.json in Resources */,

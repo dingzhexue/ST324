@@ -70,6 +70,7 @@ class ExperienceViewController: BaseViewController {
     var nReadWordIdx = 0
     var nAllCorrectCnt = 0
     
+    var lastWordIndexInfo = WordIndexInfo(scene: 0, sentence: 0, word: 0)
     
     //For dictionary and speak, when tap and long press
     var m_sWord = ""
@@ -192,6 +193,7 @@ class ExperienceViewController: BaseViewController {
         storyAnimation!.frame = animatedScene.bounds
         animatedView.addSubview(storyAnimation!)
     }
+    
     func startSAnimation(loop: Bool, start: Double, end: Double){
         storyAnimation!.loopAnimation = loop
         storyAnimation!.play(fromProgress: CGFloat(start), toProgress: CGFloat(end), withCompletion: nil)
@@ -264,16 +266,9 @@ class ExperienceViewController: BaseViewController {
         timer.invalidate()
     }
 
-    var a = 0
     //UI Actions
     @IBAction func onTest(_ sender: Any) {
-        a = a+1
-        scrollTo(wordIndex: a)
-//        processSentence(speech: "This is")
-//        processSentence(speech: "This is sentence")
-//        processSentence(speech: "This is sentence aaa")
-//        processSentence(speech: "one")
-//        processSentence(speech: "one this is ss")
+        
     }
     
     @IBAction func btnBackClicked(_ sender: Any) {
@@ -363,8 +358,15 @@ extension ExperienceViewController: SpeechRecognizerDelegate {
         var posIncorrect = 0
         
         var isAllCorrect = true
-        for i in 0..<aSpeech.count{
+        
+        var nCompareCnt = aSpeech.count
+        if nReadWordIdx + nCompareCnt > arrWords.count{
+            nCompareCnt = arrWords.count - nReadWordIdx
+        }
+        
+        for i in 0..<nCompareCnt{
             let wordIndex = nReadWordIdx + i
+            
             let speechWord = removeSpecialCharFrom(string: aSpeech[i].lowercased())
             
             if speechWord.caseInsensitiveCompare(self.arrWords[wordIndex]) != ComparisonResult.orderedSame{
@@ -374,16 +376,22 @@ extension ExperienceViewController: SpeechRecognizerDelegate {
             }
         }
         
+        var nRealReadCnt = 0
+        
         if isAllCorrect {
-            nAllCorrectCnt = aSpeech.count
-            setBlueText(readCnt: aSpeech.count)
-        }else{
+            nAllCorrectCnt = nCompareCnt
+            setBlueText(readCnt: nCompareCnt)
             
+            nRealReadCnt = nReadWordIdx + nAllCorrectCnt - 1
+        }else{
             if posIncorrect > 0{
                 nReadWordIdx += posIncorrect
             }else if nAllCorrectCnt > 0{
                 nReadWordIdx += nAllCorrectCnt
             }
+            
+            nRealReadCnt = nReadWordIdx - 1
+            
             setRedText(wrongIdx: nReadWordIdx)
             speechRecognizer.stopRecording(status: EndState.incorrect.rawValue)
             nAllCorrectCnt = 0
@@ -391,12 +399,22 @@ extension ExperienceViewController: SpeechRecognizerDelegate {
         
         print("readWord: \(nReadWordIdx), incorrectPos: \(posIncorrect)")
         
-        //var sRead = ""
-        //for i in 0..<nReadWordIdx{
-        //    sRead += arrRawWords[i] + " "
-        //}
-        //print("-- \(sRead)")
-        //lblSpeakCorrect.text = sRead
+        checkProgressFrom(wordIdx: nRealReadCnt)
+    }
+    
+    func checkProgressFrom(wordIdx: Int){
+        let wordIndexInfo = getWordIndexInfo(byWordIndex: wordIdx)
+        print("word: \(wordIdx) scene:\(wordIndexInfo.scene) sentence:\(wordIndexInfo.sentence) word:\(wordIndexInfo.word)")
+        
+        if wordIdx == arrWords.count{ //Last word of whole story
+            //speechRecognizer.stopRecording(status: EndState.backscreen.rawValue)
+            return
+        }
+        
+        if wordIndexInfo.scene != lastWordIndexInfo.scene{ //New Scene
+            startSAnimation(loop: false, start: (story?.scenes[wordIndexInfo.scene].fPosStart)!, end: (story?.scenes[wordIndexInfo.scene].fPosEnd)!)
+        }
+        lastWordIndexInfo = wordIndexInfo
     }
 }
 
@@ -488,7 +506,7 @@ extension ExperienceViewController {
         let startWordInfo = getWordInfo(byWordIndex: nReadWordIdx)
         let endWordInfo = getWordInfo(byWordIndex: nReadWordIdx + readCnt - 1)
         
-        setTextColor(startPos: startWordInfo.pos, length: endWordInfo.pos+endWordInfo.word.count - startWordInfo.pos, color: UIColor.blue)
+        setTextColor(startPos: startWordInfo.pos, length: endWordInfo.pos+endWordInfo.wordOrg.count - startWordInfo.pos, color: UIColor.blue)
         
         var nScrollIdx = nReadWordIdx + readCnt - 2
         if nScrollIdx < 0{
@@ -500,7 +518,7 @@ extension ExperienceViewController {
     func setRedText(wrongIdx: Int){
         let wordInfo = getWordInfo(byWordIndex: wrongIdx)
         
-        setTextColor(startPos: wordInfo.pos, length: wordInfo.word.count, color: UIColor.red)
+        setTextColor(startPos: wordInfo.pos, length: wordInfo.wordOrg.count, color: UIColor.red)
         
         var nScrollIdx = nReadWordIdx - 1
         if nScrollIdx < 0{
@@ -593,23 +611,5 @@ extension ExperienceViewController {
     
     func removeSpecialCharFrom(string:String)->String{
         return string.components(separatedBy: CharacterSet.alphanumerics.inverted).joined()
-    }
-    
-    func getRedColorForWrongWord(text: String, word: String) -> NSMutableAttributedString{
-        
-        var startPos = 0, endPos = 0
-        if let range = text.range(of: word) {
-            startPos = text.distance(from: text.startIndex, to: range.lowerBound)
-            endPos = text.distance(from: text.startIndex, to: range.upperBound)
-        }
-        
-        var myMutableString = NSMutableAttributedString()
-        
-        myMutableString = NSMutableAttributedString(string: text)
-        
-        myMutableString.setAttributes([NSAttributedStringKey.font : UIFont(name: txtFont, size: txtSize)!
-            , NSAttributedStringKey.foregroundColor : UIColor(red: 1.0, green: 0, blue: 0, alpha: 1.0)], range: NSRange(location:startPos,length:endPos - startPos))
-        
-        return myMutableString
     }
 }
