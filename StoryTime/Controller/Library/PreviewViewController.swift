@@ -14,29 +14,29 @@ class PreviewViewController: BaseViewController {
     @IBOutlet weak var imagePreStory: UIImageView!
     @IBOutlet weak var lblStoryName: UILabel!
     @IBOutlet weak var lblLevel: UILabel!
-    @IBOutlet weak var txtSummary: UITextView!
-    @IBOutlet weak var txtKeyMetrics: UITextView!
+    @IBOutlet weak var lblSummary: UILabel!
+    @IBOutlet weak var lblKeyMetrics: UILabel!
     
     var story: Library.Level.Story?
     var levelStr = 0
     override func viewDidLoad() {
         super.viewDidLoad()
-        ProgressHUD.show("Loading...", interaction: false)
+        //ProgressHUD.show("Loading...", interaction: false)
         imagePreStory.layer.cornerRadius = 10
         // Do any additional setup after loading the view.
         //Get All Datas
         if let story = self.story  {
-            Library.loadStoryScreenshot(story, { (image) in
+            /*Library.loadStoryScreenshot(story, { (image) in
                 if image != nil{
                     self.imagePreStory.image = image
                 }
                 ProgressHUD.dismiss()
-            })
+            })*/
+            imagePreStory.sd_setImage(with: URL(string: story.previewURL), completed:nil)
             lblStoryName.text? = story.name
             lblLevel.text? = "Level \(levelStr)"
-            txtSummary.text = story.summary
-            txtKeyMetrics.text = story.keyMetrics
-            
+            lblSummary.text = story.summary
+            lblKeyMetrics.text = story.keyMetrics
         }
         
     }

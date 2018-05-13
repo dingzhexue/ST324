@@ -42,7 +42,8 @@ extension StoryTVCell: UICollectionViewDelegateFlowLayout, UICollectionViewDataS
         cell.viewStory.layer.cornerRadius = 10
         cell.viewStory.layer.borderWidth = 1
         if stories.count != 0 {
-            cell.lblStory.text? = stories[indexPath.row].refId
+            cell.lblStory.text? = stories[indexPath.row].refId.capitalized
+            cell.imgStory.sd_setImage(with: URL(string: stories[indexPath.row].previewURL), completed: nil)
         }
         return cell
     }

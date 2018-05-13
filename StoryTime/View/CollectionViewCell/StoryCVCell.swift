@@ -11,5 +11,6 @@ class StoryCVCell: UICollectionViewCell {
     
     @IBOutlet weak var viewStory: UIView!
     @IBOutlet weak var lblStory: UILabel!
+    @IBOutlet weak var imgStory: UIImageView!
     
 }

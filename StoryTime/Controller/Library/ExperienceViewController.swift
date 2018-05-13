@@ -152,23 +152,23 @@ class ExperienceViewController: BaseViewController {
         makeScrollTextView(scrollView: scrollView, displayStr: sStorySentence)
     }
     
-    func prepareNextSentence(){
-        if nIdxSentence < arrWords.count-1
-        {
-            nIdxSentence += 1
-            makeScrollTextView(scrollView: scrollView, displayStr: (self.story?.sentences[nIdxSentence])!)
-            speechRecognizer.startRecording()
-        }else{ //Read All Senteces!!
-            makeScrollTextView(scrollView: scrollView, displayStr: "Great! You finished all read!")
-            print("Finished Reading")
-            gotoComplete()
-        }
-    }
+//    func prepareNextSentence(){
+//        if nIdxSentence < arrWords.count-1
+//        {
+//            nIdxSentence += 1
+//            makeScrollTextView(scrollView: scrollView, displayStr: (self.story?.sentences[nIdxSentence])!)
+//            speechRecognizer.startRecording()
+//        }else{ //Read All Senteces!!
+//            makeScrollTextView(scrollView: scrollView, displayStr: "Great! You finished all read!")
+//            print("Finished Reading")
+//            gotoComplete()
+//        }
+//    }
     
-    func replaySentence(){
-        makeScrollTextView(scrollView: scrollView, displayStr: (self.story?.sentences[nIdxSentence])!)
-        speechRecognizer.startRecording()
-    }
+//    func replaySentence(){
+//        makeScrollTextView(scrollView: scrollView, displayStr: (self.story?.sentences[nIdxSentence])!)
+//        speechRecognizer.startRecording()
+//    }
     
     func speakAgain(){
         speechRecognizer.startRecording()
@@ -341,9 +341,9 @@ extension ExperienceViewController: SpeechRecognizerDelegate {
             ProgressHUD.dismiss()
             self.navigationController?.popViewController(animated: true)
         }else if status == EndState.replay.rawValue{
-            replaySentence()
+//            replaySentence()
         }else if status == EndState.next.rawValue{
-            prepareNextSentence()
+//            prepareNextSentence()
         }else if status == EndState.speakword.rawValue{
             speakWith(word: m_sWord)
         }else if status == EndState.incorrect.rawValue{

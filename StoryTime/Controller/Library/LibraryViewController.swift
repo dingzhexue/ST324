@@ -27,12 +27,9 @@ class LibraryViewController: BaseViewController {
         //Spinner View
         ProgressHUD.show("Loading...", interaction: false)
         loadLibrary()
-        
-        fetchCurrentUser()
     }
     
     func fetchCurrentUser(){
-        ProgressHUD.show("Loading...", interaction: false)
         Firebase.shared.observeCurrentUser(completion: { snapshot in
             if let dict = snapshot.value as? [String: Any]{
                 if let imgUrl = dict["profileImage"]{
@@ -48,6 +45,8 @@ class LibraryViewController: BaseViewController {
             ProgressHUD.dismiss()
             self.storyLibrary = library
             self.storyTableView.reloadData()
+            
+            self.fetchCurrentUser()
         }
     }
     
