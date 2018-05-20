@@ -31,6 +31,7 @@ class Library {
             //var screenshotName = ""
             //var sentences: [String] = []
             var previewURL = ""
+            var iconURL = ""
             var scenes : [Scene] = []
             
             
@@ -42,6 +43,7 @@ class Library {
                 //static let sentencesKey = "sentences"
                 static let storyKey = "story"
                 static let previewURLKey = "previewURL"
+                static let iconURLKey = "iconURL"
             }
             //Init Story
             init(_ snapshot: DataSnapshot) {
@@ -50,6 +52,7 @@ class Library {
                 if let value = snapshot.value as? NSDictionary {
                     name = value[StoryKey.nameKey] as? String ?? ""
                     previewURL = value[StoryKey.previewURLKey] as? String ?? ""
+                    iconURL = value[StoryKey.iconURLKey] as? String ?? ""
                     summary = value[StoryKey.summaryKey] as? String ?? ""
                     keyMetrics = value[StoryKey.keyMetricsKey] as? String ?? ""
                     //screenshotName = value[StoryKey.screenshotNameKey] as? String ?? ""

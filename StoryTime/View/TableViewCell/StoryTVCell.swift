@@ -43,7 +43,7 @@ extension StoryTVCell: UICollectionViewDelegateFlowLayout, UICollectionViewDataS
         cell.viewStory.layer.borderWidth = 1
         if stories.count != 0 {
             cell.lblStory.text? = stories[indexPath.row].refId.capitalized
-            cell.imgStory.sd_setImage(with: URL(string: stories[indexPath.row].previewURL), completed: nil)
+            cell.imgStory.sd_setImage(with: URL(string: stories[indexPath.row].iconURL), completed: nil)
         }
         return cell
     }

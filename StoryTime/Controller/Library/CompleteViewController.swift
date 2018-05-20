@@ -11,11 +11,10 @@ class CompleteViewController: UIViewController {
     @IBOutlet weak var lblGrade: UILabel!
     @IBOutlet weak var lblTitle: UILabel!
     @IBOutlet weak var lblLevel: UILabel!
-    @IBOutlet weak var lblDescription: UILabel!
-    @IBOutlet weak var imgSpeedBefore: UIImageView!
-    @IBOutlet weak var imgSpeedNow: UIImageView!
-    @IBOutlet weak var imgAccBefore: UIImageView!
-    @IBOutlet weak var imgAccNow: UIImageView!
+//    @IBOutlet weak var imgSpeedBefore: UIImageView!
+//    @IBOutlet weak var imgSpeedNow: UIImageView!
+//    @IBOutlet weak var imgAccBefore: UIImageView!
+//    @IBOutlet weak var imgAccNow: UIImageView!
     
     var story: Library.Level.Story?
     var levelStr = 0
@@ -39,7 +38,7 @@ class CompleteViewController: UIViewController {
                 self.wrongCntBefore = dict["wrongcount"] as! Int
                 self.timeCntBefore = dict["time"] as! Int
                 print("WrongCnt Before \(self.wrongCntBefore), Time Before \(self.timeCntBefore)")
-                self.modifyChart()
+//                self.modifyChart()
             }
             
             Firebase.shared.postResult(id: Firebase.shared.currentUserId(), level: self.levelStr, story: (self.story?.name)!, wrongCount: self.wrongCnt, time: self.timeCnt, onSuccess: {
@@ -48,47 +47,48 @@ class CompleteViewController: UIViewController {
         })
     }
 
-    func modifyChart(){
-        if wrongCnt > wrongCntBefore {
-            if wrongCntBefore == 0 {
-                imgAccBefore.isHidden = true
-            }else{
-                let percent = CGFloat(wrongCntBefore) / CGFloat(wrongCnt)
-                changeHeight(imgView:imgAccBefore, percent: percent)
-            }
-        } else {
-            if wrongCnt == 0 {
-                imgAccNow.isHidden = true
-            }else{
-                let percent = CGFloat(wrongCnt) / CGFloat(wrongCnt)
-                changeHeight(imgView:imgAccNow, percent: percent)
-            }
-        }
-        
-        if timeCnt > timeCntBefore{
-            if timeCntBefore == 0 {
-                imgSpeedBefore.isHidden = true
-            } else {
-                let percent = CGFloat(timeCntBefore) / CGFloat(timeCnt)
-                changeHeight(imgView: imgSpeedBefore, percent: percent)
-            }
-        } else {
-            if timeCnt == 0 {
-                imgSpeedNow.isHidden = true
-            } else {
-                let percent = CGFloat(timeCnt) / CGFloat(timeCntBefore)
-                changeHeight(imgView: imgSpeedNow, percent: percent)
-            }
-        }
-    }
-    func changeHeight(imgView: UIImageView, percent: CGFloat){
-        let height = imgView.frame.size.height
-        let newHeight = height * percent
-        
-        let orgRect = imgView.frame
-        let newRect = CGRect(origin: CGPoint(x: orgRect.origin.x, y: orgRect.origin.y + (height - newHeight)), size: CGSize(width: orgRect.size.width, height: newHeight))
-        imgView.frame = newRect
-    }
+//    func modifyChart(){
+//        if wrongCnt > wrongCntBefore {
+//            if wrongCntBefore == 0 {
+//                imgAccBefore.isHidden = true
+//            }else{
+//                let percent = CGFloat(wrongCntBefore) / CGFloat(wrongCnt)
+//                changeHeight(imgView:imgAccBefore, percent: percent)
+//            }
+//        } else {
+//            if wrongCnt == 0 {
+//                imgAccNow.isHidden = true
+//            }else{
+//                let percent = CGFloat(wrongCnt) / CGFloat(wrongCnt)
+//                changeHeight(imgView:imgAccNow, percent: percent)
+//            }
+//        }
+//
+//        if timeCnt > timeCntBefore{
+//            if timeCntBefore == 0 {
+//                imgSpeedBefore.isHidden = true
+//            } else {
+//                let percent = CGFloat(timeCntBefore) / CGFloat(timeCnt)
+//                changeHeight(imgView: imgSpeedBefore, percent: percent)
+//            }
+//        } else {
+//            if timeCnt == 0 {
+//                imgSpeedNow.isHidden = true
+//            } else {
+//                let percent = CGFloat(timeCnt) / CGFloat(timeCntBefore)
+//                changeHeight(imgView: imgSpeedNow, percent: percent)
+//            }
+//        }
+//    }
+//    func changeHeight(imgView: UIImageView, percent: CGFloat){
+//        let height = imgView.frame.size.height
+//        let newHeight = height * percent
+//
+//        let orgRect = imgView.frame
+//        let newRect = CGRect(origin: CGPoint(x: orgRect.origin.x, y: orgRect.origin.y + (height - newHeight)), size: CGSize(width: orgRect.size.width, height: newHeight))
+//        imgView.frame = newRect
+//    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

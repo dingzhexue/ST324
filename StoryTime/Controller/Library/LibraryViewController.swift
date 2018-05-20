@@ -67,29 +67,49 @@ extension LibraryViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "storyTVCell") as! StoryTVCell
-        cell.parent = self
-        
-        if let level = self.storyLibrary?.levels[indexPath.section] {
-            cell.stories = level.stories
-            cell.levelInt = level.level
+        if indexPath.section == self.storyLibrary?.levels.count{
+            let cell = tableView.dequeueReusableCell(withIdentifier: "commingCell")
+            return cell!
+        }else{
+            let cell = tableView.dequeueReusableCell(withIdentifier: "storyTVCell") as! StoryTVCell
+            cell.parent = self
+            
+            if let level = self.storyLibrary?.levels[indexPath.section] {
+                cell.stories = level.stories
+                cell.levelInt = level.level
+            }
+            return cell
         }
-        return cell
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
         if let levels = self.storyLibrary?.levels {
-            return levels.count
+            return levels.count + 1
         }
         return 0
     }
     
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if let level = self.storyLibrary?.levels[section].level {
-            return "Level \(level)"
-        } else {
-            return  "Level"
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if let levels = self.storyLibrary?.levels {
+            if levels.count == indexPath.section{
+                return 48
+            }
         }
+        return 150
+    }
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if let levels = self.storyLibrary?.levels{
+            if section == levels.count { //More coming soon
+                return ""
+            }else{
+                if let level = self.storyLibrary?.levels[section].level {
+                    return "Level \(level)"
+                } else {
+                    return  "Level"
+                }
+            }
+        }
+        return ""
     }
     
 }
