@@ -45,9 +45,9 @@ class HelpPageViewController: UIPageViewController {
         // The total number of pages that are available is based on how many available colors we have.
         self.pageControl.numberOfPages = 5
         self.pageControl.currentPage = 0
-        self.pageControl.pageIndicatorImage = UIImage(named: "greyCircle")
-        self.pageControl.currentPageIndicatorImage = UIImage(named: "blueCircle")
-        
+        //self.pageControl.pageIndicatorImage = UIImage(named: "greyCircle")
+        //self.pageControl.currentPageIndicatorImage = UIImage(named: "blueCircle")
+        self.pageControl.currentPageIndicatorTintColor = UIColor(red: 195.0/255.0, green: 39.0/255.0, blue: 46.0/255.0, alpha: 1.0)
         // self.pageControl.sizeToFit()
         self.view.addSubview(pageControl)
     }

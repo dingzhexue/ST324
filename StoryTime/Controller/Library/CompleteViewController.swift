@@ -15,6 +15,8 @@ class CompleteViewController: UIViewController {
 //    @IBOutlet weak var imgSpeedNow: UIImageView!
 //    @IBOutlet weak var imgAccBefore: UIImageView!
 //    @IBOutlet weak var imgAccNow: UIImageView!
+    @IBOutlet weak var lblSpeed: UILabel!
+    @IBOutlet weak var lblAccuracy: UILabel!
     
     var story: Library.Level.Story?
     var levelStr = 0
