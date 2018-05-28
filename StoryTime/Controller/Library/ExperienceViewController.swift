@@ -17,6 +17,7 @@ enum EndState : Int{
     case next = 3
     case speakword = 4
     case incorrect = 5
+    case complete = 6
 }
 
 class ExperienceViewController: BaseViewController {
@@ -44,7 +45,7 @@ class ExperienceViewController: BaseViewController {
     @IBOutlet weak var userImage: UIImageView!
     
     @IBOutlet weak var animatedView: UIView!
-    @IBOutlet weak var animatedScene: UIImageView!
+    @IBOutlet weak var lblTitle: UILabel!
     
     private var storyAnimation: LOTAnimationView?
     
@@ -78,11 +79,12 @@ class ExperienceViewController: BaseViewController {
     let synth = AVSpeechSynthesizer()
     var myUtterance = AVSpeechUtterance(string: "")
     
-    let txtSize = CGFloat(24.0)
+    let txtSize = CGFloat(36.0)
     let txtFont = "HelveticaNeue-Light"
     override open func viewDidLoad() {
         super.viewDidLoad()
         
+        lblTitle.text = story?.name
         synth.delegate = self
         speechRecognizer.recognizerDelegate = self
         speechRecognizer.startRecording()
@@ -190,7 +192,8 @@ class ExperienceViewController: BaseViewController {
         storyAnimation = LOTAnimationView(name: name)
         storyAnimation!.autoresizingMask = [.flexibleHeight, .flexibleWidth]
         storyAnimation!.contentMode = .scaleAspectFill
-        storyAnimation!.frame = animatedScene.bounds
+        storyAnimation!.frame.origin = CGPoint.zero
+        storyAnimation!.frame.size = animatedView.frame.size
         animatedView.addSubview(storyAnimation!)
     }
     
@@ -348,6 +351,8 @@ extension ExperienceViewController: SpeechRecognizerDelegate {
             speakWith(word: m_sWord)
         }else if status == EndState.incorrect.rawValue{
             speakAgain()
+        }else if status == EndState.complete.rawValue{
+            gotoComplete()
         }
     }
     
@@ -406,8 +411,8 @@ extension ExperienceViewController: SpeechRecognizerDelegate {
         let wordIndexInfo = getWordIndexInfo(byWordIndex: wordIdx)
         print("word: \(wordIdx) scene:\(wordIndexInfo.scene) sentence:\(wordIndexInfo.sentence) word:\(wordIndexInfo.word)")
         
-        if wordIdx == arrWords.count{ //Last word of whole story
-            //speechRecognizer.stopRecording(status: EndState.backscreen.rawValue)
+        if wordIdx == arrWords.count - 1{ //Last word of whole story
+            speechRecognizer.stopRecording(status: EndState.complete.rawValue)
             return
         }
         
@@ -494,7 +499,7 @@ extension ExperienceViewController {
         textView?.isSelectable = false
         textView?.font = font
         textView?.text = displayStr
-        
+        textView?.backgroundColor = UIColor.clear
         textView?.addGestureRecognizer(tapGesture)
         textView?.addGestureRecognizer(longpressGesture)
         scrollView.contentSize = CGSize(width: strSize.width+20, height: scrollView.frame.size.height)

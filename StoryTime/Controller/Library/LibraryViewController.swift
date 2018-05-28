@@ -9,17 +9,20 @@ import UIKit
 import ProgressHUD
 
 class LibraryViewController: BaseViewController {
+    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var pageController: UIPageControl!
     
-    
-    @IBOutlet weak var btnBuyAllLibrary: UIButton!
     @IBOutlet weak var storyTableView: UITableView!
     var storyLibrary: Library?
     var spinnerView: UIView!
+    
+    var screenWidth:CGFloat = 0
     override func viewDidLoad() {
         super.viewDidLoad()
+        screenWidth = CGFloat(self.view.bounds.size.width)
+        pageController.hidesForSinglePage = true
+        
         //Rounded Button & View
-        btnBuyAllLibrary.layer.cornerRadius = 20
-        btnBuyAllLibrary.layer.borderWidth = 2
         storyTableView.dataSource = self
         storyTableView.delegate = self
         //Remove Cell separator
@@ -112,4 +115,35 @@ extension LibraryViewController: UITableViewDelegate, UITableViewDataSource {
         return ""
     }
     
+}
+
+extension LibraryViewController:UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 10
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 1
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellPurchase", for: indexPath)
+        let imgBack = cell.viewWithTag(100) as! UIImageView
+        imgBack.layer.cornerRadius = 10
+        let lblTitle = cell.viewWithTag(101) as! UILabel
+        lblTitle.text = "Purchase Level " + String(indexPath.section+1)
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        self.pageController.currentPage = indexPath.section
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize{
+        return CGSize(width: screenWidth, height: 200)
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+    }
 }

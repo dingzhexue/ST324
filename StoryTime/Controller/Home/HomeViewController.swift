@@ -10,15 +10,10 @@ import Hero
 class HomeViewController: BaseViewController {
 
     
-    @IBOutlet weak var btnLibrary: UIButton!
     @IBOutlet weak var btnSettings: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
         //Circle Button.
-        btnLibrary.layer.cornerRadius = btnLibrary.frame.width / 2
-        btnLibrary.clipsToBounds = true
-        btnSettings.layer.cornerRadius = btnSettings.frame.width / 2
-        btnSettings.clipsToBounds = true
         btnSettings.heroID = "skyWalker"
     }
 
