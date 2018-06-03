@@ -48,7 +48,7 @@
                                 <color key="backgroundColor" red="0.0035078171640634537" green="0.69353550672531128" blue="0.81597858667373657" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ksy-tD-ecS">
-                                <rect key="frame" x="122" y="252" width="131" height="163"/>
+                                <rect key="frame" x="122" y="251" width="131" height="163"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="btn_library">
                                     <color key="titleColor" red="0.0035078171640000001" green="0.69353550669999997" blue="0.81597858670000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -232,12 +232,8 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="dotline_hor" translatesAutoresizingMaskIntoConstraints="NO" id="9aJ-2v-H2e">
-                                <rect key="frame" x="20" y="386" width="335" height="3"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="dotline_hor" translatesAutoresizingMaskIntoConstraints="NO" id="MiH-YB-B7P">
-                                <rect key="frame" x="20" y="467" width="335" height="3"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="sepline" translatesAutoresizingMaskIntoConstraints="NO" id="9aJ-2v-H2e">
+                                <rect key="frame" x="35" y="379" width="305" height="6"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="B+" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="sZ3-Uq-bYd">
@@ -284,6 +280,10 @@
                                 <color key="textColor" red="0.54771983619999998" green="0.77562630180000003" blue="0.25394999979999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="sepline" translatesAutoresizingMaskIntoConstraints="NO" id="MiH-YB-B7P">
+                                <rect key="frame" x="35" y="470" width="305" height="6"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="ivs-2h-Q4y"/>
@@ -329,7 +329,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2zI-l3-oJm">
-                                <rect key="frame" x="30" y="526" width="315" height="41"/>
+                                <rect key="frame" x="30" y="525" width="315" height="41"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Music">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -844,11 +844,11 @@
                                 <color key="backgroundColor" red="0.071141563355922699" green="0.72144979238510132" blue="0.76521438360214233" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xhk-1j-iDk">
-                                <rect key="frame" x="0.0" y="58" width="375" height="300"/>
+                                <rect key="frame" x="0.0" y="58" width="375" height="299"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EJr-oY-r7z">
-                                        <rect key="frame" x="48" y="6" width="277" height="286"/>
+                                        <rect key="frame" x="48" y="6" width="277" height="285"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
@@ -856,7 +856,7 @@
                                         </connections>
                                     </button>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ae4-OR-UeJ">
-                                        <rect key="frame" x="48" y="6" width="277" height="286"/>
+                                        <rect key="frame" x="48" y="6" width="277" height="285"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     </imageView>
                                 </subviews>
@@ -867,14 +867,14 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" heightSizable="YES"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Summary" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4B7-Mn-uG6">
-                                        <rect key="frame" x="20" y="8" width="335" height="118"/>
+                                        <rect key="frame" x="20" y="8" width="335" height="117"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="16"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aEm-kS-F4O">
-                                        <rect key="frame" x="20" y="145" width="335" height="67"/>
+                                        <rect key="frame" x="20" y="144" width="335" height="68"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" heightSizable="YES"/>
                                         <string key="text">Suggested reading level: ages 3-4 yrs
 Vocabulary: Easy
@@ -1074,5 +1074,6 @@ Average time to read: 3 minutes</string>
         <image name="help4" width="414" height="662"/>
         <image name="help5" width="414" height="662"/>
         <image name="musicOn" width="49" height="48"/>
+        <image name="sepline" width="304" height="6"/>
     </resources>
 </document>

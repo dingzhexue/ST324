@@ -115,7 +115,7 @@ class ExperienceViewController: BaseViewController {
         
         prepareStory()
         
-        createAnimation(name: "PNGTest1")
+        createAnimation(name: "Story1_1")
         //startSAnimation(loop: false, start: 0, end: 1)
         startSAnimation(loop: false, start: (story?.scenes[0].fPosStart)!, end: (story?.scenes[0].fPosEnd)!)
     }
