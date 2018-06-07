@@ -21,22 +21,15 @@ class PreviewViewController: BaseViewController {
     var levelStr = 0
     override func viewDidLoad() {
         super.viewDidLoad()
-        //ProgressHUD.show("Loading...", interaction: false)
         imagePreStory.layer.cornerRadius = 10
         // Do any additional setup after loading the view.
         //Get All Datas
         if let story = self.story  {
-            /*Library.loadStoryScreenshot(story, { (image) in
-                if image != nil{
-                    self.imagePreStory.image = image
-                }
-                ProgressHUD.dismiss()
-            })*/
             imagePreStory.sd_setImage(with: URL(string: story.previewURL), completed:nil)
             lblStoryName.text? = story.name
             lblLevel.text? = "Level \(levelStr)"
             lblSummary.text = story.summary
-            lblKeyMetrics.text = story.keyMetrics
+            lblKeyMetrics.text = story.kmlevel + "\r\n" + story.kmvocabulary + "\r\n" + story.kmtime
         }
         
     }
@@ -45,6 +38,7 @@ class PreviewViewController: BaseViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
     @IBAction func btnPreImageClickedToExperienceView(_ sender: Any) {
         if let experienceViewController = storyboard?.instantiateViewController(withIdentifier: "ExperienceViewController") as? ExperienceViewController {
             experienceViewController.story = self.story
