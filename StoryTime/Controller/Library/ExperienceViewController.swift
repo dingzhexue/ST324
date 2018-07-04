@@ -103,7 +103,7 @@ class ExperienceViewController: BaseViewController {
         super.viewWillAppear(animated)
         startWaveForm()
     }
-    
+
     //For the Speech Sentences
     func prepareStory(){
         for scene in (self.story?.scenes)!{
