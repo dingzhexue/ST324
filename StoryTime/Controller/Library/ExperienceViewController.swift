@@ -13,6 +13,8 @@ import Lottie
 enum EndState : Int{
     case normal = 0
     case backscreen = 1
+    case replay = 2
+    case next = 3
     case speakword = 4
     case incorrect = 5
     case complete = 6
@@ -87,6 +89,24 @@ class ExperienceViewController: BaseViewController {
         speechRecognizer.recognizerDelegate = self
         speechRecognizer.startRecording()
         
+        //Get Animated Scene
+        /*if let  story = self.story {
+            Library.loadStoryScreenshot(story, { (image) in
+                if image != nil {
+                    self.animatedScene.image = image!
+                }
+            })
+        }*/
+        
+        //Get User Photo
+        /*if let currentPlayer = GameCenter().currentPlayer {
+            currentPlayer.loadPhoto(for: .normal, withCompletionHandler: {(image, error) in
+                if image != nil && error != nil {
+                    self.userImage.image = image
+                }
+            })
+        }*/
+        
         //User Image
         userImage.layer.cornerRadius = userImage.frame.width / 2
         userImage.layer.borderWidth = 2
@@ -95,7 +115,8 @@ class ExperienceViewController: BaseViewController {
         
         prepareStory()
         
-        createAnimation(name: "lv1_story1")
+        createAnimation(name: "Story1_1")
+        //startSAnimation(loop: false, start: 0, end: 1)
         startSAnimation(loop: false, start: (story?.scenes[0].fPosStart)!, end: (story?.scenes[0].fPosEnd)!)
     }
     
@@ -103,7 +124,7 @@ class ExperienceViewController: BaseViewController {
         super.viewWillAppear(animated)
         startWaveForm()
     }
-
+    
     //For the Speech Sentences
     func prepareStory(){
         for scene in (self.story?.scenes)!{
@@ -131,6 +152,28 @@ class ExperienceViewController: BaseViewController {
         arrRawWords = sStorySentence.components(separatedBy: " ")
         
         makeScrollTextView(scrollView: scrollView, displayStr: sStorySentence)
+    }
+    
+//    func prepareNextSentence(){
+//        if nIdxSentence < arrWords.count-1
+//        {
+//            nIdxSentence += 1
+//            makeScrollTextView(scrollView: scrollView, displayStr: (self.story?.sentences[nIdxSentence])!)
+//            speechRecognizer.startRecording()
+//        }else{ //Read All Senteces!!
+//            makeScrollTextView(scrollView: scrollView, displayStr: "Great! You finished all read!")
+//            print("Finished Reading")
+//            gotoComplete()
+//        }
+//    }
+    
+//    func replaySentence(){
+//        makeScrollTextView(scrollView: scrollView, displayStr: (self.story?.sentences[nIdxSentence])!)
+//        speechRecognizer.startRecording()
+//    }
+    
+    func speakAgain(){
+        speechRecognizer.startRecording()
     }
     
     func gotoComplete(){
@@ -226,6 +269,10 @@ class ExperienceViewController: BaseViewController {
         timer.invalidate()
     }
 
+    //UI Actions
+    @IBAction func onTest(_ sender: Any) {
+        
+    }
     
     @IBAction func btnBackClicked(_ sender: Any) {
         //navigationController?.popViewController(animated: true)
@@ -292,13 +339,18 @@ extension ExperienceViewController: SpeechRecognizerDelegate {
         
         if status == EndState.normal.rawValue{
             speechRecognizer.startRecording()
-        }else if status == EndState.backscreen.rawValue {
+        }
+        else if status == EndState.backscreen.rawValue {
             ProgressHUD.dismiss()
             self.navigationController?.popViewController(animated: true)
+        }else if status == EndState.replay.rawValue{
+//            replaySentence()
+        }else if status == EndState.next.rawValue{
+//            prepareNextSentence()
         }else if status == EndState.speakword.rawValue{
             speakWith(word: m_sWord)
         }else if status == EndState.incorrect.rawValue{
-            speechRecognizer.startRecording()
+            speakAgain()
         }else if status == EndState.complete.rawValue{
             gotoComplete()
         }
@@ -505,6 +557,21 @@ extension ExperienceViewController {
         let subStr = sStorySentence.prefix(wordInfo.pos)
         let strSize = (subStr as NSString).boundingRect(with: maxSize, options: NSStringDrawingOptions.usesLineFragmentOrigin, attributes: [NSAttributedStringKey.font : font], context: nil)
         scrollView.setContentOffset(CGPoint(x: strSize.width, y: 0), animated: true)
+    }
+    
+    func getRedColor(toText:String, wordPos: Int, wordLength: Int) -> NSMutableAttributedString{
+        let wordInfo = getWordInfo(fromString: toText, byWordIndex: wordPos)
+        
+        let startPos = wordInfo.pos
+        let endPos = startPos + wordLength
+        
+        var myMutableString = NSMutableAttributedString()
+        
+        myMutableString = NSMutableAttributedString(string: toText)
+        
+        myMutableString.setAttributes([NSAttributedStringKey.font : UIFont(name: txtFont, size: txtSize)!
+            , NSAttributedStringKey.foregroundColor : UIColor.red], range: NSRange(location:startPos,length:endPos - startPos))
+        return myMutableString
     }
     
     func getWordIndexInfo(byWordIndex: Int) -> WordIndexInfo{
