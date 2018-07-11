@@ -27,9 +27,7 @@ class Library {
             var refId: String
             var name = ""
             var summary = ""
-            var kmlevel = ""
-            var kmtime = ""
-            var kmvocabulary = ""
+            var keyMetrics = ""
             //var screenshotName = ""
             //var sentences: [String] = []
             var previewURL = ""
@@ -40,9 +38,7 @@ class Library {
             struct StoryKey {
                 static let nameKey = "name"
                 static let summaryKey = "summary"
-                static let kmLevelKey = "KMLevel"
-                static let kmTimeKey = "KMTime"
-                static let kmVocabularyKey = "KMVocabulary"
+                static let keyMetricsKey = "keyMetrics"
                 //static let screenshotNameKey = "screenshotName"
                 //static let sentencesKey = "sentences"
                 static let storyKey = "story"
@@ -58,9 +54,7 @@ class Library {
                     previewURL = value[StoryKey.previewURLKey] as? String ?? ""
                     iconURL = value[StoryKey.iconURLKey] as? String ?? ""
                     summary = value[StoryKey.summaryKey] as? String ?? ""
-                    kmlevel = value[StoryKey.kmLevelKey] as? String ?? ""
-                    kmtime = value[StoryKey.kmTimeKey] as? String ?? ""
-                    kmvocabulary = value[StoryKey.kmVocabularyKey] as? String ?? ""
+                    keyMetrics = value[StoryKey.keyMetricsKey] as? String ?? ""
                     //screenshotName = value[StoryKey.screenshotNameKey] as? String ?? ""
                     //let sentencesString = value[StoryKey.sentencesKey] as? String ?? ""
                     //sentences = sentencesString.components(separatedBy: "\n")

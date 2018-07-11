@@ -124,11 +124,19 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CNg-bU-JpP">
-                                        <rect key="frame" x="0.0" y="16" width="42" height="34"/>
+                                        <rect key="frame" x="8" y="16" width="30" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" image="btn_back_b"/>
                                         <connections>
-                                            <action selector="btnBackClicked:" destination="rwM-pv-47X" eventType="touchUpInside" id="4Zz-zZ-goh"/>
+                                            <action selector="btnBackClicked:" destination="XZp-RU-g3i" eventType="touchUpInside" id="WdE-5X-xeP"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eSz-QS-19y">
+                                        <rect key="frame" x="321" y="16" width="46" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Test"/>
+                                        <connections>
+                                            <action selector="onTest:" destination="rwM-pv-47X" eventType="touchUpInside" id="HSl-lU-uDj"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -185,7 +193,7 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <button opaque="NO" alpha="0.69999999999999996" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CZO-2g-YfH">
-                                        <rect key="frame" x="0.0" y="16" width="42" height="34"/>
+                                        <rect key="frame" x="8" y="16" width="30" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" image="backButton"/>
                                         <connections>
@@ -364,7 +372,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" alpha="0.69999998807907104" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hOA-3o-GgI">
-                                        <rect key="frame" x="0.0" y="16" width="42" height="34"/>
+                                        <rect key="frame" x="8" y="16" width="30" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" image="backButton"/>
                                         <connections>
@@ -398,7 +406,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KHj-FH-YU3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-178.40000000000001" y="868.51574212893559"/>
+            <point key="canvasLocation" x="-178" y="869"/>
         </scene>
         <!--Help Page View Controller-->
         <scene sceneID="J9d-Kl-JFR">
@@ -650,7 +658,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" alpha="0.69999999999999996" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ode-7E-ZxY">
-                                        <rect key="frame" x="0.0" y="16" width="42" height="34"/>
+                                        <rect key="frame" x="8" y="16" width="30" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" image="backButton"/>
                                         <connections>
@@ -825,7 +833,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" alpha="0.69999999999999996" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CBG-dX-6Ky">
-                                        <rect key="frame" x="0.0" y="16" width="42" height="34"/>
+                                        <rect key="frame" x="8" y="16" width="30" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" image="backButton"/>
                                         <connections>
@@ -865,12 +873,12 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aEm-kS-F4O">
-                                        <rect key="frame" x="20" y="144" width="164" height="68"/>
-                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES"/>
-                                        <string key="text">Suggested reading level:
-Vocabulary:
-Average time to read:</string>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aEm-kS-F4O">
+                                        <rect key="frame" x="20" y="144" width="335" height="68"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" heightSizable="YES"/>
+                                        <string key="text">Suggested reading level: ages 3-4 yrs
+Vocabulary: Easy
+Average time to read: 3 minutes</string>
                                         <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="12"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -883,16 +891,6 @@ Average time to read:</string>
                                         <rect key="frame" x="20" y="134" width="335" height="3"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wX5-lx-h7E">
-                                        <rect key="frame" x="192" y="144" width="163" height="68"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMinY="YES" heightSizable="YES"/>
-                                        <string key="text">ages 3-4 yrs
-Easy
-3 minutes</string>
-                                        <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="12"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
@@ -925,7 +923,7 @@ Easy
                     <connections>
                         <outlet property="btnBack" destination="CBG-dX-6Ky" id="Zng-AU-OYT"/>
                         <outlet property="imagePreStory" destination="ae4-OR-UeJ" id="Unq-lv-0LB"/>
-                        <outlet property="lblKeyMetrics" destination="wX5-lx-h7E" id="YYq-fd-d5T"/>
+                        <outlet property="lblKeyMetrics" destination="aEm-kS-F4O" id="sNk-e4-MyS"/>
                         <outlet property="lblLevel" destination="ypy-bF-cOy" id="vsn-QR-9WQ"/>
                         <outlet property="lblStoryName" destination="GdB-w1-y9g" id="s6f-7S-lcZ"/>
                         <outlet property="lblSummary" destination="4B7-Mn-uG6" id="GHV-F7-hub"/>
