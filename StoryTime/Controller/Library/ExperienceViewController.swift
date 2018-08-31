@@ -89,15 +89,6 @@ class ExperienceViewController: BaseViewController {
         speechRecognizer.recognizerDelegate = self
         speechRecognizer.startRecording()
         
-        //Get Animated Scene
-        /*if let  story = self.story {
-            Library.loadStoryScreenshot(story, { (image) in
-                if image != nil {
-                    self.animatedScene.image = image!
-                }
-            })
-        }*/
-        
         //Get User Photo
         /*if let currentPlayer = GameCenter().currentPlayer {
             currentPlayer.loadPhoto(for: .normal, withCompletionHandler: {(image, error) in
@@ -115,9 +106,8 @@ class ExperienceViewController: BaseViewController {
         
         prepareStory()
         
-        createAnimation(name: "Story1_1")
-        //startSAnimation(loop: false, start: 0, end: 1)
-        startSAnimation(loop: false, start: (story?.scenes[0].fPosStart)!, end: (story?.scenes[0].fPosEnd)!)
+        //createAnimation(name: "Story1_1")
+        //startSAnimation(loop: false, start: (story?.scenes[0].fPosStart)!, end: (story?.scenes[0].fPosEnd)!)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -153,24 +143,6 @@ class ExperienceViewController: BaseViewController {
         
         makeScrollTextView(scrollView: scrollView, displayStr: sStorySentence)
     }
-    
-//    func prepareNextSentence(){
-//        if nIdxSentence < arrWords.count-1
-//        {
-//            nIdxSentence += 1
-//            makeScrollTextView(scrollView: scrollView, displayStr: (self.story?.sentences[nIdxSentence])!)
-//            speechRecognizer.startRecording()
-//        }else{ //Read All Senteces!!
-//            makeScrollTextView(scrollView: scrollView, displayStr: "Great! You finished all read!")
-//            print("Finished Reading")
-//            gotoComplete()
-//        }
-//    }
-    
-//    func replaySentence(){
-//        makeScrollTextView(scrollView: scrollView, displayStr: (self.story?.sentences[nIdxSentence])!)
-//        speechRecognizer.startRecording()
-//    }
     
     func speakAgain(){
         speechRecognizer.startRecording()
@@ -364,17 +336,21 @@ extension ExperienceViewController: SpeechRecognizerDelegate {
         
         var isAllCorrect = true
         
+        //Compare with speech words count
         var nCompareCnt = aSpeech.count
+        //If count is over the whole sentence, just cut
         if nReadWordIdx + nCompareCnt > arrWords.count{
             nCompareCnt = arrWords.count - nReadWordIdx
         }
         
+        //Compare words if all correct or partial
         for i in 0..<nCompareCnt{
             let wordIndex = nReadWordIdx + i
             
             let speechWord = removeSpecialCharFrom(string: aSpeech[i].lowercased())
-            
-            if speechWord.caseInsensitiveCompare(self.arrWords[wordIndex]) != ComparisonResult.orderedSame{
+            let orgWord = self.arrWords[wordIndex]
+            //if speechWord.caseInsensitiveCompare(self.arrWords[wordIndex]) != ComparisonResult.orderedSame{
+            if speechWord.distance(between: orgWord) < 0.5 && !skipWord(speech: speechWord, org: orgWord){
                 posIncorrect = i
                 isAllCorrect = false
                 break
@@ -384,19 +360,22 @@ extension ExperienceViewController: SpeechRecognizerDelegate {
         var nRealReadCnt = 0
         
         if isAllCorrect {
+            print("All correct")
             nAllCorrectCnt = nCompareCnt
             setBlueText(readCnt: nCompareCnt)
             
             nRealReadCnt = nReadWordIdx + nAllCorrectCnt - 1
         }else{
             if posIncorrect > 0{
+                print("Incorrect")
                 nReadWordIdx += posIncorrect
             }else if nAllCorrectCnt > 0{
+                print("not all correct/all correct")
                 nReadWordIdx += nAllCorrectCnt
             }
             
-            nRealReadCnt = nReadWordIdx - 1
-            
+            nRealReadCnt = max(nReadWordIdx - 1, 0)
+
             setRedText(wrongIdx: nReadWordIdx)
             speechRecognizer.stopRecording(status: EndState.incorrect.rawValue)
             nAllCorrectCnt = 0
@@ -417,9 +396,16 @@ extension ExperienceViewController: SpeechRecognizerDelegate {
         }
         
         if wordIndexInfo.scene != lastWordIndexInfo.scene{ //New Scene
-            startSAnimation(loop: false, start: (story?.scenes[wordIndexInfo.scene].fPosStart)!, end: (story?.scenes[wordIndexInfo.scene].fPosEnd)!)
+            //startSAnimation(loop: false, start: (story?.scenes[wordIndexInfo.scene].fPosStart)!, end: (story?.scenes[wordIndexInfo.scene].fPosEnd)!)
         }
         lastWordIndexInfo = wordIndexInfo
+    }
+    
+    func skipWord(speech: String, org: String) -> Bool{
+        if speech == "oh" && org == "a"{
+            return true
+        }
+        return false
     }
 }
 

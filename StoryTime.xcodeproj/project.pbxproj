@@ -70,6 +70,8 @@
 		0550139D20C3F40B009EFFDE /* WheelWell.png in Resources */ = {isa = PBXBuildFile; fileRef = 0550136020C3F40B009EFFDE /* WheelWell.png */; };
 		0550139E20C3F40B009EFFDE /* Story1_1.json in Resources */ = {isa = PBXBuildFile; fileRef = 0550136120C3F40B009EFFDE /* Story1_1.json */; };
 		057EC1132056A12200A4F20C /* Lottie.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 057EC1142056A12200A4F20C /* Lottie.framework */; };
+		0583BCB821382C4500E4A810 /* StringExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0583BCB621382C4500E4A810 /* StringExt.swift */; };
+		0583BCB921382C4500E4A810 /* StringMetric.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0583BCB721382C4500E4A810 /* StringMetric.swift */; };
 		05C15DDE202B501E00831635 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05C15DDD202B501E00831635 /* StoreKit.framework */; };
 		05E885C4202214150073DE52 /* CompleteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E885C3202214150073DE52 /* CompleteViewController.swift */; };
 		C3616B811FE2E52900EECBD7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3616B801FE2E52900EECBD7 /* AppDelegate.swift */; };
@@ -168,6 +170,8 @@
 		0550136020C3F40B009EFFDE /* WheelWell.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WheelWell.png; sourceTree = "<group>"; };
 		0550136120C3F40B009EFFDE /* Story1_1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Story1_1.json; sourceTree = "<group>"; };
 		057EC1142056A12200A4F20C /* Lottie.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Lottie.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0583BCB621382C4500E4A810 /* StringExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExt.swift; sourceTree = "<group>"; };
+		0583BCB721382C4500E4A810 /* StringMetric.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringMetric.swift; sourceTree = "<group>"; };
 		05C15DDD202B501E00831635 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		05E885C3202214150073DE52 /* CompleteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompleteViewController.swift; sourceTree = "<group>"; };
 		AE2528B1FA1036B4ED133F41 /* Pods_StoryTime.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StoryTime.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -394,6 +398,8 @@
 		C3616BAE1FE2FC0F00EECBD7 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				0583BCB621382C4500E4A810 /* StringExt.swift */,
+				0583BCB721382C4500E4A810 /* StringMetric.swift */,
 				054B4D18201C82D200C23E6A /* WaveformView.swift */,
 				C3616BB01FE2FC2800EECBD7 /* Firebase.swift */,
 				C3616BB81FE4208A00EECBD7 /* SpeechRecognizer.swift */,
@@ -700,6 +706,7 @@
 				C3BBFD411FE96D5300CBACA7 /* LibraryViewController.swift in Sources */,
 				C3616BB71FE3053300EECBD7 /* Music.swift in Sources */,
 				054B4D19201C82D300C23E6A /* WaveformView.swift in Sources */,
+				0583BCB821382C4500E4A810 /* StringExt.swift in Sources */,
 				C3BBFD3E1FE96BAD00CBACA7 /* HomeViewController.swift in Sources */,
 				ECEBE6181FE81E3000A47878 /* GameCenter.swift in Sources */,
 				EC4F5D721FEBF05D00898C2B /* StoryCVCell.swift in Sources */,
@@ -715,6 +722,7 @@
 				C3616BA21FE2ECD900EECBD7 /* GroupViewController.swift in Sources */,
 				05E885C4202214150073DE52 /* CompleteViewController.swift in Sources */,
 				C3616BB51FE3052C00EECBD7 /* Theme.swift in Sources */,
+				0583BCB921382C4500E4A810 /* StringMetric.swift in Sources */,
 				EC40BED82012633100F46103 /* HelpViewController.swift in Sources */,
 				EC7832281FECE37400E092AF /* StoryTVCell.swift in Sources */,
 			);
