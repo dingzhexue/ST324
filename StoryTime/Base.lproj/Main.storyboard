@@ -90,8 +90,8 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bmY-N2-Q2M">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                <rect key="frame" x="0.0" y="58" width="375" height="450"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4t3-3s-xgu">
@@ -143,16 +143,33 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CD4-X9-ipe">
+                                <rect key="frame" x="16" y="483" width="343" height="25"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <color key="backgroundColor" red="0.98823529409999999" green="0.69803921570000005" blue="0.70588235290000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="Pel-GF-LBl">
+                                <rect key="frame" x="14" y="446" width="347" height="30"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <connections>
+                                    <action selector="onSlider:" destination="rwM-pv-47X" eventType="valueChanged" id="W4A-4E-u5W"/>
+                                </connections>
+                            </slider>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="vLW-er-KPP"/>
                     </view>
                     <connections>
                         <outlet property="animatedView" destination="bmY-N2-Q2M" id="cXg-EC-PzR"/>
+                        <outlet property="lblScore" destination="CD4-X9-ipe" id="w5U-5o-3dg"/>
                         <outlet property="lblSpeaking" destination="o4m-xv-h1U" id="76R-Q7-KBv"/>
                         <outlet property="lblTitle" destination="Fa3-sB-OtC" id="xsW-EJ-5bW"/>
                         <outlet property="longpressGesture" destination="idK-2v-ppJ" id="P8K-VY-YXK"/>
                         <outlet property="scrollView" destination="AJI-fZ-clO" id="JbC-Iy-sDf"/>
+                        <outlet property="sliderScore" destination="Pel-GF-LBl" id="v7t-es-BKm"/>
                         <outlet property="tapGesture" destination="NlL-sk-llR" id="j6M-g1-wma"/>
                         <outlet property="userImage" destination="vdM-J2-dAi" id="qEl-JL-qr1"/>
                         <outlet property="waveformView" destination="eda-Co-2is" id="RWT-Wj-wVS"/>

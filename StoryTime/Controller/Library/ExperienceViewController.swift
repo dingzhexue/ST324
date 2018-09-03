@@ -47,6 +47,9 @@ class ExperienceViewController: BaseViewController {
     @IBOutlet weak var animatedView: UIView!
     @IBOutlet weak var lblTitle: UILabel!
     
+    @IBOutlet weak var lblScore: UILabel!
+    @IBOutlet weak var sliderScore: UISlider!
+    
     private var storyAnimation: LOTAnimationView?
     
     var audioRecorder: AVAudioRecorder!
@@ -284,6 +287,9 @@ class ExperienceViewController: BaseViewController {
             openDicWith(word: sWord)
         }
     }
+    @IBAction func onSlider(_ sender: Any) {
+        lblScore.text = "Tol:" + String(sliderScore.value)
+    }
 }
 
 extension ExperienceViewController: AVSpeechSynthesizerDelegate{
@@ -350,7 +356,9 @@ extension ExperienceViewController: SpeechRecognizerDelegate {
             let speechWord = removeSpecialCharFrom(string: aSpeech[i].lowercased())
             let orgWord = self.arrWords[wordIndex]
             //if speechWord.caseInsensitiveCompare(self.arrWords[wordIndex]) != ComparisonResult.orderedSame{
-            if speechWord.distance(between: orgWord) < 0.5 && !skipWord(speech: speechWord, org: orgWord){
+            let score = speechWord.distance(between: orgWord)
+            lblScore.text = "Tol:" + String(sliderScore.value) + " | " + String(score) + " | " + orgWord + ":" + speechWord;
+            if score < Double(sliderScore.value) && !skipWord(speech: speechWord, org: orgWord){
                 posIncorrect = i
                 isAllCorrect = false
                 break
@@ -545,21 +553,6 @@ extension ExperienceViewController {
         scrollView.setContentOffset(CGPoint(x: strSize.width, y: 0), animated: true)
     }
     
-    func getRedColor(toText:String, wordPos: Int, wordLength: Int) -> NSMutableAttributedString{
-        let wordInfo = getWordInfo(fromString: toText, byWordIndex: wordPos)
-        
-        let startPos = wordInfo.pos
-        let endPos = startPos + wordLength
-        
-        var myMutableString = NSMutableAttributedString()
-        
-        myMutableString = NSMutableAttributedString(string: toText)
-        
-        myMutableString.setAttributes([NSAttributedStringKey.font : UIFont(name: txtFont, size: txtSize)!
-            , NSAttributedStringKey.foregroundColor : UIColor.red], range: NSRange(location:startPos,length:endPos - startPos))
-        return myMutableString
-    }
-    
     func getWordIndexInfo(byWordIndex: Int) -> WordIndexInfo{
         var nTotalWordCount = 0
         for i in 0..<arrSWords.count{
@@ -602,5 +595,20 @@ extension ExperienceViewController {
     
     func removeSpecialCharFrom(string:String)->String{
         return string.components(separatedBy: CharacterSet.alphanumerics.inverted).joined()
+    }
+    
+    func getRedColor(toText:String, wordPos: Int, wordLength: Int) -> NSMutableAttributedString{
+        let wordInfo = getWordInfo(fromString: toText, byWordIndex: wordPos)
+        
+        let startPos = wordInfo.pos
+        let endPos = startPos + wordLength
+        
+        var myMutableString = NSMutableAttributedString()
+        
+        myMutableString = NSMutableAttributedString(string: toText)
+        
+        myMutableString.setAttributes([NSAttributedStringKey.font : UIFont(name: txtFont, size: txtSize)!
+            , NSAttributedStringKey.foregroundColor : UIColor.red], range: NSRange(location:startPos,length:endPos - startPos))
+        return myMutableString
     }
 }
