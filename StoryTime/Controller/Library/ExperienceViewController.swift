@@ -82,7 +82,7 @@ class ExperienceViewController: BaseViewController {
     let synth = AVSpeechSynthesizer()
     var myUtterance = AVSpeechUtterance(string: "")
     
-    let txtSize = CGFloat(36.0)
+    let txtSize = CGFloat(24.0)
     let txtFont = "HelveticaNeue-Light"
     override open func viewDidLoad() {
         super.viewDidLoad()
@@ -507,7 +507,7 @@ extension ExperienceViewController {
         
         setTextColor(startPos: startWordInfo.pos, length: endWordInfo.pos+endWordInfo.wordOrg.count - startWordInfo.pos, color: UIColor.blue)
         
-        var nScrollIdx = nReadWordIdx + readCnt - 2
+        var nScrollIdx = nReadWordIdx + readCnt - 1
         if nScrollIdx < 0{
             nScrollIdx = 0
         }
