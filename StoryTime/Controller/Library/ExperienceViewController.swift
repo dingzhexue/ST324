@@ -48,7 +48,6 @@ class ExperienceViewController: BaseViewController {
     @IBOutlet weak var lblTitle: UILabel!
     
     @IBOutlet weak var lblScore: UILabel!
-    @IBOutlet weak var sliderScore: UISlider!
     
     private var storyAnimation: LOTAnimationView?
     
@@ -70,7 +69,8 @@ class ExperienceViewController: BaseViewController {
     var sStorySentence = ""
     var arrSWords: [[[String]]] = [] // Story Word by remove special characters - Scene/Sentence/Word
     var arrWords = [String]() //Whole story words without special
-    var arrRawWords: [String] = [] //Raw story words
+    var arrRawWords: [String]! //Raw story words
+    var arrScores: [Double]!
     var nReadWordIdx = 0
     var nAllCorrectCnt = 0
     
@@ -143,7 +143,7 @@ class ExperienceViewController: BaseViewController {
         
         sStorySentence = sStorySentence.trimmingCharacters(in: .whitespaces)
         arrRawWords = sStorySentence.components(separatedBy: " ")
-        
+        arrScores = [Double](repeating: 0.0, count: arrRawWords.count)
         makeScrollTextView(scrollView: scrollView, displayStr: sStorySentence)
     }
     
@@ -287,9 +287,7 @@ class ExperienceViewController: BaseViewController {
             openDicWith(word: sWord)
         }
     }
-    @IBAction func onSlider(_ sender: Any) {
-        lblScore.text = "Tol:" + String(sliderScore.value)
-    }
+    
 }
 
 extension ExperienceViewController: AVSpeechSynthesizerDelegate{
@@ -357,12 +355,14 @@ extension ExperienceViewController: SpeechRecognizerDelegate {
             let orgWord = self.arrWords[wordIndex]
             //if speechWord.caseInsensitiveCompare(self.arrWords[wordIndex]) != ComparisonResult.orderedSame{
             let score = speechWord.distance(between: orgWord)
-            lblScore.text = "Tol:" + String(sliderScore.value) + " | " + String(score) + " | " + orgWord + ":" + speechWord;
-            if score < Double(sliderScore.value) && !skipWord(speech: speechWord, org: orgWord){
+            lblScore.text = "Tol:" + String(g_fTolerance) + " | " + String(score) + " | " + orgWord + ":" + speechWord;
+            if score < g_fTolerance && !skipWord(speech: speechWord, org: orgWord){
                 posIncorrect = i
                 isAllCorrect = false
                 break
             }
+            
+            arrScores[wordIndex] = score
         }
         
         var nRealReadCnt = 0

@@ -18,8 +18,13 @@ UINavigationControllerDelegate{
     @IBOutlet weak var btnMusic: UIButton!
     @IBOutlet weak var btnHelp: UIButton!
     
+    @IBOutlet weak var sliderScore: UISlider!
+    
     var picker:UIImagePickerController?=UIImagePickerController()
     
+    @IBAction func onSlider(_ sender: Any) {
+        g_fTolerance = Double(sliderScore.value)
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         //Rounded Button

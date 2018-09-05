@@ -151,13 +151,6 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="Pel-GF-LBl">
-                                <rect key="frame" x="14" y="446" width="347" height="30"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                <connections>
-                                    <action selector="onSlider:" destination="rwM-pv-47X" eventType="valueChanged" id="W4A-4E-u5W"/>
-                                </connections>
-                            </slider>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="vLW-er-KPP"/>
@@ -169,7 +162,6 @@
                         <outlet property="lblTitle" destination="Fa3-sB-OtC" id="xsW-EJ-5bW"/>
                         <outlet property="longpressGesture" destination="idK-2v-ppJ" id="P8K-VY-YXK"/>
                         <outlet property="scrollView" destination="AJI-fZ-clO" id="JbC-Iy-sDf"/>
-                        <outlet property="sliderScore" destination="Pel-GF-LBl" id="v7t-es-BKm"/>
                         <outlet property="tapGesture" destination="NlL-sk-llR" id="j6M-g1-wma"/>
                         <outlet property="userImage" destination="vdM-J2-dAi" id="qEl-JL-qr1"/>
                         <outlet property="waveformView" destination="eda-Co-2is" id="RWT-Wj-wVS"/>
@@ -392,6 +384,20 @@
                                 </subviews>
                                 <color key="backgroundColor" red="0.98251527547836304" green="0.68995267152786255" blue="0.23349785804748535" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Recognition Tolerance" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ixl-ii-jmp">
+                                <rect key="frame" x="16" y="413" width="153" height="18"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="HHh-eK-Wao">
+                                <rect key="frame" x="175" y="408" width="186" height="30"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="onSlider:" destination="RTb-bV-JFP" eventType="valueChanged" id="NFw-Hf-NTK"/>
+                                </connections>
+                            </slider>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="O5p-18-f34"/>
@@ -411,11 +417,12 @@
                         <outlet property="btnStatistics" destination="ENH-mt-uyL" id="suP-No-fHU"/>
                         <outlet property="imageUser" destination="hEj-DR-bkP" id="CQN-Ua-jad"/>
                         <outlet property="lblUserName" destination="tur-bX-Ne4" id="UbU-HA-d5c"/>
+                        <outlet property="sliderScore" destination="HHh-eK-Wao" id="qQY-DT-Gqi"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KHj-FH-YU3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-178" y="869"/>
+            <point key="canvasLocation" x="-178.40000000000001" y="868.51574212893559"/>
         </scene>
         <!--Help Page View Controller-->
         <scene sceneID="J9d-Kl-JFR">
@@ -773,7 +780,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cellPurchase" id="MrF-Do-43l">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" misplaced="YES" reuseIdentifier="cellPurchase" id="MrF-Do-43l">
                                         <rect key="frame" x="0.0" y="0.0" width="334" height="200"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">

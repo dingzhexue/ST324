@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		052797C121403AA600BB32A7 /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052797C021403AA600BB32A7 /* Global.swift */; };
 		054B4D19201C82D300C23E6A /* WaveformView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054B4D18201C82D200C23E6A /* WaveformView.swift */; };
 		0550136220C3F40B009EFFDE /* BGSky.png in Resources */ = {isa = PBXBuildFile; fileRef = 0550132520C3F40B009EFFDE /* BGSky.png */; };
 		0550136320C3F40B009EFFDE /* BGTrees.png in Resources */ = {isa = PBXBuildFile; fileRef = 0550132620C3F40B009EFFDE /* BGTrees.png */; };
@@ -107,6 +108,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		052797C021403AA600BB32A7 /* Global.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Global.swift; sourceTree = "<group>"; };
 		054B4D18201C82D200C23E6A /* WaveformView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaveformView.swift; sourceTree = "<group>"; };
 		0550132520C3F40B009EFFDE /* BGSky.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BGSky.png; sourceTree = "<group>"; };
 		0550132620C3F40B009EFFDE /* BGTrees.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BGTrees.png; sourceTree = "<group>"; };
@@ -404,6 +406,7 @@
 				C3616BB01FE2FC2800EECBD7 /* Firebase.swift */,
 				C3616BB81FE4208A00EECBD7 /* SpeechRecognizer.swift */,
 				ECEBE6171FE81E3000A47878 /* GameCenter.swift */,
+				052797C021403AA600BB32A7 /* Global.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -704,6 +707,7 @@
 				C3BBFD481FEAD0DD00CBACA7 /* SettingsViewController.swift in Sources */,
 				C3616BA41FE2ED1600EECBD7 /* StoreViewController.swift in Sources */,
 				C3BBFD411FE96D5300CBACA7 /* LibraryViewController.swift in Sources */,
+				052797C121403AA600BB32A7 /* Global.swift in Sources */,
 				C3616BB71FE3053300EECBD7 /* Music.swift in Sources */,
 				054B4D19201C82D300C23E6A /* WaveformView.swift in Sources */,
 				0583BCB821382C4500E4A810 /* StringExt.swift in Sources */,
