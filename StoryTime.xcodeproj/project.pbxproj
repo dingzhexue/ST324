@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		050E5B2C219C491400DE8BE7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 050E5B2B219C491200DE8BE7 /* Assets.xcassets */; };
+		050E5B2F219C4C5000DE8BE7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 050E5B2D219C4C5000DE8BE7 /* Main.storyboard */; };
+		050E5B30219C4C5000DE8BE7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 050E5B2E219C4C5000DE8BE7 /* LaunchScreen.storyboard */; };
+		050E5B35219C501500DE8BE7 /* CustomOverlay.xib in Resources */ = {isa = PBXBuildFile; fileRef = 050E5B31219C501500DE8BE7 /* CustomOverlay.xib */; };
+		050E5B36219C501500DE8BE7 /* CustomOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050E5B32219C501500DE8BE7 /* CustomOverlay.swift */; };
+		050E5B37219C501500DE8BE7 /* CustomPage.xib in Resources */ = {isa = PBXBuildFile; fileRef = 050E5B33219C501500DE8BE7 /* CustomPage.xib */; };
+		050E5B38219C501500DE8BE7 /* CustomPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050E5B34219C501500DE8BE7 /* CustomPage.swift */; };
+		050E5B3A219C503300DE8BE7 /* HelpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050E5B39219C503300DE8BE7 /* HelpVC.swift */; };
 		052797C121403AA600BB32A7 /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052797C021403AA600BB32A7 /* Global.swift */; };
 		054B4D19201C82D300C23E6A /* WaveformView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054B4D18201C82D200C23E6A /* WaveformView.swift */; };
 		0550136220C3F40B009EFFDE /* BGSky.png in Resources */ = {isa = PBXBuildFile; fileRef = 0550132520C3F40B009EFFDE /* BGSky.png */; };
@@ -76,9 +84,6 @@
 		05C15DDE202B501E00831635 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05C15DDD202B501E00831635 /* StoreKit.framework */; };
 		05E885C4202214150073DE52 /* CompleteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E885C3202214150073DE52 /* CompleteViewController.swift */; };
 		C3616B811FE2E52900EECBD7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3616B801FE2E52900EECBD7 /* AppDelegate.swift */; };
-		C3616B861FE2E52900EECBD7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C3616B841FE2E52900EECBD7 /* Main.storyboard */; };
-		C3616B881FE2E52900EECBD7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C3616B871FE2E52900EECBD7 /* Assets.xcassets */; };
-		C3616B8B1FE2E52900EECBD7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C3616B891FE2E52900EECBD7 /* LaunchScreen.storyboard */; };
 		C3616B941FE2E7C200EECBD7 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3616B931FE2E7C200EECBD7 /* BaseViewController.swift */; };
 		C3616BA21FE2ECD900EECBD7 /* GroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3616BA11FE2ECD900EECBD7 /* GroupViewController.swift */; };
 		C3616BA41FE2ED1600EECBD7 /* StoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3616BA31FE2ED1600EECBD7 /* StoreViewController.swift */; };
@@ -99,15 +104,20 @@
 		C3BBFD451FE96FDE00CBACA7 /* ExperienceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3BBFD441FE96FDE00CBACA7 /* ExperienceViewController.swift */; };
 		C3BBFD481FEAD0DD00CBACA7 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3BBFD471FEAD0DD00CBACA7 /* SettingsViewController.swift */; };
 		E697AF187E00F7F0D9349C36 /* Pods_StoryTime.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE2528B1FA1036B4ED133F41 /* Pods_StoryTime.framework */; };
-		EC3F69EA2013794C00FAD3A1 /* NavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC3F69E92013794C00FAD3A1 /* NavigationViewController.swift */; };
-		EC40BED82012633100F46103 /* HelpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC40BED72012633100F46103 /* HelpViewController.swift */; };
 		EC4F5D721FEBF05D00898C2B /* StoryCVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4F5D711FEBF05D00898C2B /* StoryCVCell.swift */; };
 		EC7832281FECE37400E092AF /* StoryTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7832271FECE37400E092AF /* StoryTVCell.swift */; };
-		EC86DDC22012351C00095CE3 /* HelpPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC86DDC12012351C00095CE3 /* HelpPageViewController.swift */; };
 		ECEBE6181FE81E3000A47878 /* GameCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECEBE6171FE81E3000A47878 /* GameCenter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		050E5B2B219C491200DE8BE7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		050E5B2D219C4C5000DE8BE7 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		050E5B2E219C4C5000DE8BE7 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		050E5B31219C501500DE8BE7 /* CustomOverlay.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomOverlay.xib; sourceTree = "<group>"; };
+		050E5B32219C501500DE8BE7 /* CustomOverlay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomOverlay.swift; sourceTree = "<group>"; };
+		050E5B33219C501500DE8BE7 /* CustomPage.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomPage.xib; sourceTree = "<group>"; };
+		050E5B34219C501500DE8BE7 /* CustomPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomPage.swift; sourceTree = "<group>"; };
+		050E5B39219C503300DE8BE7 /* HelpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpVC.swift; sourceTree = "<group>"; };
 		052797C021403AA600BB32A7 /* Global.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Global.swift; sourceTree = "<group>"; };
 		054B4D18201C82D200C23E6A /* WaveformView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaveformView.swift; sourceTree = "<group>"; };
 		0550132520C3F40B009EFFDE /* BGSky.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BGSky.png; sourceTree = "<group>"; };
@@ -181,9 +191,6 @@
 		B9B97089D4F24B29DEF17B0E /* Pods-StoryTime.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StoryTime.debug.xcconfig"; path = "Pods/Target Support Files/Pods-StoryTime/Pods-StoryTime.debug.xcconfig"; sourceTree = "<group>"; };
 		C3616B7D1FE2E52900EECBD7 /* StoryTime.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StoryTime.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3616B801FE2E52900EECBD7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		C3616B851FE2E52900EECBD7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		C3616B871FE2E52900EECBD7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		C3616B8A1FE2E52900EECBD7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C3616B8C1FE2E52900EECBD7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C3616B931FE2E7C200EECBD7 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		C3616BA11FE2ECD900EECBD7 /* GroupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupViewController.swift; sourceTree = "<group>"; };
@@ -204,11 +211,8 @@
 		C3BBFD421FE96EF800CBACA7 /* PreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewViewController.swift; sourceTree = "<group>"; };
 		C3BBFD441FE96FDE00CBACA7 /* ExperienceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExperienceViewController.swift; sourceTree = "<group>"; };
 		C3BBFD471FEAD0DD00CBACA7 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
-		EC3F69E92013794C00FAD3A1 /* NavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationViewController.swift; sourceTree = "<group>"; };
-		EC40BED72012633100F46103 /* HelpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpViewController.swift; sourceTree = "<group>"; };
 		EC4F5D711FEBF05D00898C2B /* StoryCVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryCVCell.swift; sourceTree = "<group>"; };
 		EC7832271FECE37400E092AF /* StoryTVCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryTVCell.swift; sourceTree = "<group>"; };
-		EC86DDC12012351C00095CE3 /* HelpPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelpPageViewController.swift; sourceTree = "<group>"; };
 		ECEBE6171FE81E3000A47878 /* GameCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameCenter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -346,9 +350,9 @@
 				C3616BAD1FE2FC0F00EECBD7 /* View */,
 				057EC0F12056A04E00A4F20C /* Resources */,
 				C3616B801FE2E52900EECBD7 /* AppDelegate.swift */,
-				C3616B841FE2E52900EECBD7 /* Main.storyboard */,
-				C3616B871FE2E52900EECBD7 /* Assets.xcassets */,
-				C3616B891FE2E52900EECBD7 /* LaunchScreen.storyboard */,
+				050E5B2E219C4C5000DE8BE7 /* LaunchScreen.storyboard */,
+				050E5B2D219C4C5000DE8BE7 /* Main.storyboard */,
+				050E5B2B219C491200DE8BE7 /* Assets.xcassets */,
 				C3616B8C1FE2E52900EECBD7 /* Info.plist */,
 				C3616BAB1FE2F94200EECBD7 /* GoogleService-Info.plist */,
 			);
@@ -479,9 +483,11 @@
 		EC86DDC0201234DD00095CE3 /* Help */ = {
 			isa = PBXGroup;
 			children = (
-				EC86DDC12012351C00095CE3 /* HelpPageViewController.swift */,
-				EC40BED72012633100F46103 /* HelpViewController.swift */,
-				EC3F69E92013794C00FAD3A1 /* NavigationViewController.swift */,
+				050E5B39219C503300DE8BE7 /* HelpVC.swift */,
+				050E5B32219C501500DE8BE7 /* CustomOverlay.swift */,
+				050E5B31219C501500DE8BE7 /* CustomOverlay.xib */,
+				050E5B34219C501500DE8BE7 /* CustomPage.swift */,
+				050E5B33219C501500DE8BE7 /* CustomPage.xib */,
 			);
 			path = Help;
 			sourceTree = "<group>";
@@ -563,6 +569,7 @@
 				0550139420C3F40B009EFFDE /* WalkForest.png in Resources */,
 				0550139D20C3F40B009EFFDE /* WheelWell.png in Resources */,
 				0550137B20C3F40B009EFFDE /* Fishing_0Pole.png in Resources */,
+				050E5B2F219C4C5000DE8BE7 /* Main.storyboard in Resources */,
 				0550137C20C3F40B009EFFDE /* Flash.png in Resources */,
 				0550136F20C3F40B009EFFDE /* Dream.png in Resources */,
 				0550136220C3F40B009EFFDE /* BGSky.png in Resources */,
@@ -571,10 +578,10 @@
 				0550136420C3F40B009EFFDE /* BGTrees_4.png in Resources */,
 				0550138820C3F40B009EFFDE /* Ray2.png in Resources */,
 				0550138D20C3F40B009EFFDE /* t1.png in Resources */,
+				050E5B2C219C491400DE8BE7 /* Assets.xcassets in Resources */,
 				0550139C20C3F40B009EFFDE /* Wheel2.png in Resources */,
 				0550138720C3F40B009EFFDE /* Ray1.png in Resources */,
 				0550138420C3F40B009EFFDE /* net.png in Resources */,
-				C3616B8B1FE2E52900EECBD7 /* LaunchScreen.storyboard in Resources */,
 				0550136920C3F40B009EFFDE /* CaughtFish.png in Resources */,
 				0550138020C3F40B009EFFDE /* FSplash2.png in Resources */,
 				0550139620C3F40B009EFFDE /* WaterBack.png in Resources */,
@@ -582,12 +589,13 @@
 				0550139B20C3F40B009EFFDE /* Wheel1.png in Resources */,
 				0550139520C3F40B009EFFDE /* Water.png in Resources */,
 				0550137920C3F40B009EFFDE /* FFish.png in Resources */,
-				C3616B881FE2E52900EECBD7 /* Assets.xcassets in Resources */,
 				0550139820C3F40B009EFFDE /* WaterFish.png in Resources */,
 				0550139720C3F40B009EFFDE /* WaterBubbles.png in Resources */,
+				050E5B30219C4C5000DE8BE7 /* LaunchScreen.storyboard in Resources */,
 				0550136E20C3F40B009EFFDE /* door_2inside.png in Resources */,
 				0550137E20C3F40B009EFFDE /* ForegroundTrees.png in Resources */,
 				0550139A20C3F40B009EFFDE /* WHead.png in Resources */,
+				050E5B35219C501500DE8BE7 /* CustomOverlay.xib in Resources */,
 				0550139120C3F40B009EFFDE /* t5.png in Resources */,
 				0550137F20C3F40B009EFFDE /* Fsplash.png in Resources */,
 				0550137320C3F40B009EFFDE /* EagleDive.png in Resources */,
@@ -595,7 +603,6 @@
 				0550137820C3F40B009EFFDE /* ENDfish.png in Resources */,
 				0550138F20C3F40B009EFFDE /* t3.png in Resources */,
 				0550137220C3F40B009EFFDE /* Eagle3.png in Resources */,
-				C3616B861FE2E52900EECBD7 /* Main.storyboard in Resources */,
 				0550137420C3F40B009EFFDE /* EagleRise.png in Resources */,
 				0550136B20C3F40B009EFFDE /* Cloud2.png in Resources */,
 				0550138120C3F40B009EFFDE /* Grass.png in Resources */,
@@ -608,6 +615,7 @@
 				0550138B20C3F40B009EFFDE /* surprisebody.png in Resources */,
 				0550137620C3F40B009EFFDE /* EagleTree.png in Resources */,
 				0550138620C3F40B009EFFDE /* Otter.png in Resources */,
+				050E5B37219C501500DE8BE7 /* CustomPage.xib in Resources */,
 				0550139020C3F40B009EFFDE /* t4.png in Resources */,
 				0550138220C3F40B009EFFDE /* mayfly.png in Resources */,
 				0550139320C3F40B009EFFDE /* transition.png in Resources */,
@@ -647,10 +655,10 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-StoryTime/Pods-StoryTime-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
-				"${BUILT_PRODUCTS_DIR}/Hero/Hero.framework",
 				"${BUILT_PRODUCTS_DIR}/ProgressHUD/ProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/SMPageControl/SMPageControl.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyOnboard/SwiftyOnboard.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyStoreKit/SwiftyStoreKit.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/lottie-ios/Lottie.framework",
@@ -660,10 +668,10 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Hero.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SMPageControl.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyOnboard.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyStoreKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Lottie.framework",
@@ -702,8 +710,6 @@
 				C3616BA81FE2F6D200EECBD7 /* ThemeViewController.swift in Sources */,
 				C3616BB91FE4208A00EECBD7 /* SpeechRecognizer.swift in Sources */,
 				C3616BBF1FE42E1A00EECBD7 /* Library.swift in Sources */,
-				EC3F69EA2013794C00FAD3A1 /* NavigationViewController.swift in Sources */,
-				EC86DDC22012351C00095CE3 /* HelpPageViewController.swift in Sources */,
 				C3BBFD481FEAD0DD00CBACA7 /* SettingsViewController.swift in Sources */,
 				C3616BA41FE2ED1600EECBD7 /* StoreViewController.swift in Sources */,
 				C3BBFD411FE96D5300CBACA7 /* LibraryViewController.swift in Sources */,
@@ -721,37 +727,20 @@
 				C3616BB11FE2FC2800EECBD7 /* Firebase.swift in Sources */,
 				C3616B811FE2E52900EECBD7 /* AppDelegate.swift in Sources */,
 				C3BBFD431FE96EF800CBACA7 /* PreviewViewController.swift in Sources */,
+				050E5B38219C501500DE8BE7 /* CustomPage.swift in Sources */,
+				050E5B3A219C503300DE8BE7 /* HelpVC.swift in Sources */,
 				C3616BB31FE3028700EECBD7 /* Icon.swift in Sources */,
 				C3616B941FE2E7C200EECBD7 /* BaseViewController.swift in Sources */,
 				C3616BA21FE2ECD900EECBD7 /* GroupViewController.swift in Sources */,
+				050E5B36219C501500DE8BE7 /* CustomOverlay.swift in Sources */,
 				05E885C4202214150073DE52 /* CompleteViewController.swift in Sources */,
 				C3616BB51FE3052C00EECBD7 /* Theme.swift in Sources */,
 				0583BCB921382C4500E4A810 /* StringMetric.swift in Sources */,
-				EC40BED82012633100F46103 /* HelpViewController.swift in Sources */,
 				EC7832281FECE37400E092AF /* StoryTVCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXVariantGroup section */
-		C3616B841FE2E52900EECBD7 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				C3616B851FE2E52900EECBD7 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		C3616B891FE2E52900EECBD7 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				C3616B8A1FE2E52900EECBD7 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		C3616B8D1FE2E52900EECBD7 /* Debug */ = {

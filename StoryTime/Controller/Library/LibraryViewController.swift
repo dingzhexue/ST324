@@ -57,7 +57,7 @@ class LibraryViewController: BaseViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    @IBAction func btnBackClicked(_ sender: Any) {
+    @IBAction func onBack(_ sender: Any) {
         navigationController?.popViewController(animated: true)
     }
 }
@@ -144,6 +144,6 @@ extension LibraryViewController:UICollectionViewDelegate, UICollectionViewDataSo
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        ///////
     }
 }

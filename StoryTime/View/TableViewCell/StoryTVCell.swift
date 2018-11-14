@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import Hero
+
 class StoryTVCell: UITableViewCell {
 
     @IBOutlet weak var storyCollectionView: UICollectionView!

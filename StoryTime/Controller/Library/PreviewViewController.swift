@@ -47,7 +47,7 @@ class PreviewViewController: BaseViewController {
         }
     }
     
-    @IBAction func btnBackClicked(_ sender: Any) {
+    @IBAction func onBack(_ sender: Any) {
         navigationController?.popViewController(animated: true)
     }
 }

@@ -24,14 +24,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // At very first time display.
         
-        if defaults.object(forKey: "isFirstTime") == nil {
+        /*if defaults.object(forKey: "isFirstTime") == nil {
             defaults.set("No", forKey:"isFirstTime")
             defaults.synchronize()
-            let storyboard = UIStoryboard(name: "Main", bundle: nil) //Write your storyboard name
-            let viewController = storyboard.instantiateViewController(withIdentifier: "NavigationViewController") as! NavigationViewController
-            self.window?.rootViewController = viewController
-            self.window?.makeKeyAndVisible()
-         }
+            
+         }*/
         
         setupIAP()
         return true

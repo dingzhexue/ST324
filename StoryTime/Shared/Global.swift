@@ -8,3 +8,4 @@
 import Foundation
 
 var g_fTolerance = 0.5
+let g_sKeyReadTutorial = "keyReadTutorial"

@@ -6,15 +6,12 @@
 //
 
 import UIKit
-import Hero
 class HomeViewController: BaseViewController {
 
     
     @IBOutlet weak var btnSettings: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
-        //Circle Button.
-        btnSettings.heroID = "skyWalker"
     }
 
     override func didReceiveMemoryWarning() {
@@ -22,18 +19,15 @@ class HomeViewController: BaseViewController {
         // Dispose of any resources that can be recreated.
     }
     
-   
-    @IBAction func btnLibraryClicked(_ sender: Any) {
-        if let libraryViewController = storyboard?.instantiateViewController(withIdentifier: "LibraryViewController") as? LibraryViewController {
-            navigationController?.pushViewController(libraryViewController, animated: true)
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if !UserDefaults.standard.bool(forKey: g_sKeyReadTutorial)
+        {
+            performSegue(withIdentifier: "segueHelp", sender: nil)
         }
     }
-    @IBAction func btnSettingClicked(_ sender: Any) {
-        let preView = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SettingsViewController") as! SettingsViewController
-        preView.isHeroEnabled = true
-        preView.heroModalAnimationType = .fade
-        
-        self.hero_replaceViewController(with: preView)
+    @IBAction func onHelp(_ sender: Any) {
+        performSegue(withIdentifier: "segueHelp", sender: nil)
     }
     
     /*
