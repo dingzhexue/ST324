@@ -9,8 +9,7 @@ import UIKit
 import ProgressHUD
 
 class PreviewViewController: BaseViewController {
-    
-    @IBOutlet weak var btnBack: UIButton!
+
     @IBOutlet weak var imagePreStory: UIImageView!
     @IBOutlet weak var lblStoryName: UILabel!
     @IBOutlet weak var lblLevel: UILabel!
@@ -49,5 +48,8 @@ class PreviewViewController: BaseViewController {
     
     @IBAction func onBack(_ sender: Any) {
         navigationController?.popViewController(animated: true)
+    }
+    @IBAction func onHome(_ sender: Any) {
+        navigationController?.popToRootViewController(animated: true)
     }
 }

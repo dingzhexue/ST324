@@ -17,6 +17,7 @@ class CompleteViewController: UIViewController {
 //    @IBOutlet weak var imgAccNow: UIImageView!
     @IBOutlet weak var lblSpeed: UILabel!
     @IBOutlet weak var lblAccuracy: UILabel!
+    @IBOutlet weak var btnPrevious: UIButton!
     
     var story: Library.Level.Story?
     var levelStr = 0
@@ -28,6 +29,8 @@ class CompleteViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        btnPrevious.layer.cornerRadius = 15
+        btnPrevious.clipsToBounds = true
         // Do any additional setup after loading the view.
         lblTitle.text = story?.name
         lblLevel.text = "Level \(levelStr)"
@@ -97,7 +100,11 @@ class CompleteViewController: UIViewController {
     }
     
     @IBAction func onBack(_ sender: Any) {
-        self.navigationController?.popToRootViewController(animated: true)
+        let vc = navigationController!.viewControllers
+        self.navigationController?.popToViewController(vc[1], animated: true)
+    }
+    @IBAction func onHome(_ sender: Any) {
+        navigationController?.popToRootViewController(animated: true)
     }
     
     
