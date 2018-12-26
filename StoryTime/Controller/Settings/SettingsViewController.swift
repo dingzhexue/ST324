@@ -22,6 +22,8 @@ UINavigationControllerDelegate{
     
     var picker:UIImagePickerController?=UIImagePickerController()
     
+    var bMusicOn = false
+    
     @IBAction func onSlider(_ sender: Any) {
         g_fTolerance = Double(sliderScore.value)
     }
@@ -68,7 +70,12 @@ UINavigationControllerDelegate{
         
     }
     @IBAction func btnMusicClicked(_ sender: Any) {
-        
+        bMusicOn = !bMusicOn
+        if bMusicOn{
+            btnMusic.setImage(#imageLiteral(resourceName: "check_on"), for: .normal)
+        }else{
+            btnMusic.setImage(#imageLiteral(resourceName: "check_off"), for: .normal)
+        }
     }
     @IBAction func btnHelpClicked(_ sender: Any) {
 

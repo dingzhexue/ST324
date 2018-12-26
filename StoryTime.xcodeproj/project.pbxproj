@@ -504,7 +504,6 @@
 				C3616B7A1FE2E52900EECBD7 /* Frameworks */,
 				C3616B7B1FE2E52900EECBD7 /* Resources */,
 				8139820CF5072A6F2F3BA558 /* [CP] Embed Pods Frameworks */,
-				418A7698E562BC5FCCF28B39 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -631,21 +630,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		418A7698E562BC5FCCF28B39 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-StoryTime/Pods-StoryTime-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		8139820CF5072A6F2F3BA558 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
